@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 06 - Grade 11</title>
+    
+    <link rel="stylesheet" href="../css/Listening 06.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 06 (Items 1 - 7)</h1>
+            <p class="subtitle">G. 11 Sem I 2nd Session 2022-2023</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear a conversation between <span class="highlight">Alan</span> and <span class="highlight">Diana</span>.</p>
+            <p><strong>Listen to the audio, then select the correct option for each question.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Conversation: Alan and Diana</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 06 T1 T.Auf.mp3" type="audio/mpeg">
+                <source src="listening-exercise-06.wav" type="audio/wav">
+                <source src="listening-exercise-06.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="question-container">
+            <div class="question" data-correct="bus">
+                <div class="question-number">1. Diana and the tourists travelled to the canyon by ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">plane</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">car</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">bus</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="were tired">
+                <div class="question-number">2. Some of the tourists stayed at the hotel today because they ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">were tired</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">were ill</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">went to a different place</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="Diana's colleague">
+                <div class="question-number">3. Mark is ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">a hotel manager</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Diana's colleague</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">a worker at the canyon</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="didn't eat anything">
+                <div class="question-number">4. For lunch Diana ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">didn't eat anything</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">ate something with the tourists</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">ate in the canyon cafe</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="good wages and she likes it">
+                <div class="question-number">5. Diana thinks that her job has ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">good wages</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">bad wages but at least she likes it</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">good wages and she likes it</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="discussed tomorrow's travel plan">
+                <div class="question-number">6. When Diana arrived back in the hotel, she ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">had a sandwich</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">slept</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">discussed tomorrow's travel plan</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="city museum and the aquarium">
+                <div class="question-number">7. For tomorrow Diana is going to take the tourists to the ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">city museum</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">aquarium</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">city museum and the aquarium</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Listening Activities</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/7</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Listening 06.js"></script>
+</body>
+</html>

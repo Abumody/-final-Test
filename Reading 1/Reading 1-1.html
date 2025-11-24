@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Comprehension - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/Reading 1-1.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-reader"></i> Reading Comprehension</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2024-2025</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> Read the texts carefully. For each statement that follows, select whether it is True or False based on the text.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to details and specific information in each text.</p>
+        </div>
+        
+        <div class="exercise-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Reading 01 (Items 1 - 5)</div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 1</div>
+                <div class="text-content">
+                    Dear teacher,<br>
+                    I hope this message finds you well. I am sorry that I won't be able to submit my project on time as we agreed. An urgent matter has come up-my mother is scheduled for an operation this week, and I will be busy looking after her. Can I submit it next Monday?<br>
+                    Thank you for your understanding. Regards: Muna
+                </div>
+                <div class="statement">Muna's mother will have an operation next week.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 2</div>
+                <div class="text-content">
+                    There was a sudden increase in the number of people who participated in the marathon this year. The organizers said it was because people have become more aware of a healthy lifestyle, and many participants wanted to challenge themselves after last year's event.
+                </div>
+                <div class="statement">The marathon had fewer participants this year.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 3</div>
+                <div class="text-content">
+                    Abdulrahman bought a laptop online, but he was unhappy with the service. He discovered that the screen was broken. Despite waiting for more than 40 days, he still had not received a replacement from the company as promised. Eventually, he decided to write a complaint.
+                </div>
+                <div class="statement">Abdulrahman was upset with the laptop he received.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 4</div>
+                <div class="text-content">
+                    China has developed robots to be used in hospitals to help doctors and surgeons. For the time being, robots can handle tasks like giving medicines and writing patients' reports which give surgeons more time for operations.
+                </div>
+                <div class="statement">Robots are not responsible for operations.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 5</div>
+                <div class="text-content">
+                    Most South Africans communicate directly and confidently, often speaking straight to the point. They may openly tell you when you are wrong with a great sense of humor. Silence in conversations can be seen as a sign that the discussion is not interesting.
+                </div>
+                <div class="statement">South Africans feel comfortable to tell others that they are wrong.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#1e3c72" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/5</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Reading 1-1.js"></script>
+</body>
+</html>

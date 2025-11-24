@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 13 - Grade 11</title>
+    
+    <link rel="stylesheet" href="../css/Listening 13 wrong.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 13 (Items 1 - 7)</h1>
+            <p class="subtitle">G. 11 Sem I 2nd Session 2017-2018</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear a conversation between two friends talking about a new job.</p>
+            <p><strong>Listen to the audio, then select the correct option for each question.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Conversation: Two Friends Talking About a New Job</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 13 T1 T.Auf.mp3" type="audio/mpeg">
+                <source src="listening-exercise-13.wav" type="audio/wav">
+                <source src="listening-exercise-13.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="vocabulary">
+            <div class="vocabulary-title">Vocabulary</div>
+            <div class="vocabulary-grid">
+                <div class="vocab-item">
+                    <span class="vocab-english">receptionist</span>
+                    <span class="vocab-arabic">موظف الاستقبال</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">aquarium</span>
+                    <span class="vocab-arabic">حوض الأسماك</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">canyon</span>
+                    <span class="vocab-arabic">واد عميق</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">colleague</span>
+                    <span class="vocab-arabic">زميل</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">exhausted</span>
+                    <span class="vocab-arabic">منهك</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">grab</span>
+                    <span class="vocab-arabic">ينتزع أو ميسك بـ</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-container">
+            <div class="question" data-correct="receptionist">
+                <div class="question-number">1. Diana's job is a ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">manager</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">tour guide</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">receptionist</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="bus">
+                <div class="question-number">2. The tourists travelled to the canyon by ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">car</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">train</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">bus</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="tired">
+                <div class="question-number">3. Some of the tourists stayed at the hotel that day because they were ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">tired</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">ill</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">not interested</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="colleague">
+                <div class="question-number">4. Mark is Diana's ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">friend</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">leader</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">colleague</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="likes">
+                <div class="question-number">5. Diana ______ her job.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">likes</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">criticises</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">hates</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="had a sandwich">
+                <div class="question-number">6. When Diana arrived back in the hotel, she ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">had a sandwich</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">met the leader</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">slept</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="aquarium">
+                <div class="question-number">7. Next day, the tourists will visit the ______ in the morning.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">aquarium</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">museum</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">aquarium and the museum</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Listening Activities</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/7</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Listening 13 wrong.js"></script>
+</body>
+</html>

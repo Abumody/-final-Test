@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar/Vocabulary Exercise - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/GrammarVocabulary 1.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-language"></i> Grammar & Vocabulary Exercise</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2024-2025</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> For each item, select the correct option to complete the passage.</p>
+            <p><i class="fas fa-lightbulb"></i> Read the entire passage first, then choose the best word or phrase for each numbered blank.</p>
+        </div>
+        
+        <div class="passage-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Complete the Passage</div>
+            <div class="passage-text">
+                A police report mentioned that the fifteen-year-old boy 
+                <span class="blank">
+                    <span class="blank-number">1</span>
+                    <select class="blank-select" id="blank1">
+                        <option value="">Select</option>
+                        <option value="who">who</option>
+                        <option value="which">which</option>
+                        <option value="where">where</option>
+                        <option value="how">how</option>
+                    </select>
+                </span>
+                ran away from school last week was 
+                <span class="blank">
+                    <span class="blank-number">2</span>
+                    <select class="blank-select" id="blank2">
+                        <option value="">Select</option>
+                        <option value="have">have</option>
+                        <option value="had">had</option>
+                        <option value="having">having</option>
+                        <option value="has">has</option>
+                    </select>
+                </span>
+                family problems and poor academic progress. His 
+                <span class="blank">
+                    <span class="blank-number">3</span>
+                    <select class="blank-select" id="blank3">
+                        <option value="">Select</option>
+                        <option value="classes">classes</option>
+                        <option value="grades">grades</option>
+                        <option value="behaviours">behaviours</option>
+                        <option value="plans">plans</option>
+                    </select>
+                </span>
+                were very low in all subjects and he 
+                <span class="blank">
+                    <span class="blank-number">4</span>
+                    <select class="blank-select" id="blank4">
+                        <option value="">Select</option>
+                        <option value="tried">tried</option>
+                        <option value="tries">tries</option>
+                        <option value="try">try</option>
+                        <option value="trying">trying</option>
+                    </select>
+                </span>
+                to keep up with his homework. He was 
+                <span class="blank">
+                    <span class="blank-number">5</span>
+                    <select class="blank-select" id="blank5">
+                        <option value="">Select</option>
+                        <option value="bored">bored</option>
+                        <option value="excited">excited</option>
+                        <option value="amused">amused</option>
+                        <option value="scared">scared</option>
+                    </select>
+                </span>
+                to tell his parents, thinking they would call 
+                <span class="blank">
+                    <span class="blank-number">6</span>
+                    <select class="blank-select" id="blank6">
+                        <option value="">Select</option>
+                        <option value="its">its</option>
+                        <option value="him">him</option>
+                        <option value="his">his</option>
+                        <option value="it">it</option>
+                    </select>
+                </span>
+                lazy. The school teacher 
+                <span class="blank">
+                    <span class="blank-number">7</span>
+                    <select class="blank-select" id="blank7">
+                        <option value="">Select</option>
+                        <option value="closed">closed</option>
+                        <option value="helped">helped</option>
+                        <option value="noticed">noticed</option>
+                        <option value="decided">decided</option>
+                    </select>
+                </span>
+                the big change in the boy's habits. He thought that this boy was going through peer 
+                <span class="blank">
+                    <span class="blank-number">8</span>
+                    <select class="blank-select" id="blank8">
+                        <option value="">Select</option>
+                        <option value="pleasure">pleasure</option>
+                        <option value="pressure">pressure</option>
+                        <option value="freedom">freedom</option>
+                        <option value="wisdom">wisdom</option>
+                    </select>
+                </span>
+                . He wasn't accepted among his peers. He 
+                <span class="blank">
+                    <span class="blank-number">9</span>
+                    <select class="blank-select" id="blank9">
+                        <option value="">Select</option>
+                        <option value="accidently">accidently</option>
+                        <option value="systematically">systematically</option>
+                        <option value="definitely">definitely</option>
+                        <option value="confidently">confidently</option>
+                    </select>
+                </span>
+                felt lonely. The school teacher called his parents but they 
+                <span class="blank">
+                    <span class="blank-number">10</span>
+                    <select class="blank-select" id="blank10">
+                        <option value="">Select</option>
+                        <option value="wasn't">wasn't</option>
+                        <option value="hadn't">hadn't</option>
+                        <option value="weren't">weren't</option>
+                        <option value="didn't">didn't</option>
+                    </select>
+                </span>
+                show up for the meeting.
+            </div>
+            <div class="hint">
+                <i class="fas fa-lightbulb"></i> Tip: Read the entire sentence to understand the context before selecting your answer.
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#667eea" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/10</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/GrammarVocabulary 1.js"></script>
+</body>
+</html>

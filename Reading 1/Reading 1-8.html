@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Comprehension - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/Reading 1-8.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-reader"></i> Reading Comprehension</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2019-2020</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> Read the texts carefully. For each statement that follows, select whether it is True or False based on the text.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to details and specific information in each text.</p>
+        </div>
+        
+        <div class="exercise-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Reading 08 (Items 1 - 5)</div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 1</div>
+                <div class="text-content">
+                    Last summer, we decided to spend our vacation at the beach. The travel agent said that travelling by bus was the cheapest way to get there, but we went by plane because it was faster. The weather on the beach was beautiful and we had a great time.
+                </div>
+                <div class="statement">The writer didn't enjoy his holiday.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 2</div>
+                <div class="text-content">
+                    Albert Einstein was born in 1879 in Germany. He was not considered to be particularly smart when he was growing up, so everyone was shocked when he became the most famous scientist in the world. His parents were concerned he would not be successful because he was slow to speak as a child.
+                </div>
+                <div class="statement">Albert Einstein's parents were worried about his level of intelligence.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 3</div>
+                <div class="text-content">
+                    Tokyo is the capital of Japan. It is a very different place at night to how it is during the day. This is because millions of neon signs are switched on, once it gets dark and the whole city lights up. I think Tokyo is the most exciting and cosmopolitan city in the world.
+                </div>
+                <div class="statement">According to the writer, Tokyo is the most attractive city in the world.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 4</div>
+                <div class="text-content">
+                    My name is Saeed. I adore sports cars and I also love repairing them. When I was ten, I had many toy cars. I would play with them all day long and repair the ones my friends broke. That is why I want to be a mechanic and have my own garage.
+                </div>
+                <div class="statement">Saeed wants a job fixing cars.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 5</div>
+                <div class="text-content">
+                    Marie Curie was born in Poland in 1867. Her childhood was not a happy one. Her older sister died when she was nine and her mother died when she was eleven. After leaving school, she wanted to continue her studies, but was unable to, because at that time universities in Poland were for men only.
+                </div>
+                <div class="statement">Marie studied in a famous university in Poland.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#1e3c72" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/5</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Reading 1-8.js"></script>
+</body>
+</html>

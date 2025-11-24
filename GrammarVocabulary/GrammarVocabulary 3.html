@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar/Vocabulary Exercise - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/GrammarVocabulary 3.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-language"></i> Grammar & Vocabulary Exercise</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2023-2024</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> For each item, select the correct option to complete the passage.</p>
+            <p><i class="fas fa-lightbulb"></i> Read the entire passage first, then choose the best word or phrase for each numbered blank.</p>
+        </div>
+        
+        <div class="passage-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Complete the Passage</div>
+            <div class="passage-text">
+                Friendship is very 
+                <span class="blank">
+                    <span class="blank-number">1</span>
+                    <select class="blank-select" id="blank1">
+                        <option value="">Select</option>
+                        <option value="confusing">confusing</option>
+                        <option value="important">important</option>
+                        <option value="selfish">selfish</option>
+                        <option value="dishonest">dishonest</option>
+                    </select>
+                </span>
+                for all life stages starting from childhood 
+                <span class="blank">
+                    <span class="blank-number">2</span>
+                    <select class="blank-select" id="blank2">
+                        <option value="">Select</option>
+                        <option value="of">of</option>
+                        <option value="on">on</option>
+                        <option value="to">to</option>
+                        <option value="for">for</option>
+                    </select>
+                </span>
+                adulthood. It develops the 
+                <span class="blank">
+                    <span class="blank-number">3</span>
+                    <select class="blank-select" id="blank3">
+                        <option value="">Select</option>
+                        <option value="transition">transition</option>
+                        <option value="conflict">conflict</option>
+                        <option value="habit">habit</option>
+                        <option value="stage">stage</option>
+                    </select>
+                </span>
+                of sharing and caring especially for teenagers. As known that teenagers need to 
+                <span class="blank">
+                    <span class="blank-number">4</span>
+                    <select class="blank-select" id="blank4">
+                        <option value="">Select</option>
+                        <option value="have">have</option>
+                        <option value="has">has</option>
+                        <option value="having">having</option>
+                        <option value="had">had</option>
+                    </select>
+                </span>
+                friends since they go through different physical, 
+                <span class="blank">
+                    <span class="blank-number">5</span>
+                    <select class="blank-select" id="blank5">
+                        <option value="">Select</option>
+                        <option value="financial">financial</option>
+                        <option value="practical">practical</option>
+                        <option value="global">global</option>
+                        <option value="emotional">emotional</option>
+                    </select>
+                </span>
+                and mental changes. These changes 
+                <span class="blank">
+                    <span class="blank-number">6</span>
+                    <select class="blank-select" id="blank6">
+                        <option value="">Select</option>
+                        <option value="was">was</option>
+                        <option value="are">are</option>
+                        <option value="were">were</option>
+                        <option value="been">been</option>
+                    </select>
+                </span>
+                noticeable in their behavior. They become more self-conscious and 
+                <span class="blank">
+                    <span class="blank-number">7</span>
+                    <select class="blank-select" id="blank7">
+                        <option value="">Select</option>
+                        <option value="independent">independent</option>
+                        <option value="angry">angry</option>
+                        <option value="embarrassed">embarrassed</option>
+                        <option value="reluctant">reluctant</option>
+                    </select>
+                </span>
+                as they rely on themselves. Teenagers tend to be away from their parents and they 
+                <span class="blank">
+                    <span class="blank-number">8</span>
+                    <select class="blank-select" id="blank8">
+                        <option value="">Select</option>
+                        <option value="preferring">preferring</option>
+                        <option value="had preferred">had preferred</option>
+                        <option value="preferred">preferred</option>
+                        <option value="prefer">prefer</option>
+                    </select>
+                </span>
+                to share all their problems 
+                <span class="blank">
+                    <span class="blank-number">9</span>
+                    <select class="blank-select" id="blank9">
+                        <option value="">Select</option>
+                        <option value="from">from</option>
+                        <option value="with">with</option>
+                        <option value="of">of</option>
+                        <option value="on">on</option>
+                    </select>
+                </span>
+                their friends rather than their parents. Therefore, they need to choose friends 
+                <span class="blank">
+                    <span class="blank-number">10</span>
+                    <select class="blank-select" id="blank10">
+                        <option value="">Select</option>
+                        <option value="angrily">angrily</option>
+                        <option value="quickly">quickly</option>
+                        <option value="carefully">carefully</option>
+                        <option value="nervously">nervously</option>
+                    </select>
+                </span>
+                .
+            </div>
+            <div class="hint">
+                <i class="fas fa-lightbulb"></i> Tip: Read the entire sentence to understand the context before selecting your answer.
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#667eea" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/10</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/GrammarVocabulary 3.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Comprehension - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/Reading 1-9.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-reader"></i> Reading Comprehension</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2018-2019</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> Read the texts carefully. For each statement that follows, select whether it is True or False based on the text.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to details and specific information in each text.</p>
+        </div>
+        
+        <div class="exercise-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Reading 09 (Items 1 - 5)</div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 1</div>
+                <div class="text-content">
+                    One of my favourite places to go on vacation is Mexico. I really like the climate there because it never gets cold. The food is really good. The people are very nice too. They never laugh at my bad Spanish pronunciation.
+                </div>
+                <div class="statement">The writer enjoys warm weather.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 2</div>
+                <div class="text-content">
+                    A tourist who posted an image onto Instagram while pointing to what he was doing illegally on his holiday in Hawaii soon ended up regretting it. The man had to pay a fine of 1500$ after the police used his social media account to track down his home address.
+                </div>
+                <div class="statement">The tourist's photo got him into trouble.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 3</div>
+                <div class="text-content">
+                    Last week, I injured my leg at school while playing tennis. My friends supported me a lot. After the accident, I realised how valuable friendships are. I do not know what I would have done without them. So I want to say I feel very happy to have such good friends.
+                </div>
+                <div class="statement">The writer was upset with his friends.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 4</div>
+                <div class="text-content">
+                    Iran is famous for its beautiful handmade silk carpets. The most expensive ones are those that are made with natural colours and stamped with the name of the family who have spent many years making them.
+                </div>
+                <div class="statement">Plants are used to dye some Iranian carpets.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 5</div>
+                <div class="text-content">
+                    Hi, I'm Evan. In summer, after schools close for holidays, I work at a park in a nearby coastal town. I enjoy working there because I meet lots of different people and love to hear their stories especially those told by old people.
+                </div>
+                <div class="statement">Evan is a good listener.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#1e3c72" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/5</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Reading 1-9.js"></script>
+</body>
+</html>

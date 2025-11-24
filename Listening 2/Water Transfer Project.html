@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 05 - South-North Water Transfer Project</title>
+    
+    <link rel="stylesheet" href="../css/Water Transfer Project.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 05 (Items 1 - 8)</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2022-2023 (M)</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear a talk about the <strong>South-North Water Transfer Project</strong>.</p>
+            <p><strong>Listen to the audio, then answer the questions below.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Talk: South-North Water Transfer Project</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 05 T2 T.Auf.mp3" type="audio/mpeg">
+                <source src="south-north-water-transfer.wav" type="audio/wav">
+                <source src="south-north-water-transfer.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-file-info">
+                <p><strong>Note:</strong> To add your audio file, replace the "src" attribute in the &lt;audio&gt; element above with the path to your audio file.</p>
+            </div>
+        </div>
+        
+        <div class="part-title">Part One: Write short answers (not more than FOUR WORDS)</div>
+        <div class="question-container">
+            <div class="question" data-correct="not enough water / no enough water / shortage of water">
+                <div class="question-number">1. What problem is China facing now?</div>
+                <input type="text" class="short-answer-input" id="answer1" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="one billion 350 million">
+                <div class="question-number">2. How many people are living in China now?</div>
+                <input type="text" class="short-answer-input" id="answer2" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="south china">
+                <div class="question-number">3. Where will China get the water from?</div>
+                <input type="text" class="short-answer-input" id="answer3" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="12 trillion gallons">
+                <div class="question-number">4. How much water will be carried every year?</div>
+                <input type="text" class="short-answer-input" id="answer4" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+        </div>
+        
+        <div class="part-title">Part Two: Select the correct option</div>
+        <div class="question-container">
+            <div class="question" data-correct="pollution">
+                <div class="question-number">5. The river will have more ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">fish</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">pollution</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">water</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="harmfully">
+                <div class="question-number">6. The surrounding living creatures will be ______ affected.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">harmfully</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">successfully</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">wonderfully</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="350">
+                <div class="question-number">7. ______ thousands of people have moved from their areas.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">300</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">350</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">530</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="work more on the problem">
+                <div class="question-number">8. The speaker thinks that China should ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">stop the project</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">expand the project</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">work more on the problem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/8</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Water Transfer Project.js"></script>
+</body>
+</html>

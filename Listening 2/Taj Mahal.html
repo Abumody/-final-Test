@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 04 - Taj Mahal</title>
+    
+    <link rel="stylesheet" href="../css/Taj Mahal.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 04 (Items 1 - 8)</h1>
+            <p class="subtitle">G. 11 Sem I 2nd Session 2023-2024</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear about <strong>a tourist guide talking about the Taj Mahal</strong>.</p>
+            <p><strong>Listen to the audio, then answer the questions below.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Talk: Taj Mahal</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 4 T2 T.Auf.mp3" type="audio/mpeg">
+                <source src="taj-mahal-talk.wav" type="audio/wav">
+                <source src="taj-mahal-talk.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-file-info">
+                <p><strong>Note:</strong> To add your audio file, replace the "src" attribute in the &lt;audio&gt; element above with the path to your audio file.</p>
+            </div>
+        </div>
+        
+        <div class="part-title">Part One: Write short answers (not more than FOUR WORDS)</div>
+        <div class="question-container">
+            <div class="question" data-correct="20 years">
+                <div class="question-number">1. How long did building the Taj Mahal take?</div>
+                <input type="text" class="short-answer-input" id="answer1" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="the king and his wife's tombs / tombs">
+                <div class="question-number">2. What can tourists see inside the main building?</div>
+                <input type="text" class="short-answer-input" id="answer2" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="walking">
+                <div class="question-number">3. What activity can tourists do in the garden around the main building?</div>
+                <input type="text" class="short-answer-input" id="answer3" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="for best view / to enjoy full view / peaceful place">
+                <div class="question-number">4. Why should tourists go to Mehta Bagh Garden?</div>
+                <input type="text" class="short-answer-input" id="answer4" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+        </div>
+        
+        <div class="part-title">Part Two: Select the correct option</div>
+        <div class="question-container">
+            <div class="question" data-correct="fridays">
+                <div class="question-number">5. Tourists can't visit the Taj Mahal on ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Fridays</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Saturdays</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Sundays</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="food">
+                <div class="question-number">6. It is not allowed for tourists to bring ______ to the Taj Mahal.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">cameras</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">food</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">water</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="5">
+                <div class="question-number">7. Tourists should pay extra ______ US dollars to enter the main building.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">5</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">14</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">19</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="three hours">
+                <div class="question-number">8. Tourists shouldn't stay in the Taj Mahal for more than ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">one hour</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">two hours</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">three hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/8</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Taj Mahal.js"></script>
+</body>
+</html>

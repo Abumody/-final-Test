@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Exercises - Grade 11 (Part 2)</title>
+    
+    <link rel="stylesheet" href="../css/Grammar 2.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Grammar Exercises (Part 2)</h1>
+            <p class="subtitle">Grade 11 - Complete each sentence with ONE word only</p>
+        </header>
+        
+        <div class="instructions">
+            <p><strong>Instructions:</strong> Complete each sentence with <strong>ONE</strong> word only. Type your answer in the input box provided for each question.</p>
+        </div>
+        
+        <div class="grammar-section">
+            <div class="section-title">GRAMMAR 04 (Items 1 - 5)</div>
+            
+            <div class="question" data-correct="do">
+                <div class="question-number">1. What time ______ you usually come to work?</div>
+                <input type="text" class="answer-input" id="g4q1" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="are">
+                <div class="question-number">2. We ______ visiting Sur this weekend.</div>
+                <input type="text" class="answer-input" id="g4q2" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="to">
+                <div class="question-number">3. I am glad ______ meet you.</div>
+                <input type="text" class="answer-input" id="g4q3" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="Did">
+                <div class="question-number">4. ______ she come to the party last night?</div>
+                <input type="text" class="answer-input" id="g4q4" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="were">
+                <div class="question-number">5. The Olympic Games ______ first held in Greece in 1896.</div>
+                <input type="text" class="answer-input" id="g4q5" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+        </div>
+        
+        <div class="grammar-section">
+            <div class="section-title">GRAMMAR 05 (Items 1 - 5)</div>
+            
+            <div class="question" data-correct="did">
+                <div class="question-number">1. Where ______ you go last summer holiday?</div>
+                <input type="text" class="answer-input" id="g5q1" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="have">
+                <div class="question-number">2. They ______ already finished their math project.</div>
+                <input type="text" class="answer-input" id="g5q2" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="anything">
+                <div class="question-number">3. Do you have ______ to eat. I am so hungry.</div>
+                <input type="text" class="answer-input" id="g5q3" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="was">
+                <div class="question-number">4. The Great wall of China ______ built in the 7th century.</div>
+                <input type="text" class="answer-input" id="g5q4" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="will">
+                <div class="question-number">5. I promise, I ______ study hard for my next exams.</div>
+                <input type="text" class="answer-input" id="g5q5" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+        </div>
+        
+        <div class="grammar-section">
+            <div class="section-title">GRAMMAR 06 (Items 1 - 5)</div>
+            
+            <div class="question" data-correct="in">
+                <div class="question-number">1. My sister was born ______ Madagascar.</div>
+                <input type="text" class="answer-input" id="g6q1" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="Who">
+                <div class="question-number">2. ______ was the movie directed by?</div>
+                <input type="text" class="answer-input" id="g6q2" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="been">
+                <div class="question-number">3. He has never ______ to China.</div>
+                <input type="text" class="answer-input" id="g6q3" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="to">
+                <div class="question-number">4. She isn't going ______ work any longer.</div>
+                <input type="text" class="answer-input" id="g6q4" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+            
+            <div class="question" data-correct="While">
+                <div class="question-number">5. ______ she was preparing lunch, she cut her finger.</div>
+                <input type="text" class="answer-input" id="g6q5" placeholder="Type your answer here...">
+                <div class="word-limit">ONE word only</div>
+            </div>
+        </div>
+        
+        <div class="teacher-name">T. Karl Abi-Kulfi</div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/15</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Grammar 2.js"></script>
+</body>
+</html>

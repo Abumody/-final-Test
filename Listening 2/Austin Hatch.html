@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 09 - Austin Hatch Survival Story</title>
+    
+    <link rel="stylesheet" href="../css/Austin Hatch.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 09 (Items 1 - 8)</h1>
+            <p class="subtitle">G. 11 Sem I 2nd Session 2018-2019</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear a story about <strong>a survivor called Austin Hatch</strong>.</p>
+            <p><strong>Listen to the audio, then answer the questions below.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Story: Austin Hatch Survival Story</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 09 T2 T.Auf.mp3" type="audio/mpeg">
+                <source src="austin-hatch-survival-story.wav" type="audio/wav">
+                <source src="austin-hatch-survival-story.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-file-info">
+                <p><strong>Note:</strong> To add your audio file, replace the "src" attribute in the &lt;audio&gt; element above with the path to your audio file.</p>
+            </div>
+        </div>
+        
+        <div class="part-title">Part One: Write short answers (not more than FOUR WORDS)</div>
+        <div class="question-container">
+            <div class="question" data-correct="2003">
+                <div class="question-number">1. When did the family go on holiday?</div>
+                <input type="text" class="short-answer-input" id="answer1" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="his father / mother, sister and brother / his mother and siblings">
+                <div class="question-number">2. Who rescued Austin?</div>
+                <input type="text" class="short-answer-input" id="answer2" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="three people">
+                <div class="question-number">3. How many people died in the first plane crash?</div>
+                <input type="text" class="short-answer-input" id="answer3" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="basketball">
+                <div class="question-number">4. What sport did Austin practice in his garden?</div>
+                <input type="text" class="short-answer-input" id="answer4" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+        </div>
+        
+        <div class="part-title">Part Two: Select the correct option</div>
+        <div class="question-container">
+            <div class="question" data-correct="june 2011">
+                <div class="question-number">5. Austin's father remarried a nice lady in ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">January 2011</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">June 2011</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">December 2014</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="austin's acceptance into university">
+                <div class="question-number">6. The family wanted to fly to Walloon Lake to celebrate ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">the father's marriage</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Austin's acceptance into university</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Austin's birthday</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="only austin">
+                <div class="question-number">7. When the second plane crashed, ______ survived.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">all the passengers</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Austin's stepmother</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">only Austin</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="poor">
+                <div class="question-number">8. The doctors believed that Austin's chances of survival were ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">poor</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">average</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">high</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/8</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Austin Hatch.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 10 - Grade 11</title>
+    
+    <link rel="stylesheet" href="../css/Listening 10.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 10 (Items 1 - 7)</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2017-2018</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear a conversation between a tour guide and a tourist planning a tour.</p>
+            <p><strong>Listen to the audio, then select the correct option for each question.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Conversation: Tour Guide and Tourist</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 10 T1 T.Auf.mp3" type="audio/mpeg">
+                <source src="listening-exercise-10.wav" type="audio/wav">
+                <source src="listening-exercise-10.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="question-container">
+            <div class="question" data-correct="second">
+                <div class="question-number">1. This is the tourist's ______ visit to Spain.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">first</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">second</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">third</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="with her daughter">
+                <div class="question-number">2. The tourist is in Spain ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">on her own</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">with her daughter</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">with her husband</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="coast">
+                <div class="question-number">3. Her hotel is situated near the ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">coast</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">city</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">mountains</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="prohibited">
+                <div class="question-number">4. It is ______ to take photographs inside the museum.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">preferable</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">prohibited</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">allowed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="12:45">
+                <div class="question-number">5. They will have lunch at ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">12:45</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">1:15</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">1:45</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="dinner">
+                <div class="question-number">6. The guide advised them to have ______ at Spaghetti Alley Restaurant.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">breakfast</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">lunch</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">dinner</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="helpful">
+                <div class="question-number">7. The tour guide is ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">rude</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">clumsy</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">helpful</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Listening Activities</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/7</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Listening 10.js"></script>
+</body>
+</html>

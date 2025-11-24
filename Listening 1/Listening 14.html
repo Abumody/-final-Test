@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 14 - Grade 11</title>
+    
+    <link rel="stylesheet" href="../css/Listening 14.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 14 (Items 1 - 7)</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2014-2015</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear a conversation between two managers at a hotel.</p>
+            <p><strong>Listen to the audio, then select the correct option for each question.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Conversation: Two Hotel Managers</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 14 T1 T.Auf.mp3" type="audio/mpeg">
+                <source src="listening-exercise-14.wav" type="audio/wav">
+                <source src="listening-exercise-14.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="vocabulary">
+            <div class="vocabulary-title">Vocabulary</div>
+            <div class="vocabulary-grid">
+                <div class="vocab-item">
+                    <span class="vocab-english">tour operator</span>
+                    <span class="vocab-arabic">مشغل الرحلات</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">guest</span>
+                    <span class="vocab-arabic">ضيف</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">strict</span>
+                    <span class="vocab-arabic">صارم</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">waitress</span>
+                    <span class="vocab-arabic">نادلة</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">unpleasant</span>
+                    <span class="vocab-arabic">غير سار</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-english">forbidden</span>
+                    <span class="vocab-arabic">ممنوع</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-container">
+            <div class="question" data-correct="time of arrival">
+                <div class="question-number">1. With the German group, there was a misunderstanding about the ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">number of guests</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">time of arrival</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">type of rooms</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="phoned">
+                <div class="question-number">2. They had ______ the hotel to change their booking.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">texted</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">e-mailed</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">phoned</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="night-time receptionist">
+                <div class="question-number">3. The mistake was made by the ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">night-time receptionist</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">tour operator</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">day-time receptionist</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="language differences">
+                <div class="question-number">4. In the restaurant, the main cause of problems is that there are ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">language differences</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">difficult customers</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">not enough waiters</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="strict rules">
+                <div class="question-number">5. A guest in one of the rooms was unhappy about the hotel's ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">slow service</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">strict rules</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">noisy environment</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="in the rooms">
+                <div class="question-number">6. The two managers quickly agree on a solution to the problem ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">at reception</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">in the restaurant</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">in the rooms</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="on Tuesday">
+                <div class="question-number">7. They decide to meet again ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">tomorrow</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">on Monday</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">on Tuesday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Listening Activities</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/7</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Listening 14.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 12 - Moving to a New Home</title>
+    
+    <link rel="stylesheet" href="../css/New Home.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 12 (Items 1 - 8)</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2016-2017</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear someone talking about <strong>moving to a new home</strong>.</p>
+            <p><strong>Listen to the audio, then answer the questions below.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Talk: Moving to a New Home</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 12 T2 T.Auf.mp3" type="audio/mpeg">
+                <source src="moving-to-new-home.wav" type="audio/wav">
+                <source src="moving-to-new-home.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-file-info">
+                <p><strong>Note:</strong> To add your audio file, replace the "src" attribute in the &lt;audio&gt; element above with the path to your audio file.</p>
+            </div>
+        </div>
+        
+        <div class="part-title">Part One: For each item, write a short answer (not more than FOUR WORDS)</div>
+        <div class="question-container">
+            <div class="question" data-correct="the father got a new job">
+                <div class="question-number">1. Why did the family move to the city?</div>
+                <input type="text" class="short-answer-input" id="answer1" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="depressed / sad">
+                <div class="question-number">2. How did the boy feel about moving?</div>
+                <input type="text" class="short-answer-input" id="answer2" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="his friends / friends">
+                <div class="question-number">3. Who organised the party?</div>
+                <input type="text" class="short-answer-input" id="answer3" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="to load truck / to load truck with things">
+                <div class="question-number">4. Why did the family wake up early morning?</div>
+                <input type="text" class="short-answer-input" id="answer4" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+        </div>
+        
+        <div class="part-title">Part Two: For each item, shade in the bubble ○ next to the correct option</div>
+        <div class="question-container">
+            <div class="question" data-correct="five">
+                <div class="question-number">5. There were ______ grocers near their new house.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">three</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">four</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">five</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="encouraged him">
+                <div class="question-number">6. His father ______ to explore the place.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">encouraged him</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">did not allow him</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">went with him</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="greeted">
+                <div class="question-number">7. Some of the boys ______ him.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">ignored</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">greeted</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">fought with</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="made new friends">
+                <div class="question-number">8. At the end, the boy was satisfied because he ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">returned to his old house</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">made new friends</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">liked the new school</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/8</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/New Home.js"></script>
+</body>
+</html>

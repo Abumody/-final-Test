@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading 12 - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/Reading 1-12.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-reader"></i> Reading Comprehension</h1>
+            <p class="subtitle">G. 11 Sem I 2nd Session 2017-2018</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> Read the texts carefully. For each statement that follows, select whether it is True or False based on the text.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to details and specific information in each text.</p>
+        </div>
+        
+        <div class="exercise-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Reading 12 (Items 1 - 5)</div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 1</div>
+                <div class="text-content">
+                    Engineers at a U.S. laboratory have discovered one answer to the problem of global warming. They have made a machine that can suck carbon dioxide from the air and convert it into liquid fuel. They believe their creation can provide a sustainable form of renewable energy.
+                </div>
+                <div class="statement">The engineers' invention is a solution to global warming.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 2</div>
+                <div class="text-content">
+                    An older electric car designed by Tesla Motors could get from 0 to 100kph in 3.2 seconds. Using an upgraded battery pack, called Ludicrous Mode, Tesla Motors were able to get the car to reach a 100kph in less than three seconds.
+                </div>
+                <div class="statement">Ludicrous Mode decreased the speed of the new electric car.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 3</div>
+                <div class="text-content">
+                    When he is not playing tennis, Saif is busy with his project, the robot chair, which helps older people. He is also a Goodwill Ambassador in his school. He regularly organises charity events for those who are in need.
+                </div>
+                <div class="statement">Saif likes voluntary work.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 4</div>
+                <div class="text-content">
+                    I looked out of the window at the railway tracks. Although we were moving at 340 kilometres an hour, the journey was smooth and relatively quiet. The part where we travelled under the English Channel took just 22 minutes. Soon I was looking at the French fields and farmhouses.
+                </div>
+                <div class="statement">The writer is travelling by plane.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 5</div>
+                <div class="text-content">
+                    I started having driving lessons when I was seventeen. Although I am normally a quick learner, but I get so nervous during the tests that I can't drive properly. I have failed the test three times. It is so embarrassing.
+                </div>
+                <div class="statement">The writer has not got a driving licence.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-other" onclick="goToReading11()"><i class="fas fa-exchange-alt"></i> Go to Reading 11</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#1e3c72" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/5</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Reading 1-12.js"></script>
+</body>
+</html>

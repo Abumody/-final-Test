@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar/Vocabulary Exercise - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/GrammarVocabulary 8.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-language"></i> Grammar & Vocabulary Exercise</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2019-2020</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> For each item, select the correct option to complete the passage.</p>
+            <p><i class="fas fa-lightbulb"></i> Read the entire passage first, then choose the best word or phrase for each numbered blank.</p>
+        </div>
+        
+        <div class="passage-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Complete the Passage</div>
+            <div class="passage-text">
+                I love taking risks because it is a lot of 
+                <span class="blank">
+                    <span class="blank-number">1</span>
+                    <select class="blank-select" id="blank1">
+                        <option value="">Select</option>
+                        <option value="fun">fun</option>
+                        <option value="sadness">sadness</option>
+                        <option value="trouble">trouble</option>
+                        <option value="pain">pain</option>
+                    </select>
+                </span>
+                . That is why I was 
+                <span class="blank">
+                    <span class="blank-number">2</span>
+                    <select class="blank-select" id="blank2">
+                        <option value="">Select</option>
+                        <option value="captured">captured</option>
+                        <option value="excited">excited</option>
+                        <option value="damaged">damaged</option>
+                        <option value="dissatisfied">dissatisfied</option>
+                    </select>
+                </span>
+                when I had the chance to do 
+                <span class="blank">
+                    <span class="blank-number">3</span>
+                    <select class="blank-select" id="blank3">
+                        <option value="">Select</option>
+                        <option value="a">a</option>
+                        <option value="an">an</option>
+                        <option value="in">in</option>
+                        <option value="on">on</option>
+                    </select>
+                </span>
+                bungee jump in New Zealand. It is considered the 
+                <span class="blank">
+                    <span class="blank-number">4</span>
+                    <select class="blank-select" id="blank4">
+                        <option value="">Select</option>
+                        <option value="good">good</option>
+                        <option value="lesser">lesser</option>
+                        <option value="best">best</option>
+                        <option value="less">less</option>
+                    </select>
+                </span>
+                place in the world as it has a lot of steep 
+                <span class="blank">
+                    <span class="blank-number">5</span>
+                    <select class="blank-select" id="blank5">
+                        <option value="">Select</option>
+                        <option value="places">places</option>
+                        <option value="plains">plains</option>
+                        <option value="ports">ports</option>
+                        <option value="pools">pools</option>
+                    </select>
+                </span>
+                which are perfect for bungee jumping. I was really 
+                <span class="blank">
+                    <span class="blank-number">6</span>
+                    <select class="blank-select" id="blank6">
+                        <option value="">Select</option>
+                        <option value="frighten">frighten</option>
+                        <option value="frightened">frightened</option>
+                        <option value="frightening">frightening</option>
+                        <option value="frightens">frightens</option>
+                    </select>
+                </span>
+                on the day of the jump, but I 
+                <span class="blank">
+                    <span class="blank-number">7</span>
+                    <select class="blank-select" id="blank7">
+                        <option value="">Select</option>
+                        <option value="confused">confused</option>
+                        <option value="disappeared">disappeared</option>
+                        <option value="threatened">threatened</option>
+                        <option value="managed">managed</option>
+                    </select>
+                </span>
+                to control my fear. There are a lot of extreme sports that I haven't 
+                <span class="blank">
+                    <span class="blank-number">8</span>
+                    <select class="blank-select" id="blank8">
+                        <option value="">Select</option>
+                        <option value="fought">fought</option>
+                        <option value="tried">tried</option>
+                        <option value="increased">increased</option>
+                        <option value="caught">caught</option>
+                    </select>
+                </span>
+                , but I don't think I'll ever find 
+                <span class="blank">
+                    <span class="blank-number">9</span>
+                    <select class="blank-select" id="blank9">
+                        <option value="">Select</option>
+                        <option value="nothing">nothing</option>
+                        <option value="everything">everything</option>
+                        <option value="anything">anything</option>
+                        <option value="nowhere">nowhere</option>
+                    </select>
+                </span>
+                as exciting 
+                <span class="blank">
+                    <span class="blank-number">10</span>
+                    <select class="blank-select" id="blank10">
+                        <option value="">Select</option>
+                        <option value="than">than</option>
+                        <option value="as">as</option>
+                        <option value="that">that</option>
+                        <option value="then">then</option>
+                    </select>
+                </span>
+                bungee jumping.
+            </div>
+            <div class="hint">
+                <i class="fas fa-lightbulb"></i> Tip: Read the entire sentence to understand the context before selecting your answer.
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#667eea" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/10</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/GrammarVocabulary 8.js"></script>
+</body>
+</html>

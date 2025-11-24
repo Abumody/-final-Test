@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading 17 - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/Reading 1-17.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-reader"></i> Reading Comprehension</h1>
+            <p class="subtitle">RE-SIT EXAM 2022-2023</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> Read the texts carefully. For each statement that follows, select whether it is True or False based on the text.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to details and specific information in each text.</p>
+        </div>
+        
+        <div class="exercise-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Reading 17 (Items 1 - 5)</div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 1</div>
+                <div class="text-content">
+                    Unlike schools, there is no requirement to wear a uniform at the university. This gives the students the opportunity to try out different styles of clothing. However, it is still important to dress smartly if you want to create a good impression.
+                </div>
+                <div class="statement">Students can choose what they wear at the university.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 2</div>
+                <div class="text-content">
+                    "The Tale of Despereaux" is a heartwarming story about a brave little mouse who goes on a quest to save a human princess. The story is also filled with beautiful illustrations, making suitable for all ages.
+                </div>
+                <div class="statement">"The Tale of Despereaux" is a story for young readers only.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 3</div>
+                <div class="text-content">
+                    Prince Rupert is an amazing city. You can enjoy walking on its white sandy beaches. Also, you can visit its beautiful new port, Cow Bay, where you can taste fresh seafood and shop in modern boutiques.
+                </div>
+                <div class="statement">Prince Rupert is a coastal city.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="true">
+                <div class="item-number">Text 4</div>
+                <div class="text-content">
+                    While social media can be a powerful tool for communication and networking, it can also have negative effects, such as cyberbullying, addiction, and the spread of misinformation. It's important for users to be mindful of how they use social media.
+                </div>
+                <div class="statement">Social media has positive and negative effects on people.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-item" data-correct="false">
+                <div class="item-number">Text 5</div>
+                <div class="text-content">
+                    Lake Muha, in the town of Dala, has shrunk by 70% in the last 20 years due to a lack of rain. One fisherman said sadly, "How can we survive?! Many types of fish are disappearing, and the reason is that fish breeding has been badly affected because there is not enough water."
+                </div>
+                <div class="statement">There is no fish in Lake Muha.</div>
+                <div class="options">
+                    <div class="option true">
+                        <i class="fas fa-check-circle option-icon"></i>
+                        True
+                    </div>
+                    <div class="option false">
+                        <i class="fas fa-times-circle option-icon"></i>
+                        False
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-other" onclick="goToOtherReadings()"><i class="fas fa-exchange-alt"></i> Other Readings</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#1e3c72" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/5</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Reading 1-17.js"></script>
+</body>
+</html>

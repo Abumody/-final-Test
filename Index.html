@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - Exam Preparation Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .login-header {
+            background-color: #16a085;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .login-form {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #16a085;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            border-color: #16a085;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(22, 160, 133, 0.2);
+        }
+        
+        .grade-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-login {
+            background-color: #16a085;
+            color: white;
+        }
+        
+        .btn-login:hover {
+            background-color: #138d75;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #555;
+        }
+        
+        .info-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #16a085;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: #16a085;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .login-container {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Exam Preparation Portal</h1>
+            <p class="subtitle">Please enter your details to continue</p>
+        </div>
+        
+        <div class="login-form">
+            <div class="welcome-message">
+                <h2>Welcome Student!</h2>
+                <p>Please provide your information to access the exam preparation materials.</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Portal Features</h3>
+                <ul>
+                    <li>Interactive reading comprehension exercises</li>
+                    <li>Immediate feedback on your answers</li>
+                    <li>Progress tracking</li>
+                    <li>Multiple practice tests</li>
+                </ul>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="studentName">Full Name</label>
+                    <input type="text" id="studentName" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentGrade">Grade Level</label>
+                    <select id="studentGrade" class="grade-select" required>
+                        <option value="" disabled selected>Select your grade</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
+                        <option value="11">Grade 11</option>
+                        <option value="12">Grade 12</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-login">✓ Enter Portal</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentName = document.getElementById('studentName').value.trim();
+            const studentGrade = document.getElementById('studentGrade').value;
+            
+            if (!studentName || !studentGrade) {
+                alert('Please fill in all fields before continuing.');
+                return;
+            }
+            
+            // Store student info in localStorage
+            localStorage.setItem('studentName', studentName);
+            localStorage.setItem('studentGrade', studentGrade);
+            
+            // Redirect to the exam preparation portal
+            window.location.href = 'Complete Exam Preparation Portal.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    position: relative;
+    text-align: center;
+    padding: 30px 0;
+    background: linear-gradient(135deg, #2c3e50, #4a6491);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.category {
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+    color: #2c3e50;
+    font-size: 1.8rem;
+}
+
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.section-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-top: 5px solid #3498db;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-card h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.section-card h2 i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+.section-card p {
+    color: #555;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.btn {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-top: auto;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Listening Section Colors */
+.listening1 {
+    border-top-color: #e74c3c;
+}
+
+.listening1 .btn {
+    background: #e74c3c;
+}
+
+.listening1 .btn:hover {
+    background: #c0392b;
+}
+
+.listening2 {
+    border-top-color: #e67e22;
+}
+
+.listening2 .btn {
+    background: #e67e22;
+}
+
+.listening2 .btn:hover {
+    background: #d35400;
+}
+
+/* Grammar Section Colors */
+.grammar {
+    border-top-color: #2ecc71;
+}
+
+.grammar .btn {
+    background: #2ecc71;
+}
+
+.grammar .btn:hover {
+    background: #27ae60;
+}
+
+/* Vocabulary Section Colors */
+.vocabulary {
+    border-top-color: #f39c12;
+}
+
+.vocabulary .btn {
+    background: #f39c12;
+}
+
+.vocabulary .btn:hover {
+    background: #d35400;
+}
+
+/* Grammar/Vocabulary Section Colors */
+.grammar-vocab {
+    border-top-color: #9b59b6;
+}
+
+.grammar-vocab .btn {
+    background: #9b59b6;
+}
+
+.grammar-vocab .btn:hover {
+    background: #8e44ad;
+}
+
+/* Reading Section Colors */
+.reading1 {
+    border-top-color: #9b59b6;
+}
+
+.reading1 .btn {
+    background: #9b59b6;
+}
+
+.reading1 .btn:hover {
+    background: #8e44ad;
+}
+
+.reading2 {
+    border-top-color: #34495e;
+}
+
+.reading2 .btn {
+    background: #34495e;
+}
+
+.reading2 .btn:hover {
+    background: #2c3e50;
+}
+
+.reading3 {
+    border-top-color: #16a085;
+}
+
+.reading3 .btn {
+    background: #16a085;
+}
+
+.reading3 .btn:hover {
+    background: #1abc9c;
+}
+
+/* Writing Section Colors */
+.writing1 {
+    border-top-color: #e74c3c;
+}
+
+.writing1 .btn {
+    background: #e74c3c;
+}
+
+.writing1 .btn:hover {
+    background: #c0392b;
+}
+
+.writing2 {
+    border-top-color: #3498db;
+}
+
+.writing2 .btn {
+    background: #3498db;
+}
+
+.writing2 .btn:hover {
+    background: #2980b9;
+}
+
+/* Grammar Topics Colors */
+.conditionals {
+    border-top-color: #1abc9c;
+}
+
+.conditionals .btn {
+    background: #1abc9c;
+}
+
+.conditionals .btn:hover {
+    background: #16a085;
+}
+
+.verbs {
+    border-top-color: #d35400;
+}
+
+.verbs .btn {
+    background: #d35400;
+}
+
+.verbs .btn:hover {
+    background: #e67e22;
+}
+
+.instructions {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #3498db;
+}
+
+.instructions h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.instructions ul {
+    padding-left: 20px;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Student Info Styles */
+.student-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: right;
+    backdrop-filter: blur(10px);
+}
+
+.student-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.student-grade {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Welcome Message Styles */
+.welcome-message {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #3498db;
+}
+
+.welcome-message h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: #555;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .sections-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .category {
+        font-size: 1.5rem;
+    }
+    
+    .section-card h2 {
+        font-size: 1.3rem;
+    }
+    
+    .student-info {
+        position: static;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+}

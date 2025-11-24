@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 07 - Vanuatu</title>
+    
+    <link rel="stylesheet" href="../css/Vanuatu.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 07 (Items 1 - 8)</h1>
+            <p class="subtitle">G. 11 Sem I 1st Session 2019-2020</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear someone talking about <strong>Vanuatu, a famous tourist destination in the South Pacific</strong>.</p>
+            <p><strong>Listen to the audio, then answer the questions below.</strong></p>
+        </div>
+        
+        <div class="audio-player">
+            <div class="audio-title">Talk: Vanuatu</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <!-- AUDIO FILE - REPLACE THE SOURCE WITH YOUR ACTUAL AUDIO FILE -->
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Grade 11 File 07 T2 T.Auf.mp3" type="audio/mpeg">
+                <source src="vanuatu-talk.wav" type="audio/wav">
+                <source src="vanuatu-talk.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-file-info">
+                <p><strong>Note:</strong> To add your audio file, replace the "src" attribute in the &lt;audio&gt; element above with the path to your audio file.</p>
+            </div>
+        </div>
+        
+        <div class="part-title">Part One: Write short answers (not more than FOUR WORDS)</div>
+        <div class="question-container">
+            <div class="question" data-correct="15 / fifteen">
+                <div class="question-number">1. How many islands are there in Vanuatu?</div>
+                <input type="text" class="short-answer-input" id="answer1" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="200000 / two hundred thousand">
+                <div class="question-number">2. How many people live on Vanuatu?</div>
+                <input type="text" class="short-answer-input" id="answer2" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="fishing">
+                <div class="question-number">3. What are the main sources of its economy?</div>
+                <input type="text" class="short-answer-input" id="answer3" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+            
+            <div class="question" data-correct="French">
+                <div class="question-number">4. What languages are spoken on Vanuatu?</div>
+                <input type="text" class="short-answer-input" id="answer4" placeholder="Type your answer here...">
+                <div class="word-limit">Not more than four words</div>
+            </div>
+        </div>
+        
+        <div class="part-title">Part Two: Select the correct option</div>
+        <div class="question-container">
+            <div class="question" data-correct="50000">
+                <div class="question-number">5. About ______ tourists visit Vanuatu every year.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">300</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">5,0000</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="volcano boarding">
+                <div class="question-number">6. Tourists can enjoy ______ on Tanna Island.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">volcano boarding</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">surfing</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="beautiful beaches">
+                <div class="question-number">7. The island of Espiritu Santo has ______.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">high mountains</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">beautiful beaches</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question" data-correct="saturday">
+                <div class="question-number">8. The Nagol Pentecost diving event is held every ______ from April to June.</div>
+                <div class="options">
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Saturday</div>
+                    </div>
+                    <div class="option">
+                        <div class="bubble"></div>
+                        <div class="option-text">Monday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
+            <button class="btn btn-reset" onclick="resetAnswers()">Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()">Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/8</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" onclick="resetAnswers()">Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/Vanuatu.js"></script>
+</body>
+</html>

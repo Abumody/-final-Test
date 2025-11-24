@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar/Vocabulary Exercise - Grade 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/GrammarVocabulary 11.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-language"></i> Grammar & Vocabulary Exercise</h1>
+            <p class="subtitle">Re-Sit Exam 2024-2025</p>
+        </header>
+        
+        <div class="instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Instructions:</strong> For each item, select the correct option to complete the passage.</p>
+            <p><i class="fas fa-lightbulb"></i> Read the entire passage first, then choose the best word or phrase for each numbered blank.</p>
+        </div>
+        
+        <div class="passage-container">
+            <div class="section-title"><i class="fas fa-file-alt"></i> Complete the Passage</div>
+            <div class="passage-text">
+                The tea ceremony is a formal 
+                <span class="blank">
+                    <span class="blank-number">1</span>
+                    <select class="blank-select" id="blank1">
+                        <option value="">Select</option>
+                        <option value="position">position</option>
+                        <option value="champion">champion</option>
+                        <option value="tradition">tradition</option>
+                        <option value="fiction">fiction</option>
+                    </select>
+                </span>
+                in Japan. Guests sit quietly, enjoying the 
+                <span class="blank">
+                    <span class="blank-number">2</span>
+                    <select class="blank-select" id="blank2">
+                        <option value="">Select</option>
+                        <option value="scent">scent</option>
+                        <option value="replica">replica</option>
+                        <option value="corpse">corpse</option>
+                        <option value="parade">parade</option>
+                    </select>
+                </span>
+                of Japanese green tea. The 
+                <span class="blank">
+                    <span class="blank-number">3</span>
+                    <select class="blank-select" id="blank3">
+                        <option value="">Select</option>
+                        <option value="sudden">sudden</option>
+                        <option value="gradual">gradual</option>
+                        <option value="legal">legal</option>
+                        <option value="terrible">terrible</option>
+                    </select>
+                </span>
+                movements starting from pouring water and stirring tea are part 
+                <span class="blank">
+                    <span class="blank-number">4</span>
+                    <select class="blank-select" id="blank4">
+                        <option value="">Select</option>
+                        <option value="with">with</option>
+                        <option value="to">to</option>
+                        <option value="in">in</option>
+                        <option value="of">of</option>
+                    </select>
+                </span>
+                a mindful process. Learning this takes time 
+                <span class="blank">
+                    <span class="blank-number">5</span>
+                    <select class="blank-select" id="blank5">
+                        <option value="">Select</option>
+                        <option value="also">also</option>
+                        <option value="but">but</option>
+                        <option value="unless">unless</option>
+                        <option value="and">and</option>
+                    </select>
+                </span>
+                practice. The tea bowl is important 
+                <span class="blank">
+                    <span class="blank-number">6</span>
+                    <select class="blank-select" id="blank6">
+                        <option value="">Select</option>
+                        <option value="already">already</option>
+                        <option value="so">so</option>
+                        <option value="because">because</option>
+                        <option value="until">until</option>
+                    </select>
+                </span>
+                it is a spectacular symbol of beauty. These tea times happen during 
+                <span class="blank">
+                    <span class="blank-number">7</span>
+                    <select class="blank-select" id="blank7">
+                        <option value="">Select</option>
+                        <option value="celebrations">celebrations</option>
+                        <option value="inspirations">inspirations</option>
+                        <option value="creations">creations</option>
+                        <option value="applications">applications</option>
+                    </select>
+                </span>
+                or when friends meet. Every action 
+                <span class="blank">
+                    <span class="blank-number">8</span>
+                    <select class="blank-select" id="blank8">
+                        <option value="">Select</option>
+                        <option value="has">has</option>
+                        <option value="have">have</option>
+                        <option value="had">had</option>
+                        <option value="having">having</option>
+                    </select>
+                </span>
+                a meaning. The quiet room, the warm tea, and the kind smiles create a 
+                <span class="blank">
+                    <span class="blank-number">9</span>
+                    <select class="blank-select" id="blank9">
+                        <option value="">Select</option>
+                        <option value="forgettable">forgettable</option>
+                        <option value="horrible">horrible</option>
+                        <option value="capable">capable</option>
+                        <option value="memorable">memorable</option>
+                    </select>
+                </span>
+                moment. This atmosphere takes you far 
+                <span class="blank">
+                    <span class="blank-number">10</span>
+                    <select class="blank-select" id="blank10">
+                        <option value="">Select</option>
+                        <option value="than">than</option>
+                        <option value="from">from</option>
+                        <option value="for">for</option>
+                        <option value="down">down</option>
+                    </select>
+                </span>
+                daily routine.
+            </div>
+            <div class="hint">
+                <i class="fas fa-lightbulb"></i> Tip: Read the entire sentence to understand the context before selecting your answer.
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Reset Answers</button>
+            <button class="btn btn-check" onclick="checkAnswers()"><i class="fas fa-check-circle"></i> Check Answers</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring-circle" stroke="#667eea" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.159" stroke-dashoffset="314.159" id="progressCircle"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" class="progress-text" id="progressText">0%</text>
+                </svg>
+            </div>
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/10</div>
+            <div class="feedback" id="feedback">Complete the exercise to see your results!</div>
+            <button class="btn btn-reset" onclick="resetAnswers()"><i class="fas fa-redo"></i> Try Again</button>
+        </div>
+    </div>
+
+    
+    <script src="../js/GrammarVocabulary 11.js"></script>
+</body>
+</html>
