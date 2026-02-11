@@ -3,124 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar Exercises - Grade 11</title>
-    
-    <link rel="stylesheet" href="../css/Grammar 1.css">
+    <title>Grammar Exercises - Grade 7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .instructions {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .instructions p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .grammar-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .answer-input.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .answer-input.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .word-limit {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-check {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+        }
+        
+        .btn-check:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .btn-reset {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+        }
+        
+        .btn-reset:hover {
+            background-color: #7f8c8d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-back {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
+        
+        .btn-back:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .results {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .score-value {
+            color: #2ecc71;
+            font-size: 2rem;
+        }
+        
+        .feedback {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .teacher-name {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Grammar Exercises</h1>
-            <p class="subtitle">Grade 11 - Complete each sentence with ONE word only</p>
+            <p class="subtitle">Grade 7 - Complete each sentence with ONE word only</p>
         </header>
         
         <div class="instructions">
             <p><strong>Instructions:</strong> Complete each sentence with <strong>ONE</strong> word only. Type your answer in the input box provided for each question.</p>
         </div>
         
+        <!-- GRAMMAR 01: Present Simple / Present Continuous -->
         <div class="grammar-section">
-            <div class="section-title">GRAMMAR 01 (Items 1 - 5)</div>
+            <div class="section-title">GRAMMAR 01 – Present Simple & Continuous (Items 1 - 5)</div>
             
-            <div class="question" data-correct="is">
-                <div class="question-number">1. she ______ playing Pokemon on her phone.</div>
+            <div class="question" data-correct="are">
+                <div class="question-number">1. Listen! The students ______ singing in the classroom.</div>
                 <input type="text" class="answer-input" id="g1q1" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="are">
-                <div class="question-number">2. We______ taking english course this week.</div>
+            <div class="question" data-correct="works">
+                <div class="question-number">2. My father ______ as an engineer in a big company.</div>
                 <input type="text" class="answer-input" id="g1q2" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="Does">
-                <div class="question-number">3. ______ he write messages to hi mom every week ?</div>
+            <div class="question" data-correct="is">
+                <div class="question-number">3. Be quiet! The baby ______ sleeping.</div>
                 <input type="text" class="answer-input" id="g1q3" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="are">
-                <div class="question-number">4. What______ they doing tomorrow?.</div>
+            <div class="question" data-correct="do">
+                <div class="question-number">4. What time ______ you usually get up?</div>
                 <input type="text" class="answer-input" id="g1q4" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="is">
-                <div class="question-number">5. she_______ talking on the phone at the moment.</div>
+            <div class="question" data-correct="goes">
+                <div class="question-number">5. Sarah never ______ to the gym on Sundays.</div>
                 <input type="text" class="answer-input" id="g1q5" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
         </div>
         
+        <!-- GRAMMAR 02: Used to – Affirmative & Negative -->
         <div class="grammar-section">
-            <div class="section-title">GRAMMAR 02 (Items 1 - 5)</div>
+            <div class="section-title">GRAMMAR 02 – Used to (Affirmative & Negative) (Items 1 - 5)</div>
             
-            <div class="question" data-correct="was">
-                <div class="question-number">1. I ______ driving my car when I saw the accident.</div>
+            <div class="question" data-correct="used">
+                <div class="question-number">1. When I was a child, I ______ to play football every day.</div>
                 <input type="text" class="answer-input" id="g2q1" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
             <div class="question" data-correct="did">
-                <div class="question-number">2.  what ______ you do last night?.</div>
+                <div class="question-number">2. They ______ not use to have a car when they lived in London.</div>
                 <input type="text" class="answer-input" id="g2q2" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="will">
-                <div class="question-number">3. It is almost sunny, so I do not think it ______ rain today.</div>
+            <div class="question" data-correct="used">
+                <div class="question-number">3. He ______ to be very shy, but now he is outgoing.</div>
                 <input type="text" class="answer-input" id="g2q3" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
             <div class="question" data-correct="did">
-                <div class="question-number">4. Where ______ you go last week?</div>
+                <div class="question-number">4. I ______ not use to like broccoli, but now I love it.</div>
                 <input type="text" class="answer-input" id="g2q4" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="were">
-                <div class="question-number">5. While they ______ fighting, he stabed his friend with a knife.</div>
+            <div class="question" data-correct="used">
+                <div class="question-number">5. My grandmother ______ to tell me stories before bed.</div>
                 <input type="text" class="answer-input" id="g2q5" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
         </div>
         
+        <!-- GRAMMAR 03: Used to – Question Forms only -->
         <div class="grammar-section">
-            <div class="section-title">GRAMMAR 03 (Items 1 - 5)</div>
+            <div class="section-title">GRAMMAR 03 – Used to (Questions) (Items 1 - 5)</div>
             
-            <div class="question" data-correct="am">
-                <div class="question-number">1. I ______ leaving tomorrow.</div>
+            <div class="question" data-correct="Did">
+                <div class="question-number">1. ______ you use to play the piano when you were young?</div>
                 <input type="text" class="answer-input" id="g3q1" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
             <div class="question" data-correct="did">
-                <div class="question-number">2. Where ______ they travel last month?</div>
+                <div class="question-number">2. Where ______ they use to go on holiday?</div>
                 <input type="text" class="answer-input" id="g3q2" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="were">
-                <div class="question-number">3. They used to play outside when they ______ younger.</div>
+            <div class="question" data-correct="Did">
+                <div class="question-number">3. ______ she use to wear glasses?</div>
                 <input type="text" class="answer-input" id="g3q3" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="to">
-                <div class="question-number">4. Next month, Saja is going ____ finish grade 11.</div>
+            <div class="question" data-correct="did">
+                <div class="question-number">4. What kind of music ______ he use to like?</div>
                 <input type="text" class="answer-input" id="g3q4" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
             
-            <div class="question" data-correct="was">
-                <div class="question-number">5. While I was shoping, I ______ listening to music.</div>
+            <div class="question" data-correct="Did">
+                <div class="question-number">5. ______ they use to live in this neighbourhood?</div>
                 <input type="text" class="answer-input" id="g3q5" placeholder="Type your answer here...">
                 <div class="word-limit">ONE word only</div>
             </div>
         </div>
         
-        <div class="teacher-name">Wasim Al-awdhali</div>
+        <div class="teacher-name">Wasim Alawdhali</div>
         
         <div class="actions">
             <button class="btn btn-back" onclick="goBack()">Back to Main Page</button>
@@ -135,7 +380,77 @@
         </div>
     </div>
 
-    
-    <script src="../js/Grammar 1.js"></script>
+    <script>
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add input event listeners to all answer inputs
+            document.querySelectorAll('.answer-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    // Remove any previous correct/incorrect styling
+                    this.classList.remove('correct', 'incorrect');
+                });
+            });
+        });
+
+        // Check answers function
+        function checkAnswers() {
+            let correctCount = 0;
+            const totalQuestions = document.querySelectorAll('.question').length;
+            
+            document.querySelectorAll('.question').forEach(question => {
+                const correctAnswer = question.getAttribute('data-correct').toLowerCase();
+                const input = question.querySelector('.answer-input');
+                const userAnswer = input.value.trim().toLowerCase();
+                
+                // Reset previous correct/incorrect classes
+                input.classList.remove('correct', 'incorrect');
+                
+                if (userAnswer === correctAnswer) {
+                    input.classList.add('correct');
+                    correctCount++;
+                } else {
+                    input.classList.add('incorrect');
+                }
+            });
+            
+            // Show results
+            const results = document.getElementById('results');
+            const scoreValue = document.getElementById('score-value');
+            const feedback = document.getElementById('feedback');
+            
+            scoreValue.textContent = correctCount;
+            results.classList.add('show');
+            
+            // Provide feedback based on score
+            if (correctCount === totalQuestions) {
+                feedback.textContent = "Excellent! You got all answers correct! Perfect grammar skills!";
+            } else if (correctCount >= totalQuestions * 0.8) {
+                feedback.textContent = "Great job! You have a good understanding of grammar rules.";
+            } else if (correctCount >= totalQuestions * 0.6) {
+                feedback.textContent = "Good effort! Review the incorrect answers to improve your grammar.";
+            } else {
+                feedback.textContent = "You may need more practice with grammar. Review the rules and try again.";
+            }
+            
+            // Scroll to results
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Reset answers function
+        function resetAnswers() {
+            document.querySelectorAll('.answer-input').forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+            
+            // Hide results
+            document.getElementById('results').classList.remove('show');
+        }
+
+        // Go back function
+        function goBack() {
+           window.location.href = "../Grammar Activities - Grade 11.html";
+        }
+    </script>
 </body>
 </html>

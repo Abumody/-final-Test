@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening Tests - Grade 07 Semester 02</title>
+    <link rel="stylesheet" href="listening-2-00.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Test 01 Header -->
+        <header class="test-header test-01">
+            <h1>LISTENING 01 (Items 1 - 5)</h1>
+            <p class="subtitle">Great Traveller - Ibn Battuta</p>
+        </header>
+        
+        <div class="instructions">
+            <p>You are going to hear <strong>some information about a great traveller</strong>.</p>
+            <p><strong>Listen and for each item, shade in the bubble ○ next to the correct option.</strong></p>
+        </div>
+        
+        <!-- Audio Player for Test 01 -->
+        <div class="audio-player test-01-audio">
+            <div class="audio-title">🎤 Listening 01: Information about Ibn Battuta</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn01">▶</button>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar01"></div>
+                </div>
+                <div class="time-display" id="timeDisplay01">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider01" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <audio id="audioPlayer01" preload="metadata">
+                <source src="Audio/Listening2-00.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <!-- Questions for Test 01 -->
+        <div class="question-container test-01-questions">
+            <!-- Question 1 -->
+            <div class="question" data-qid="1" data-correct="classroom">
+                <div class="question-number">1.</div>
+                <div class="question-text">The speaker is talking in a ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="restaurant">
+                        <div class="bubble"></div>
+                        <div class="option-text">restaurant</div>
+                    </div>
+                    <div class="option" data-answer="hospital">
+                        <div class="bubble"></div>
+                        <div class="option-text">hospital</div>
+                    </div>
+                    <div class="option" data-answer="classroom">
+                        <div class="bubble"></div>
+                        <div class="option-text">classroom</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question" data-qid="2" data-correct="1304">
+                <div class="question-number">2.</div>
+                <div class="question-text">Ibn Battuta was born in ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="1304">
+                        <div class="bubble"></div>
+                        <div class="option-text">1304</div>
+                    </div>
+                    <div class="option" data-answer="1314">
+                        <div class="bubble"></div>
+                        <div class="option-text">1314</div>
+                    </div>
+                    <div class="option" data-answer="1340">
+                        <div class="bubble"></div>
+                        <div class="option-text">1340</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question" data-qid="3" data-correct="30">
+                <div class="question-number">3.</div>
+                <div class="question-text">Ibn Battuta travelled for about ______ years.</div>
+                <div class="options">
+                    <div class="option" data-answer="3">
+                        <div class="bubble"></div>
+                        <div class="option-text">3</div>
+                    </div>
+                    <div class="option" data-answer="13">
+                        <div class="bubble"></div>
+                        <div class="option-text">13</div>
+                    </div>
+                    <div class="option" data-answer="30">
+                        <div class="bubble"></div>
+                        <div class="option-text">30</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question" data-qid="4" data-correct="ship">
+                <div class="question-number">4.</div>
+                <div class="question-text">He travelled to Muscat by a ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="plane">
+                        <div class="bubble"></div>
+                        <div class="option-text">plane</div>
+                    </div>
+                    <div class="option" data-answer="car">
+                        <div class="bubble"></div>
+                        <div class="option-text">car</div>
+                    </div>
+                    <div class="option" data-answer="ship">
+                        <div class="bubble"></div>
+                        <div class="option-text">ship</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question" data-qid="5" data-correct="Morocco">
+                <div class="question-number">5.</div>
+                <div class="question-text">Ibn Battuta died in ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="Dhofar">
+                        <div class="bubble"></div>
+                        <div class="option-text">Dhofar</div>
+                    </div>
+                    <div class="option" data-answer="Morocco">
+                        <div class="bubble"></div>
+                        <div class="option-text">Morocco</div>
+                    </div>
+                    <div class="option" data-answer="India">
+                        <div class="bubble"></div>
+                        <div class="option-text">India</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Separator between tests -->
+        <div class="test-separator">
+            <div class="separator-line"></div>
+            <div class="separator-text">Next Test</div>
+            <div class="separator-line"></div>
+        </div>
+        
+        <!-- Test 02 Header -->
+        <header class="test-header test-02">
+            <h1>LISTENING 02 (Items 1 - 5)</h1>
+            <p class="subtitle">Whales - Marine Mammals</p>
+        </header>
+        
+        <div class="instructions test-02-instructions">
+            <p>You are going to hear <strong>a text about Whales</strong>.</p>
+            <p><strong>Listen and for each item, shade in the bubble ○ next to the correct option.</strong></p>
+        </div>
+        
+        <!-- Audio Player for Test 02 -->
+        <div class="audio-player test-02-audio">
+            <div class="audio-title">🐋 Listening 02: Text about Whales</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn02">▶</button>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar02"></div>
+                </div>
+                <div class="time-display" id="timeDisplay02">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider02" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <audio id="audioPlayer02" preload="metadata">
+                <source src="Audio/Listening02_Whales.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <!-- Questions for Test 02 -->
+        <div class="question-container test-02-questions">
+            <!-- Question 1 -->
+            <div class="question" data-qid="6" data-correct="mammals">
+                <div class="question-number">1.</div>
+                <div class="question-text">Whales are ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="fish">
+                        <div class="bubble"></div>
+                        <div class="option-text">fish</div>
+                    </div>
+                    <div class="option" data-answer="mammals">
+                        <div class="bubble"></div>
+                        <div class="option-text">mammals</div>
+                    </div>
+                    <div class="option" data-answer="reptiles">
+                        <div class="bubble"></div>
+                        <div class="option-text">reptiles</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question" data-qid="7" data-correct="moving">
+                <div class="question-number">2.</div>
+                <div class="question-text">Whales have soft bodies for easy ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="moving">
+                        <div class="bubble"></div>
+                        <div class="option-text">moving</div>
+                    </div>
+                    <div class="option" data-answer="eating">
+                        <div class="bubble"></div>
+                        <div class="option-text">eating</div>
+                    </div>
+                    <div class="option" data-answer="crawling">
+                        <div class="bubble"></div>
+                        <div class="option-text">crawling</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question" data-qid="8" data-correct="190">
+                <div class="question-number">3.</div>
+                <div class="question-text">Blue whales can weigh about ______ tones.</div>
+                <div class="options">
+                    <div class="option" data-answer="190">
+                        <div class="bubble"></div>
+                        <div class="option-text">190</div>
+                    </div>
+                    <div class="option" data-answer="119">
+                        <div class="bubble"></div>
+                        <div class="option-text">119</div>
+                    </div>
+                    <div class="option" data-answer="109">
+                        <div class="bubble"></div>
+                        <div class="option-text">109</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question" data-qid="9" data-correct="teeth">
+                <div class="question-number">4.</div>
+                <div class="question-text">Blue whales hunt other animals with their ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="wings">
+                        <div class="bubble"></div>
+                        <div class="option-text">wings</div>
+                    </div>
+                    <div class="option" data-answer="teeth">
+                        <div class="bubble"></div>
+                        <div class="option-text">teeth</div>
+                    </div>
+                    <div class="option" data-answer="tails">
+                        <div class="bubble"></div>
+                        <div class="option-text">tails</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question" data-qid="10" data-correct="petrol">
+                <div class="question-number">5.</div>
+                <div class="question-text">Now days the whale population is increasing because of the discovery of ______.</div>
+                <div class="options">
+                    <div class="option" data-answer="gas">
+                        <div class="bubble"></div>
+                        <div class="option-text">gas</div>
+                    </div>
+                    <div class="option" data-answer="stone">
+                        <div class="bubble"></div>
+                        <div class="option-text">stone</div>
+                    </div>
+                    <div class="option" data-answer="petrol">
+                        <div class="bubble"></div>
+                        <div class="option-text">petrol</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="actions">
+            <button class="btn btn-back" id="backBtn">Back to Listening Activities</button>
+            <button class="btn btn-reset" id="resetAllBtn">Reset All Answers</button>
+            <div class="test-buttons">
+                <button class="btn btn-check test-01-check" id="checkTest01Btn">Check Test 01</button>
+                <button class="btn btn-check test-02-check" id="checkTest02Btn">Check Test 02</button>
+                <button class="btn btn-check test-all-check" id="checkAllBtn">Check All Tests</button>
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results" id="results">
+            <div class="results-header">
+                <h2>Test Results</h2>
+                <div class="test-scores">
+                    <div class="test-score test-01-score">
+                        <span class="test-name">Test 01:</span>
+                        <span class="score-value" id="score-value-01">0</span>/5
+                    </div>
+                    <div class="test-score test-02-score">
+                        <span class="test-name">Test 02:</span>
+                        <span class="score-value" id="score-value-02">0</span>/5
+                    </div>
+                    <div class="test-score total-score">
+                        <span class="test-name">Total:</span>
+                        <span class="score-value" id="score-value-total">0</span>/10
+                    </div>
+                </div>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <div class="results-actions">
+                <button class="btn btn-reset" id="tryAgainBtn">Try Again</button>
+                <button class="btn btn-details" id="showDetailsBtn">Show Details</button>
+            </div>
+            <div class="details-panel" id="detailsPanel">
+                <!-- Details will be filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="listening-2-00.js"></script>
+</body>
+</html>

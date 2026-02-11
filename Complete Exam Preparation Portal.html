@@ -4,39 +4,335 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Exam Preparation Portal</title>
-    <link rel="stylesheet" href="css/Complete Exam Preparation Portal.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .category {
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            color: #2c3e50;
+            font-size: 1.8rem;
+        }
+        
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-top: 5px solid #3498db;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-card h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-card h2 i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .section-card p {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            margin-top: auto;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Listening Section Colors */
+        .listening1 {
+            border-top-color: #e74c3c;
+        }
+        
+        .listening1 .btn {
+            background: #e74c3c;
+        }
+        
+        .listening1 .btn:hover {
+            background: #c0392b;
+        }
+        
+        .listening2 {
+            border-top-color: #e67e22;
+        }
+        
+        .listening2 .btn {
+            background: #e67e22;
+        }
+        
+        .listening2 .btn:hover {
+            background: #d35400;
+        }
+        
+        /* Grammar Section Colors */
+        .grammar {
+            border-top-color: #2ecc71;
+        }
+        
+        .grammar .btn {
+            background: #2ecc71;
+        }
+        
+        .grammar .btn:hover {
+            background: #27ae60;
+        }
+        
+        /* Vocabulary Section Colors */
+        .vocabulary {
+            border-top-color: #f39c12;
+        }
+        
+        .vocabulary .btn {
+            background: #f39c12;
+        }
+        
+        .vocabulary .btn:hover {
+            background: #d35400;
+        }
+        
+        /* Grammar/Vocabulary Section Colors */
+        .grammar-vocab {
+            border-top-color: #9b59b6;
+        }
+        
+        .grammar-vocab .btn {
+            background: #9b59b6;
+        }
+        
+        .grammar-vocab .btn:hover {
+            background: #8e44ad;
+        }
+        
+        /* Reading Section Colors */
+        .reading1 {
+            border-top-color: #9b59b6;
+        }
+        
+        .reading1 .btn {
+            background: #9b59b6;
+        }
+        
+        .reading1 .btn:hover {
+            background: #8e44ad;
+        }
+        
+        .reading2 {
+            border-top-color: #34495e;
+        }
+        
+        .reading2 .btn {
+            background: #34495e;
+        }
+        
+        .reading2 .btn:hover {
+            background: #2c3e50;
+        }
+        
+        .reading3 {
+            border-top-color: #16a085;
+        }
+        
+        .reading3 .btn {
+            background: #16a085;
+        }
+        
+        .reading3 .btn:hover {
+            background: #1abc9c;
+        }
+        
+        /* Writing Section Colors */
+        .writing1 {
+            border-top-color: #e74c3c;
+        }
+        
+        .writing1 .btn {
+            background: #e74c3c;
+        }
+        
+        .writing1 .btn:hover {
+            background: #c0392b;
+        }
+        
+        .writing2 {
+            border-top-color: #3498db;
+        }
+        
+        .writing2 .btn {
+            background: #3498db;
+        }
+        
+        .writing2 .btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Grammar Topics Colors */
+        .conditionals {
+            border-top-color: #1abc9c;
+        }
+        
+        .conditionals .btn {
+            background: #1abc9c;
+        }
+        
+        .conditionals .btn:hover {
+            background: #16a085;
+        }
+        
+        .verbs {
+            border-top-color: #d35400;
+        }
+        
+        .verbs .btn {
+            background: #d35400;
+        }
+        
+        .verbs .btn:hover {
+            background: #e67e22;
+        }
+        
+        .instructions {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #3498db;
+        }
+        
+        .instructions h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .category {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <!-- Student Info Added -->
-            <div class="student-info" id="studentInfo" style="display: none;">
-                <div class="student-name" id="studentName"></div>
-                <div class="student-grade" id="studentGrade"></div>
-            </div>
-            
             <h1>Complete Exam Preparation Portal</h1>
             <p class="subtitle">Master all English language skills with our comprehensive study materials</p>
         </header>
-        
-        <!-- Welcome Message Added -->
-        <div class="welcome-message" id="welcomeMessage" style="display: none;">
-            <h2>Welcome, <span id="welcomeName">Student</span>!</h2>
-            <p>We're excited to have you here. Select any section below to begin practicing your English skills.</p>
-        </div>
         
         <h2 class="category">Listening Skills</h2>
         <div class="sections-grid">
             <div class="section-card listening1">
                 <h2><i>🎧</i> Listening 1</h2>
                 <p>Basic listening comprehension with simple conversations and short audio clips. Perfect for beginners.</p>
-                <a href="Listening Activities 1 - Grade 11.html" class="btn">Start Listening 1</a>
+                <a href="Listening Activities 1 - Grade 7.html" class="btn">Start Listening 1</a>
             </div>
             
             <div class="section-card listening2">
                 <h2><i>🔊</i> Listening 2</h2>
                 <p>Advanced listening practice with longer dialogues, interviews, and authentic materials.</p>
-                <a href="Listening Activities 2 - Grade 11.html" class="btn">Start Listening 2</a>
+                <a href="Listening Activities 2 - Grade 7.html" class="btn">Start Listening 2</a>
             </div>
         </div>
         
@@ -45,13 +341,13 @@
             <div class="section-card reading1">
                 <h2><i>📖</i> Reading 1</h2>
                 <p>Basic reading comprehension with short texts, simple vocabulary, and straightforward questions.</p>
-                <a href="Reading 1- Grade 11.html" class="btn">Start Reading 1</a>
+                <a href="Reading 1- Grade 7.html" class="btn">Start Reading 1</a>
             </div>
             
             <div class="section-card reading2">
                 <h2><i>📰</i> Reading 2</h2>
                 <p>Intermediate reading practice with newspaper articles, blog posts, and informational texts.</p>
-                <a href="Reading 2- Grade 11.html" class="btn">Start Reading 2</a>
+                <a href="Reading 2- Grade 7.html" class="btn">Start Reading 2</a>
             </div>
             
             <div class="section-card reading3">
@@ -66,13 +362,13 @@
             <div class="section-card writing1">
                 <h2><i>✏️</i> Writing 1</h2>
                 <p>Develop basic writing skills with sentence formation, paragraph structure, and simple essays.</p>
-                <a href="activities/writing1.html" class="btn">Start Writing 1</a>
+                <a href="writing-01.html" class="btn">Start Writing 1</a>
             </div>
             
             <div class="section-card writing2">
                 <h2><i>📄</i> Writing 2</h2>
                 <p>Advanced writing practice with formal essays, reports, and complex composition tasks.</p>
-                <a href="activities/writing2.html" class="btn">Start Writing 2</a>
+                <a href="writing-02.html" class="btn">Start Writing 2</a>
             </div>
         </div>
         
@@ -93,7 +389,7 @@
             <div class="section-card grammar-vocab">
                 <h2><i>📚</i> Grammar/Vocabulary</h2>
                 <p>Practice grammar and vocabulary together with contextual exercises and mixed activities.</p>
-                <a href="Grammar & Vocabulary Activities - Grade 11.html" class="btn">Grammar/Vocabulary</a>
+                <a href="Grammar & Vocabulary Activities - Grade 7.html" class="btn">Grammar/Vocabulary</a>
             </div>
         </div>
         
@@ -102,13 +398,13 @@
             <div class="section-card conditionals">
                 <h2><i>🔀</i> Four Types of Conditionals</h2>
                 <p>Learn and practice zero, first, second, and third conditionals with contextual examples.</p>
-                <a href="activities/conditionals.html" class="btn">Study Conditionals</a>
+                <a href="conditionals.html" class="btn">Study Conditionals</a>
             </div>
             
             <div class="section-card verbs">
                 <h2><i>⚡</i> Regular & Irregular Verbs</h2>
                 <p>Master verb forms, conjugations, and usage of both regular and irregular verbs.</p>
-                <a href="activities/verbs.html" class="btn">Practice Verbs</a>
+                <a href="verbs.html" class="btn">Practice Verbs</a>
             </div>
         </div>
         
@@ -129,7 +425,28 @@
         </footer>
     </div>
 
-    
-    <script src="js/Complete Exam Preparation Portal.js"></script>
+    <script>
+        // Add hover effect to section cards
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add hover effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </body>
 </html>
