@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening 02 (Items 1‑5) – Grade 07</title>
+    <style>
+        /* ==== CSS (Listening 00.css adapted) ==== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 10px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .subtitle { font-size: 1rem; opacity: 0.9; }
+        .instructions {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid #3498db;
+        }
+        .instructions p { margin-bottom: 10px; font-size: 1.1rem; }
+
+        /* audio player */
+        .audio-player {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .audio-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-play {
+            background: #3498db;
+            color: white;
+            border: Falsene;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(52,152,219,0.3);
+        }
+        .btn-play:hover { background: #2980b9; transform: scale(1.05); }
+        .btn-play.playing { background: #2ecc71; }
+        .btn-play.playing:hover { background: #27ae60; }
+        .progress-container {
+            flex-grow: 1;
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #3498db;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        .time-display {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            min-width: 100px;
+            text-align: center;
+        }
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .volume-slider { width: 80px; }
+
+        /* questions grid (instead of pictures) */
+        .questions-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        .questions-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .question-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .question-item {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px 20px;
+            transition: all 0.2s;
+            font-size: 1.05rem;
+        }
+        .question-item:hover {
+            border-color: #3498db;
+            box-shadow: 0 4px 8px rgba(52,152,219,0.1);
+        }
+        .question-text {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            padding-right: 5px;
+        }
+        .TrueFalse-options {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .TrueFalse-options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        .TrueFalse-options input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #3498db;
+            cursor: pointer;
+        }
+        .radio-custom { /* for visual bubble later if needed, but we keep native for simplicity */ }
+
+        /* answer table (True/False) */
+        .answer-table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        .answer-table-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        .answer-table th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #2980b9;
+        }
+        .answer-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .text-number {
+            font-weight: bold;
+            background: #f8f9fa;
+            width: 50px;
+        }
+        .bubble {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #bdc3c7;
+            margin: 0 auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .bubble.selected {
+            border-color: #3498db;
+            background-color: #3498db;
+        }
+        .bubble.correct {
+            border-color: #2ecc71;
+            background-color: #2ecc71;
+        }
+        .bubble.incorrect {
+            border-color: #e74c3c;
+            background-color: #e74c3c;
+        }
+        .bubble.selected::after,
+        .bubble.correct::after,
+        .bubble.incorrect::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        td .bubble { margin: 0 auto; }
+        .table-Falsete {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            padding-top: 10px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        /* action buttons */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        .btn {
+            padding: 12px 25px;
+            border: Falsene;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+        .btn-check { background-color: #2ecc71; color: white; }
+        .btn-check:hover { background-color: #27ae60; transform: translateY(-2px); }
+        .btn-reset { background-color: #95a5a6; color: white; }
+        .btn-reset:hover { background-color: #7f8c8d; transform: translateY(-2px); }
+        .btn-back { background-color: #3498db; color: white; }
+        .btn-back:hover { background-color: #2980b9; transform: translateY(-2px); }
+
+        /* results */
+        .results {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            text-align: center;
+            display: Falsene;
+        }
+        .results.show { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .score { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; color: #2c3e50; }
+        .score-value { color: #3498db; font-size: 2rem; }
+        .feedback { font-size: 1.1rem; margin-bottom: 25px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db; }
+
+        @media (max-width: 768px) {
+            .actions { flex-direction: column; }
+            .answer-table { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LISTENING 02 (Items 1 - 5)</h1>
+            <p class="subtitle">Grade 07 – Semester 02 2024-2025</p>
+        </header>
+
+        <div class="instructions">
+            <p>You will hear <strong>ten short texts</strong> about company updates.</p>
+            <p><strong>For each question, choose True or False. Then mark your answer in the table. Finally, click CHECK ANSWERS.</strong></p>
+        </div>
+
+        <!-- Audio Player (identical to original) -->
+        <div class="audio-player">
+            <div class="audio-title">Listening: Changing Meeting</div>
+            <div class="audio-controls">
+                <button class="btn-play" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <audio id="audioPlayer" preload="metadata">
+                <source src="Audio/Listening 03.mp3" type="audio/mpeg">
+                Your browser does Falset support the audio element.
+            </audio>
+        </div>
+
+        <!-- Questions instead of pictures (5 True/False items) -->
+        <div class="questions-container">
+            <h2>Questions 1‑5 (choose True or False)</h2>
+            <div class="question-grid" id="questionGrid">
+                <!-- data will be injected via js but we write static for clarity -->
+            </div>
+        </div>
+
+        <!-- Answer Table (True/False bubbles) -->
+        <div class="answer-table-container">
+            <h2>Answer Table</h2>
+            <table class="answer-table" id="answerTable">
+                <thead>
+                    <tr><th>#</th><th>True</th><th>False</th></tr>
+                </thead>
+                <tbody id="answerTableBody">
+                    <!-- dynamically filled -->
+                </tbody>
+            </table>
+            <div class="table-Falsete">● = Selected answer | correct/incorrect shown after check</div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+            <button class="btn btn-back" id="backBtn">Back to Activities</button>
+            <button class="btn btn-reset" id="resetBtn">Clear All Answers</button>
+            <button class="btn btn-check" id="checkBtn">Check Answers</button>
+        </div>
+
+        <!-- Results -->
+        <div class="results" id="results">
+            <div class="score">Your Score: <span class="score-value" id="score-value">0</span>/5</div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-reset" id="tryAgainBtn">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ----- DATA (questions + correct answers) -----
+            const questions = [
+                "1. Lucy asked Anna to talk about the meeting next Tuesday",
+                "2. The meeting was originally planned for 9 o’clock",
+                "3. Lucy suggested moving the meeting to 9 o’clock",
+                "4. Anna said she would send an email to confirm the new time",
+                "5. Lucy said her report was not ready yet",
+            ];
+
+            // Correct answers: True = 'True', False = 'False' (based on the provided answers)
+            const correctMap = [
+                'True',  
+                'False',  
+                'True',  
+                'True',   
+                'False',   
+             
+            ];
+
+            // ---------- render dynamic content ----------
+            const grid = document.getElementById('questionGrid');
+            const tbody = document.getElementById('answerTableBody');
+            grid.innerHTML = '';
+            tbody.innerHTML = '';
+
+            for (let i = 0; i < questions.length; i++) {
+                const qid = i + 1;
+                // question item
+                const div = document.createElement('div');
+                div.className = 'question-item';
+                div.setAttribute('data-qid', qid);
+                div.innerHTML = `
+                    <div class="question-text">${questions[i]}</div>
+                    <div class="TrueFalse-options">
+                        <label><input type="radio" name="q${qid}" value="True" class="radio-True"> True</label>
+                        <label><input type="radio" name="q${qid}" value="False" class="radio-False"> False</label>
+                    </div>
+                `;
+                grid.appendChild(div);
+
+                // table row with two bubbles (True/False)
+                const tr = document.createElement('tr');
+                tr.className = 'question-row';
+                tr.setAttribute('data-qid', qid);
+                tr.setAttribute('data-correct', correctMap[i]);  // store correct answer
+
+                // text number cell
+                const tdNum = document.createElement('td');
+                tdNum.className = 'text-number';
+                tdNum.textContent = qid + '.';
+                tr.appendChild(tdNum);
+
+                // True bubble cell
+                const tdTrue = document.createElement('td');
+                const bubbleTrue = document.createElement('div');
+                bubbleTrue.className = 'bubble';
+                bubbleTrue.setAttribute('data-option', 'True');
+                bubbleTrue.setAttribute('data-qid', qid);
+                tdTrue.appendChild(bubbleTrue);
+                tr.appendChild(tdTrue);
+
+                // False bubble cell
+                const tdFalse = document.createElement('td');
+                const bubbleFalse = document.createElement('div');
+                bubbleFalse.className = 'bubble';
+                bubbleFalse.setAttribute('data-option', 'False');
+                bubbleFalse.setAttribute('data-qid', qid);
+                tdFalse.appendChild(bubbleFalse);
+                tr.appendChild(tdFalse);
+
+                tbody.appendChild(tr);
+            }
+
+            // ---------- sync bubbles with radio buttons ----------
+            function updateBubbleFromRadio() {
+                // clear all bubble selections
+                document.querySelectorAll('.bubble').forEach(b => b.classList.remove('selected', 'correct', 'incorrect'));
+                for (let i = 1; i <= 5; i++) {
+                    const selectedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (selectedRadio) {
+                        const value = selectedRadio.value; // 'True' or 'False'
+                        const targetBubble = document.querySelector(`.bubble[data-qid="${i}"][data-option="${value}"]`);
+                        if (targetBubble) targetBubble.classList.add('selected');
+                    }
+                }
+            }
+
+            // add listeners to all radios
+            document.querySelectorAll('.TrueFalse-options input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', updateBubbleFromRadio);
+            });
+
+            // also bubble click should set the corresponding radio
+            document.querySelectorAll('.bubble').forEach(bubble => {
+                bubble.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const qid = this.getAttribute('data-qid');
+                    const option = this.getAttribute('data-option'); // 'True' or 'False'
+                    const radio = document.querySelector(`input[name="q${qid}"][value="${option}"]`);
+                    if (radio) {
+                        radio.checked = true;
+                        updateBubbleFromRadio();
+                    }
+                });
+            });
+
+            // ---------- audio player (identical to original) ----------
+            function initializeAudioPlayer() {
+                const audio = document.getElementById('audioPlayer');
+                const playBtn = document.getElementById('playBtn');
+                const progressBar = document.getElementById('progressBar');
+                const progressContainer = document.getElementById('progressContainer');
+                const timeDisplay = document.getElementById('timeDisplay');
+                const volumeSlider = document.getElementById('volumeSlider');
+
+                if (!audio || !playBtn) return;
+
+                function formatTime(seconds) {
+                    if (isNaN(seconds)) return "0:00";
+                    const mins = Math.floor(seconds / 60);
+                    const secs = Math.floor(seconds % 60);
+                    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                }
+
+                function updateTimeDisplay() {
+                    if (audio.duration && !isNaN(audio.duration)) {
+                        timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+                    } else {
+                        timeDisplay.textContent = `${formatTime(audio.currentTime)} / 0:00`;
+                    }
+                }
+
+                function updateProgress() {
+                    if (audio.duration && !isNaN(audio.duration)) {
+                        const progressPercent = (audio.currentTime / audio.duration) * 100;
+                        progressBar.style.width = `${progressPercent}%`;
+                    }
+                    updateTimeDisplay();
+                }
+
+                function setProgress(e) {
+                    if (!audio.duration || isNaN(audio.duration)) return;
+                    const width = this.clientWidth;
+                    const clickX = e.offsetX;
+                    audio.currentTime = (clickX / width) * audio.duration;
+                }
+
+                function togglePlay() {
+                    if (audio.paused) {
+                        audio.play().catch(err => {
+                            alert("Audio file Falset found. Please check the path.");
+                        });
+                        playBtn.textContent = '⏸';
+                        playBtn.classList.add('playing');
+                    } else {
+                        audio.pause();
+                        playBtn.textContent = '▶';
+                        playBtn.classList.remove('playing');
+                    }
+                }
+
+                function setVolume() {
+                    audio.volume = volumeSlider.value;
+                }
+
+                playBtn.addEventListener('click', togglePlay);
+                audio.addEventListener('timeupdate', updateProgress);
+                audio.addEventListener('ended', function() {
+                    playBtn.textContent = '▶';
+                    playBtn.classList.remove('playing');
+                });
+                audio.addEventListener('loadedmetadata', updateTimeDisplay);
+                if (progressContainer) progressContainer.addEventListener('click', setProgress);
+                if (volumeSlider) volumeSlider.addEventListener('input', setVolume);
+                updateTimeDisplay();
+            }
+
+            // ---------- check answers ----------
+            function checkAnswers() {
+                let correctCount = 0;
+                const rows = document.querySelectorAll('.question-row');
+                rows.forEach(row => {
+                    const qid = row.getAttribute('data-qid');
+                    const correct = row.getAttribute('data-correct'); // 'True' or 'False'
+                    const selectedRadio = document.querySelector(`input[name="q${qid}"]:checked`);
+                    
+                    // remove previous markers
+                    row.querySelectorAll('.bubble').forEach(b => b.classList.remove('correct', 'incorrect'));
+
+                    if (selectedRadio) {
+                        const answer = selectedRadio.value;
+                        const selectedBubble = row.querySelector(`.bubble[data-option="${answer}"]`);
+                        if (answer === correct) {
+                            selectedBubble.classList.add('correct');
+                            correctCount++;
+                        } else {
+                            selectedBubble.classList.add('incorrect');
+                            // show correct bubble
+                            const correctBubble = row.querySelector(`.bubble[data-option="${correct}"]`);
+                            if (correctBubble) correctBubble.classList.add('correct');
+                        }
+                    } else {
+                        // False answer: just highlight correct bubble
+                        const correctBubble = row.querySelector(`.bubble[data-option="${correct}"]`);
+                        if (correctBubble) correctBubble.classList.add('correct');
+                    }
+                });
+
+                const results = document.getElementById('results');
+                const scoreSpan = document.getElementById('score-value');
+                const feedbackDiv = document.getElementById('feedback');
+                scoreSpan.textContent = correctCount;
+                results.classList.add('show');
+                if (correctCount === 5) {
+                    feedbackDiv.textContent = "🎉 Excellent! Perfect score!";
+                    feedbackDiv.style.color = "#2ecc71";
+                } else if (correctCount >= 3) {
+                    feedbackDiv.textContent = "👍 Very good! You understood most anFalseuncements.";
+                    feedbackDiv.style.color = "#3498db";
+                } else if (correctCount >= 2) {
+                    feedbackDiv.textContent = "Good effort! Review the audio and try again.";
+                    feedbackDiv.style.color = "#f39c12";
+                } else {
+                    feedbackDiv.textContent = "Keep practicing! Listen carefully to the details.";
+                    feedbackDiv.style.color = "#e74c3c";
+                }
+                results.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // ---------- reset ----------
+            function resetAll() {
+                document.querySelectorAll('.bubble').forEach(b => b.classList.remove('selected', 'correct', 'incorrect'));
+                document.querySelectorAll('.TrueFalse-options input[type="radio"]').forEach(r => r.checked = false);
+                document.getElementById('results').classList.remove('show');
+                // pause audio
+                const audio = document.getElementById('audioPlayer');
+                const playBtn = document.getElementById('playBtn');
+                if (audio && !audio.paused) {
+                    audio.pause();
+                    playBtn.textContent = '▶';
+                    playBtn.classList.remove('playing');
+                }
+            }
+
+            // Go back function
+function goBack() {
+    // Change this URL to your actual listening activities page
+    window.location.href = "../Listening Activities 1 - Grade 7.html";
+}
+
+            // attach button handlers
+            document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+            document.getElementById('resetBtn').addEventListener('click', resetAll);
+            document.getElementById('tryAgainBtn').addEventListener('click', resetAll);
+            document.getElementById('backBtn').addEventListener('click', goBack);
+
+            // keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.code === 'Space' && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') {
+                    e.preventDefault();
+                    document.getElementById('playBtn').click();
+                }
+                if (e.ctrlKey && e.code === 'Enter') {
+                    e.preventDefault();
+                    document.getElementById('checkBtn').click();
+                }
+                if (e.ctrlKey && e.code === 'KeyR') {
+                    e.preventDefault();
+                    document.getElementById('resetBtn').click();
+                }
+            });
+
+            // start audio player
+            initializeAudioPlayer();
+
+            // ensure bubbles are synced on page load (if any radio pre-checked? Falsene)
+            updateBubbleFromRadio();
+
+            // extra: volume default
+            const audio = document.getElementById('audioPlayer');
+            if (audio) audio.volume = 1.0;
+        })();
+    </script>
+</body>
+</html>
