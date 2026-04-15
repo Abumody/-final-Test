@@ -505,7 +505,7 @@ function goBack() {
     // Show confirmation before leaving
     if (hasUnsavedProgress()) {
         if (confirm('You have unsaved progress. Are you sure you want to leave?')) {
-            window.location.href = "../grammar-activities-grade7.html";
+            window.location.href = "../Grammar & Vocabulary Activities - Grade 7.html";
         }
     } else {
         window.location.href = "../Grammar & Vocabulary Activities - Grade 7.html";
