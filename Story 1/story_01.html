@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slma loves shopping - Grammar Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -57,6 +58,46 @@
         }
         .review-btn { background: linear-gradient(135deg, #66bb6a, #43a047); }
         .review-btn:disabled { background: #bdbdbd; cursor: not-allowed; opacity: 0.6; }
+        
+        /* Vocabulary Box Styles */
+        .vocab-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .vocab-box h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vocab-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .vocab-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .vocab-word {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+        }
+        .vocab-meaning {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+        
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -222,6 +263,55 @@
             <button class="review-btn" id="reviewBtn" onclick="openReviewModal()" disabled>📝 Review & Finish</button>
         </div>
     </header>
+
+    
+    <div class="vocab-box">
+        <h3><i class="fas fa-book-open"></i> 📖 Vocabulary List</h3>
+        <div class="vocab-items">
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">sunny day</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">went</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">picked up</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">toy's section</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">went back</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">groceries</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">vegetables</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+                <div class="vocab-item">
+                    <span class="vocab-word">bought</span>
+                    <span class="vocab-meaning"></span>
+                </div>
+            
+        </div>
+    </div>
+    
 
     <main class="dashboard-grid">
         

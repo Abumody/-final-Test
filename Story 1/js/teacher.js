@@ -1,5 +1,5 @@
 // ========================================
-// TEACHER DASHBOARD - COMPLETE WORKING VERSION
+// TEACHER DASHBOARD - WITH VOCABULARY SUPPORT (8 WORDS)
 // ========================================
 
 // ========================================
@@ -12,10 +12,12 @@ let currentStory = {
     wordCountType: 'none',
     wordCountValue: 0,
     passingScore: 80,
-    cards: []
+    cards: [],
+    vocabulary: []
 };
 
 let savedStories = [];
+let vocabularyWords = [];
 
 // ========================================
 // INITIALIZATION
@@ -24,6 +26,55 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSavedStories();
     createNewStory();
 });
+
+// ========================================
+// VOCABULARY FUNCTIONS
+// ========================================
+function renderVocabularyEditor() {
+    const container = document.getElementById('vocabularyGrid');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    for (let i = 0; i < 8; i++) {
+        const vocab = vocabularyWords[i] || { word: '', meaning: '' };
+        const vocabDiv = document.createElement('div');
+        vocabDiv.className = 'vocab-card';
+        vocabDiv.innerHTML = `
+            <div class="vocab-number">Word ${i + 1}</div>
+            <div class="vocab-word-field">
+                <label>📖 Word:</label>
+                <input type="text" id="vocabWord-${i}" placeholder="e.g., Amazing" value="${escapeHtml(vocab.word)}">
+            </div>
+            <div class="vocab-meaning-field">
+                <label>📝 Meaning:</label>
+                <input type="text" id="vocabMeaning-${i}" placeholder="e.g., Causing great surprise or wonder" value="${escapeHtml(vocab.meaning)}">
+            </div>
+        `;
+        container.appendChild(vocabDiv);
+    }
+}
+
+function saveVocabulary() {
+    vocabularyWords = [];
+    for (let i = 0; i < 8; i++) {
+        const word = document.getElementById(`vocabWord-${i}`)?.value.trim() || '';
+        const meaning = document.getElementById(`vocabMeaning-${i}`)?.value.trim() || '';
+        vocabularyWords.push({ word, meaning });
+    }
+    currentStory.vocabulary = vocabularyWords;
+}
+
+function loadVocabulary(savedVocabulary) {
+    if (savedVocabulary && savedVocabulary.length === 8) {
+        vocabularyWords = savedVocabulary;
+    } else {
+        vocabularyWords = [];
+        for (let i = 0; i < 8; i++) {
+            vocabularyWords.push({ word: '', meaning: '' });
+        }
+    }
+    renderVocabularyEditor();
+}
 
 // ========================================
 // STORY MANAGEMENT
@@ -36,7 +87,8 @@ function createNewStory() {
         wordCountType: 'none',
         wordCountValue: 0,
         passingScore: 80,
-        cards: []
+        cards: [],
+        vocabulary: []
     };
     
     document.getElementById('storyTitle').value = 'New Story';
@@ -59,7 +111,15 @@ function createNewStory() {
         });
     }
     
+    // Initialize vocabulary (8 words)
+    vocabularyWords = [];
+    for (let i = 0; i < 8; i++) {
+        vocabularyWords.push({ word: '', meaning: '' });
+    }
+    currentStory.vocabulary = vocabularyWords;
+    
     renderCardsEditor();
+    renderVocabularyEditor();
     showNotification('New story created!', 'success');
 }
 
@@ -70,6 +130,11 @@ function saveStory() {
     currentStory.wordCountValue = parseInt(document.getElementById('wordCountValue').value) || 0;
     currentStory.passingScore = parseInt(document.getElementById('passingScore').value) || 80;
     
+    // Save vocabulary
+    saveVocabulary();
+    currentStory.vocabulary = vocabularyWords;
+    
+    // Collect card data
     currentStory.cards = [];
     const cardElements = document.querySelectorAll('.card-editor');
     cardElements.forEach((cardEl, index) => {
@@ -171,7 +236,18 @@ function loadStory(storyId) {
         document.getElementById('passingScore').value = currentStory.passingScore;
         document.getElementById('totalCards').value = currentStory.cards.length;
         
+        // Load vocabulary
+        if (currentStory.vocabulary && currentStory.vocabulary.length === 8) {
+            vocabularyWords = currentStory.vocabulary;
+        } else {
+            vocabularyWords = [];
+            for (let i = 0; i < 8; i++) {
+                vocabularyWords.push({ word: '', meaning: '' });
+            }
+        }
+        
         renderCardsEditor();
+        renderVocabularyEditor();
         closeLoadModal();
         showNotification('Story loaded!', 'success');
     }
@@ -445,8 +521,24 @@ function previewStudentView() {
     const previewContent = document.getElementById('previewContent');
     if (!previewContent) return;
     
+    // Show vocabulary in preview
+    const vocabHTML = currentStory.vocabulary && currentStory.vocabulary.length > 0 ? `
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 15px; padding: 20px; margin-bottom: 25px; color: white;">
+            <h3 style="margin-bottom: 15px;">📖 Vocabulary List</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+                ${currentStory.vocabulary.map(vocab => `
+                    <div style="background: rgba(255,255,255,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <strong>${escapeHtml(vocab.word || '')}</strong><br>
+                        <small>${escapeHtml(vocab.meaning || '')}</small>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    ` : '';
+    
     previewContent.innerHTML = `
         <h3 style="text-align: center; color: #667eea; margin-bottom: 20px;">${escapeHtml(currentStory.title || 'Untitled Story')}</h3>
+        ${vocabHTML}
         <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <strong>Total Cards:</strong> ${currentStory.cards.length}<br>
             <strong>Word Count Requirement:</strong> ${currentStory.wordCountType === 'none' ? 'None' : `${currentStory.wordCountType} ${currentStory.wordCountValue} words`}
@@ -513,13 +605,14 @@ function exportAsHTML() {
         wordCountType: currentStory.wordCountType,
         wordCountValue: currentStory.wordCountValue,
         passingScore: currentStory.passingScore,
-        cards: currentStory.cards
+        cards: currentStory.cards,
+        vocabulary: currentStory.vocabulary
     };
     
     const safeTitle = storyData.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const fullHTML = generateFullHTML(storyData);
     downloadFile(`${safeTitle}_student.html`, fullHTML, 'text/html');
-    showNotification('HTML file exported with images!', 'success');
+    showNotification('HTML file exported with images and vocabulary!', 'success');
 }
 
 function generateFullHTML(storyData) {
@@ -535,12 +628,28 @@ function generateFullHTML(storyData) {
         };
     });
     
+    // Generate vocabulary HTML
+    const vocabHTML = (storyData.vocabulary && storyData.vocabulary.length > 0) ? `
+    <div class="vocab-box">
+        <h3><i class="fas fa-book-open"></i> 📖 Vocabulary List</h3>
+        <div class="vocab-items">
+            ${storyData.vocabulary.map(vocab => `
+                <div class="vocab-item">
+                    <span class="vocab-word">${escapeHtml(vocab.word || '')}</span>
+                    <span class="vocab-meaning">${escapeHtml(vocab.meaning || '')}</span>
+                </div>
+            `).join('')}
+        </div>
+    </div>
+    ` : '';
+    
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${escapeHtml(storyData.title)} - Grammar Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -594,6 +703,46 @@ function generateFullHTML(storyData) {
         }
         .review-btn { background: linear-gradient(135deg, #66bb6a, #43a047); }
         .review-btn:disabled { background: #bdbdbd; cursor: not-allowed; opacity: 0.6; }
+        
+        /* Vocabulary Box Styles */
+        .vocab-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .vocab-box h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vocab-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .vocab-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .vocab-word {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+        }
+        .vocab-meaning {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+        
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -760,6 +909,8 @@ function generateFullHTML(storyData) {
         </div>
     </header>
 
+    ${vocabHTML}
+
     <main class="dashboard-grid">
         ${storyData.cards.map((card, index) => `
         <div class="dashboard-card" data-card-id="${index + 1}" onclick="openCard(${index + 1})">
@@ -922,7 +1073,8 @@ function exportAsJSON() {
         wordCountType: currentStory.wordCountType,
         wordCountValue: currentStory.wordCountValue,
         passingScore: currentStory.passingScore,
-        cards: currentStory.cards
+        cards: currentStory.cards,
+        vocabulary: currentStory.vocabulary
     };
     
     const filename = `${storyData.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_data.json`;
