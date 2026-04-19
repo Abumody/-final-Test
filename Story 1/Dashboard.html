@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah's Holiday Story - Grammar Challenge</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- DASHBOARD HEADER -->
+    <header class="dashboard-header">
+        <h1>📚 Sarah's Holiday Story</h1>
+        <p class="subtitle">Click on any card to correct the grammar mistakes</p>
+        
+        <div class="header-actions">
+            <div class="progress-container">
+                <span>Progress: </span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span id="progressText">0/6 Completed</span>
+            </div>
+            
+            <button class="reset-btn" onclick="confirmReset()">🔄 Reset Progress</button>
+            
+            <!-- Review & Finish Button -->
+            <button class="review-btn" id="reviewBtn" onclick="openReviewModal()" disabled>
+                📝 Review & Finish
+            </button>
+        </div>
+    </header>
+
+    <!-- DASHBOARD GRID -->
+    <main class="dashboard-grid">
+        
+        <!-- CARD 1 -->
+        <div class="dashboard-card" data-card-id="1" onclick="openCard(1)">
+            <div class="card-preview">
+                <div class="card-number">1</div>
+                <div class="card-icon">🏖️</div>
+                <p class="card-preview-text">One day Sarah and her family <span class="preview-mistake">want to see for</span> holiday.</p>
+                <div class="card-status" id="status1">
+                    <span class="status-pending">⏳ Not Started</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="dashboard-card" data-card-id="2" onclick="openCard(2)">
+            <div class="card-preview">
+                <div class="card-number">2</div>
+                <div class="card-icon">🍽️</div>
+                <p class="card-preview-text">Next the family <span class="preview-mistake">was ate</span> after that.</p>
+                <div class="card-status" id="status2">
+                    <span class="status-pending">⏳ Not Started</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="dashboard-card" data-card-id="3" onclick="openCard(3)">
+            <div class="card-preview">
+                <div class="card-number">3</div>
+                <div class="card-icon">🏊</div>
+                <p class="card-preview-text">Ali <span class="preview-mistake">want to swim</span> but the family <span class="preview-mistake">didn't saw</span> to Ali.</p>
+                <div class="card-status" id="status3">
+                    <span class="status-pending">⏳ Not Started</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="dashboard-card" data-card-id="4" onclick="openCard(4)">
+            <div class="card-preview">
+                <div class="card-number">4</div>
+                <div class="card-icon">🌊</div>
+                <p class="card-preview-text">Then, Ali <span class="preview-mistake">want to the beach</span> after Ali <span class="preview-mistake">drrowni</span>.</p>
+                <div class="card-status" id="status4">
+                    <span class="status-pending">⏳ Not Started</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="dashboard-card" data-card-id="5" onclick="openCard(5)">
+            <div class="card-preview">
+                <div class="card-number">5</div>
+                <div class="card-icon">🦺</div>
+                <p class="card-preview-text">The rescuer saved Ali, the Dad <span class="preview-mistake">say thank you</span> to rescuer.</p>
+                <div class="card-status" id="status5">
+                    <span class="status-pending">⏳ Not Started</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="dashboard-card" data-card-id="6" onclick="openCard(6)">
+            <div class="card-preview">
+                <div class="card-number">6</div>
+                <div class="card-icon">⛵</div>
+                <p class="card-preview-text">Finally the family enjoyed their holiday and <span class="preview-mistake">went to go to sea but be carful to saw Ali</span>.</p>
+                <div class="card-status" id="status6">
+                    <span class="status-pending">⏳ Not Started</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- COMPLETE STORY SECTION (Shows after finishing) -->
+    <section class="complete-story-section" id="completeStorySection">
+        <div class="story-header">
+            <h2>🎉 Your Complete Story</h2>
+            <p class="story-subtitle">Great job! Here's the story with your corrections:</p>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text" id="fullStoryText">
+                <!-- Student's story will be injected by JavaScript -->
+            </div>
+            
+            <div class="story-stats">
+                <div class="stat-box">
+                    <span class="stat-icon">📝</span>
+                    <span class="stat-label">Total Words</span>
+                    <span class="stat-value" id="wordCount">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">📄</span>
+                    <span class="stat-label">Sentences</span>
+                    <span class="stat-value" id="sentenceCount">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">✅</span>
+                    <span class="stat-label">Completed</span>
+                    <span class="stat-value" id="completionDate">-</span>
+                </div>
+            </div>
+            
+            <div class="story-actions">
+                <button class="compare-btn" onclick="toggleCompareView()">🔍 Compare with Model Answer</button>
+                <button class="print-btn" onclick="printStory()">🖨️ Print Story</button>
+                <button class="copy-btn" onclick="copyStory()">📋 Copy to Clipboard</button>
+                <button class="restart-btn" onclick="confirmReset()">🔄 Start Over</button>
+            </div>
+            
+            <!-- Comparison View (Hidden by default) -->
+            <div class="comparison-view" id="comparisonView" style="display: none;">
+                <h3>Side-by-Side Comparison</h3>
+                <p class="comparison-note">Compare your version with the model answer to see differences</p>
+                <div class="comparison-container" id="comparisonContainer">
+                    <!-- Will be filled by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">✕ Close</button>
+            
+            <div class="modal-card-number" id="modalCardNumber">Card 1</div>
+            
+            <div class="story-image" id="modalImage">
+                <img id="modalImageSrc" src="" alt="Story image">
+            </div>
+
+            <div class="sentence-container" id="modalSentence">
+                <!-- Sentence will be injected by JS -->
+            </div>
+
+            <!-- HIDDEN BY DEFAULT: Additional Details Section -->
+            <div class="details-section" id="detailsSection" style="display: none;">
+                <h4>📖 Grammar Tips & Context:</h4>
+                <div class="details-content" id="detailsContent">
+                    <!-- Details will be injected by JS -->
+                </div>
+            </div>
+
+            <!-- Button to show/hide tips -->
+            <button class="toggle-tips-btn" onclick="toggleTips()">💡 Show Grammar Tips</button>
+
+            <div class="student-answer-section">
+                <label for="studentAnswer">✏️ Your Correction:</label>
+                <input type="text" id="studentAnswer" class="student-answer-input" placeholder="Write the corrected sentence here...">
+                <div class="answer-length" id="answerLength">0 words</div>
+            </div>
+
+            <div class="button-container">
+                <button class="save-btn" onclick="saveAnswer()">💾 Save Answer</button>
+                <button class="model-btn" onclick="toggleModelAnswer()">📖 Show Model Answer</button>
+            </div>
+
+            <div class="feedback-message" id="feedbackMessage"></div>
+            <div class="model-answer-box" id="modelAnswerBox"></div>
+
+            <div class="navigation-buttons">
+                <button class="nav-btn" id="prevBtn" onclick="navigateCard(-1)">← Previous</button>
+                <button class="nav-btn" id="nextBtn" onclick="navigateCard(1)">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- REVIEW MODAL -->
+    <div class="modal-overlay" id="reviewModalOverlay">
+        <div class="modal-content review-modal-content">
+            <button class="close-modal" onclick="closeReviewModal()">✕ Close</button>
+            
+            <h2>📝 Review Your Story</h2>
+            <p class="review-subtitle">Review your corrections before finishing. You can still edit any sentence!</p>
+            
+            <div class="review-story-container">
+                <div class="review-sentences" id="reviewSentences">
+                    <!-- Each sentence will be shown with edit option -->
+                </div>
+            </div>
+            
+            <div class="review-stats">
+                <div class="review-stat">
+                    <span class="stat-label">Total Words:</span>
+                    <span class="stat-value" id="reviewWordCount">0</span>
+                </div>
+                <div class="review-stat">
+                    <span class="stat-label">Sentences Completed:</span>
+                    <span class="stat-value" id="reviewCompletedCount">0/6</span>
+                </div>
+            </div>
+            
+            <div class="review-buttons">
+                <button class="back-to-edit-btn" onclick="closeReviewModal()">✏️ Back to Editing</button>
+                <button class="finish-btn" onclick="finishStory()">✅ Finish & View Story</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM RESET MODAL -->
+    <div class="modal-overlay" id="resetModalOverlay">
+        <div class="modal-content reset-modal-content">
+            <h2>⚠️ Reset Progress?</h2>
+            <p>This will clear all your completed cards and answers. Are you sure?</p>
+            <div class="reset-buttons">
+                <button class="cancel-reset-btn" onclick="closeResetModal()">Cancel</button>
+                <button class="confirm-reset-btn" onclick="resetProgress()">Yes, Reset Everything</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
