@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><title>Writing 1-1</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#fef3c7;padding:20px}
+.container{max-width:1300px;margin:0 auto}
+header{background:white;border-radius:20px;padding:20px;text-align:center;margin-bottom:25px}
+h1{color:#344955}
+.test-info{display:flex;justify-content:center;gap:20px;margin:10px 0;flex-wrap:wrap}
+.badge{background:#f9aa33;padding:5px 15px;border-radius:40px;color:white}
+.card{background:white;border-radius:20px;padding:25px;margin-bottom:25px}
+.question-box{background:#fef9ef;border:2px solid #f9aa33;border-radius:20px;padding:20px;text-align:center}
+.question-text{font-size:1.8rem;font-weight:bold;margin:15px 0}
+.conditions{background:#fff8e7;padding:15px;border-radius:15px;margin:15px 0}
+.answer-container{border:2px solid #ccc;border-radius:20px;padding:20px;min-height:200px;background:#fff;margin-top:10px;white-space:pre-wrap;line-height:1.6}
+button{margin:10px 5px 0 0;padding:10px 20px;border-radius:40px;background:#f9aa33;border:none;cursor:pointer}
+.corrected-word{background:#fff3cd;border-bottom:2px solid #ffc107}
+.attempt-history{max-height:300px;overflow-y:auto;margin-top:20px;padding-top:15px}
+.attempt-item{padding:10px;border-bottom:1px solid #ddd;cursor:pointer}
+.attempt-item:hover{background:#f5f5f5}
+.model-answer{background:#e8f0fe;padding:15px;border-radius:15px;margin:15px 0;display:none}
+.evaluation-box{background:#e0f2fe;padding:15px;border-radius:15px;margin:15px 0}
+.evaluation-box input{width:100px;padding:8px;border-radius:20px;border:1px solid #ccc;margin:0 5px}
+.status{font-size:0.9rem;margin-top:8px;color:#2e7d32}
+.back-btn{background:#4a6572;color:white}
+</style></head>
+<body><div class="container">
+<header><h1>Writing 1-1</h1><div class="test-info">
+<span class="badge">📖 Grade 7</span>
+<span class="badge">📅 Semester 2</span>
+<span class="badge">⏱️ 30 min</span>
+<span class="badge">🎯 out of 100</span>
+<span class="badge" id="attemptsBadge">Attempts: 0 / 3</span>
+</div></header>
+<div class="card">
+<div class="question-box"><h2>Essay Question</h2><div class="question-text">Living in a big city is the most interesting thing. Do you agree or not? give your reasons</div></div>
+<div class="conditions"><strong>Conditions:</strong> -<br>
+<strong>Minimum words:</strong> 80</div>
+<div class="model-answer" id="modelAnswerDiv"><strong>Model Answer (shown after submission):</strong><br>I think living in a big city is very interesting. There are many shops, schools, and hospitals. People can find good jobs and meet new friends. In the city, there are buses and cars, so it is easy to travel. Also, there are cinemas, parks, and restaurants where families can enjoy their time. Life is busy, but it is exciting. I like the city because there are many things to do and many places to visit.</div>
+<label>Your Answer:</label>
+<div class="answer-container" id="answerContainer" contenteditable="true"></div>
+<div><button id="correctionBtn"><i class="fas fa-edit"></i> 🔧 Correct errors (click on word)</button>
+<button id="saveCorrBtn"><i class="fas fa-save"></i> 💾 Save Correction (Submit Answer)</button>
+<button id="retryBtn"><i class="fas fa-redo"></i> 🔄 New Attempt</button>
+<button id="backBtn" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</button></div>
+<div>Word count: <span id="wordCount">0</span></div>
+<div class="evaluation-box" id="evalBox">
+<strong>Teacher's Evaluation</strong><br>
+Student Score: <input type="number" id="scoreInput" min="0" max="100" step="0.5" value="0"> out of 100
+<button id="saveScoreBtn"><i class="fas fa-check"></i> Save Score</button>
+</div>
+<div id="statusMsg" class="status"></div>
+</div>
+<div class="card"><h3>Previous attempts</h3><div id="attemptsList"></div></div>
+</div>
+<script>
+const testData = {"testName":"Writing 1-1","grade":"Grade 7","semester":"Semester 2","timerMinutes":30,"totalScore":100,"maxAttempts":3,"bgColor":"#fef3c7","question":"Living in a big city is the most interesting thing. Do you agree or not? give your reasons","minWords":80,"extraConditions":"","modelAnswer":"I think living in a big city is very interesting. There are many shops, schools, and hospitals. People can find good jobs and meet new friends. In the city, there are buses and cars, so it is easy to travel. Also, there are cinemas, parks, and restaurants where families can enjoy their time. Life is busy, but it is exciting. I like the city because there are many things to do and many places to visit."};
+const lang = 'en';
+const t = {"essay_q":"Essay Question","conditions":"Conditions:","min_words":"Minimum words:","model_title":"Model Answer (shown after submission):","your_answer":"Your Answer:","correction_btn":"🔧 Correct errors (click on word)","save_corr_btn":"💾 Save Correction (Submit Answer)","retry_btn":"🔄 New Attempt","word_count":"Word count:","attempts_title":"Previous attempts","no_attempts":"No attempts yet","correction_mode_on":"Correction mode active","correction_off":"Correction off","saved":"Saved","time_up":"Time is up!","teacher_evaluation":"Teacher's Evaluation","student_score":"Student Score","save_score":"Save Score","out_of":"out of","score_saved":"Score saved","back_dashboard":"Back to Dashboard"};
+const MAX_ATTEMPTS = testData.maxAttempts;
+let attempts = [], currentIdx = -1, correctionMode = false, modelAnswerShown = false;
+const ATTEMPTS_KEY = 'attempts_' + testData.testName;
+const RESULTS_KEY = "examResults";
+
+function loadAttempts() {
+    const stored = localStorage.getItem(ATTEMPTS_KEY);
+    if(stored) attempts = JSON.parse(stored);
+    if(attempts.length===0) {
+        attempts.push({ id: Date.now(), text: "", timestamp: new Date().toLocaleString(), lastEdited: null, score: null });
+        saveAttempts();
+    }
+    currentIdx = attempts.length-1;
+    updateAttemptsBadge();
+    renderAttemptsList();
+    if(attempts.length >= MAX_ATTEMPTS) document.getElementById('retryBtn').disabled = true;
+}
+function saveAttempts() { localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(attempts)); updateAttemptsBadge(); }
+function updateAttemptsBadge() { document.getElementById('attemptsBadge').innerHTML = (lang==='ar'?'المحاولات:':'Attempts:') + ' ' + attempts.length + ' / ' + MAX_ATTEMPTS; }
+function updateWordCount(){ const text=document.getElementById('answerContainer').innerText; const words=text.trim().split(/\s+/).filter(w=>w.length>0).length; document.getElementById('wordCount').innerText=words; }
+function renderText(text){ document.getElementById('answerContainer').innerText = text; updateWordCount(); }
+function saveCorrections(){
+    if(attempts.length===0){ alert(lang==='ar'?'لا توجد محاولة':'No attempt'); return; }
+    attempts[currentIdx].text = document.getElementById('answerContainer').innerText;
+    attempts[currentIdx].lastEdited = new Date().toLocaleString();
+    saveAttempts(); renderAttemptsList();
+    document.getElementById('statusMsg').innerHTML='✅ '+t.saved;
+    setTimeout(()=>document.getElementById('statusMsg').innerHTML='',2000);
+    if(!modelAnswerShown){ document.getElementById('modelAnswerDiv').style.display='block'; modelAnswerShown=true; }
+}
+function saveScore(){
+    let newScore = parseFloat(document.getElementById('scoreInput').value);
+    if(isNaN(newScore)) newScore=0;
+    if(attempts.length===0) return;
+    attempts[currentIdx].score = newScore;
+    saveAttempts(); renderAttemptsList();
+    let examResults = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    examResults.push({
+        student: localStorage.getItem('currentStudent') || 'guest',
+        testId: testData.testName.toLowerCase().replace(/\s+/g, '_'),
+        score: newScore + '/' + testData.totalScore,
+        date: new Date().toLocaleString(),
+        attemptNumber: attempts.length
+    });
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(examResults));
+    document.getElementById('statusMsg').innerHTML='✅ '+t.score_saved;
+    setTimeout(()=>document.getElementById('statusMsg').innerHTML='',2000);
+}
+function newAttempt(){
+    if(attempts.length >= MAX_ATTEMPTS){ alert(t.max_attempts_reached); return; }
+    let newObj = { id: Date.now(), text: "", timestamp: new Date().toLocaleString(), lastEdited: null, score: null };
+    attempts.push(newObj); currentIdx = attempts.length-1;
+    renderText("");
+    saveAttempts(); renderAttemptsList();
+    correctionMode=false; document.getElementById('correctionBtn').style.background='#f9aa33'; document.getElementById('correctionBtn').innerHTML='<i class="fas fa-edit"></i> '+t.correction_btn;
+    document.getElementById('scoreInput').value=0;
+    if(attempts.length >= MAX_ATTEMPTS) document.getElementById('retryBtn').disabled=true;
+    document.getElementById('statusMsg').innerHTML = lang==='ar'?'محاولة جديدة':'New attempt';
+}
+function renderAttemptsList(){
+    const container = document.getElementById('attemptsList');
+    if(attempts.length===0){ container.innerHTML='<p>'+t.no_attempts+'</p>'; return; }
+    let html='';
+    attempts.forEach((att,i)=>{
+        let preview = att.text.substring(0,60)+(att.text.length>60?'...':'');
+        let scoreText = (att.score!==undefined && att.score!==null) ? ' | 🎯 ' + att.score + '/' + testData.totalScore : '';
+        html+='<div class="attempt-item" data-idx="'+i+'"><strong>'+(lang==='ar'?'محاولة':'Attempt')+' '+(i+1)+'</strong> - '+att.timestamp+scoreText+(att.lastEdited?' <span style="color:#2e7d32">(✏️ '+att.lastEdited+')</span>':'')+'<br><small>'+preview+'</small></div>';
+    });
+    container.innerHTML = html;
+    document.querySelectorAll('.attempt-item').forEach(el=>{
+        el.addEventListener('click',()=>{
+            let idx = parseInt(el.dataset.idx);
+            if(!isNaN(idx) && attempts[idx]){
+                currentIdx=idx; renderText(attempts[idx].text);
+                correctionMode=false; document.getElementById('correctionBtn').style.background='#f9aa33'; document.getElementById('correctionBtn').innerHTML='<i class="fas fa-edit"></i> '+t.correction_btn;
+                document.getElementById('scoreInput').value = attempts[idx].score || 0;
+                document.getElementById('statusMsg').innerHTML=lang==='ar'?'عرض محاولة سابقة':'Viewing previous attempt';
+            }
+        });
+    });
+}
+function toggleCorrection(){
+    correctionMode = !correctionMode;
+    const btn = document.getElementById('correctionBtn');
+    const container = document.getElementById('answerContainer');
+    if(correctionMode){
+        btn.style.background='#ff9800'; btn.innerHTML='<i class="fas fa-times"></i> '+(lang==='ar'?'إلغاء التصحيح':'Exit correction');
+        document.getElementById('statusMsg').innerHTML=t.correction_mode_on;
+        const text = container.innerText;
+        if(text.trim().length>0){
+            const words = text.split(/(\s+)/);
+            container.innerHTML = '';
+            words.forEach(word=>{
+                if(word.trim().length===0) container.appendChild(document.createTextNode(word));
+                else{
+                    const span = document.createElement('span');
+                    span.textContent = word;
+                    span.style.display='inline-block'; span.style.margin='0 2px'; span.style.cursor='pointer';
+                    span.addEventListener('click',(e)=>{
+                        e.stopPropagation();
+                        if(!correctionMode) return;
+                        let newWord = prompt(lang==='ar'?'تصحيح الكلمة:':'Correct word:', span.textContent);
+                        if(newWord && newWord!==span.textContent){ span.textContent=newWord; span.classList.add('corrected-word'); updateWordCount(); document.getElementById('statusMsg').innerHTML='✅ '+t.saved; setTimeout(()=>document.getElementById('statusMsg').innerHTML='',2000); }
+                    });
+                    container.appendChild(span);
+                }
+            });
+        }
+    } else {
+        btn.style.background='#f9aa33'; btn.innerHTML='<i class="fas fa-edit"></i> '+t.correction_btn;
+        document.getElementById('statusMsg').innerHTML=t.correction_off;
+        let plainText = '';
+        container.childNodes.forEach(node=>{
+            if(node.nodeType===Node.TEXT_NODE) plainText += node.textContent;
+            else if(node.tagName==='SPAN') plainText += node.textContent;
+        });
+        container.innerText = plainText;
+        updateWordCount();
+    }
+}
+function backToDashboard(){ window.location.href = 'dashboard.html'; }
+loadAttempts();
+renderText(attempts[currentIdx].text);
+if(attempts[currentIdx].score) document.getElementById('scoreInput').value = attempts[currentIdx].score;
+document.getElementById('correctionBtn').addEventListener('click', toggleCorrection);
+document.getElementById('saveCorrBtn').addEventListener('click', saveCorrections);
+document.getElementById('retryBtn').addEventListener('click', newAttempt);
+document.getElementById('saveScoreBtn').addEventListener('click', saveScore);
+document.getElementById('backBtn').addEventListener('click', backToDashboard);
+document.getElementById('answerContainer').addEventListener('input', updateWordCount);
+if(testData.timerMinutes>0){
+    let remaining = testData.timerMinutes*60;
+    const timerEl = document.createElement('span'); timerEl.className='badge'; timerEl.id='timerDisplay'; document.querySelector('.test-info').appendChild(timerEl);
+    const interval = setInterval(()=>{ let m=Math.floor(remaining/60), s=remaining%60; timerEl.innerHTML='⏱️ '+m+':'+(s<10?'0'+s:s); if(remaining<=0){ clearInterval(interval); alert(t.time_up); } remaining--; },1000);
+}
+</script></body></html>

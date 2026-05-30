@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Test Maker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <h1>📝 Test Maker</h1>
+      <p>Build dropdown tests matching your Gravocabulary template.</p>
+      
+      <div class="workflow-buttons">
+        <button type="button" id="newBtn" class="btn-workflow">🆕 New</button>
+        <button type="button" id="saveBtn" class="btn-workflow" disabled>💾 Save</button>
+        <button type="button" id="loadBtn" class="btn-workflow">📂 Load</button>
+        <button type="button" id="editBtn" class="btn-workflow" disabled>✏️ Edit</button>
+      </div>
+      
+      <div class="tip-card">
+        <h3>💡 How to use</h3>
+        <ol>
+          <li>Enter test title, grade, score</li>
+          <li>Set number of blanks</li>
+          <li>Paste passage using <code>(1)</code>, <code>(2)</code>, etc.</li>
+          <li>Configure options for each blank</li>
+          <li>Preview → Generate → Download</li>
+        </ol>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <!-- Metadata Section -->
+      <section class="form-section">
+        <h2>📋 Test Metadata</h2>
+        <div class="grid">
+          <label>Test Title
+            <input type="text" id="testTitle" placeholder="e.g., Grammar/Vocabulary 01" required>
+          </label>
+          <label>Grade & Semester
+            <input type="text" id="gradeSem" placeholder="e.g., Grade 07 Semester 02" required>
+          </label>
+          <label>Total Score
+            <input type="number" id="totalScore" value="10" min="1" required>
+          </label>
+          <label>Number of Blanks
+            <input type="number" id="qCount" value="10" min="1" max="50" required>
+          </label>
+        </div>
+      </section>
+
+      <!-- Passage Section -->
+      <section class="form-section">
+        <h2>📖 Passage Content</h2>
+        <label>Use <code>(1)</code>, <code>(2)</code>, etc. where dropdowns should appear.
+          <textarea id="passageText" rows="8" placeholder="Taha Hussein was (1) in Egypt (2) 1889."></textarea>
+        </label>
+        <p class="hint" id="placeholderHint">Detected blanks: <span id="detectedBlanks">0</span></p>
+      </section>
+
+      <!-- Blanks Configuration -->
+      <section class="form-section">
+        <div class="section-header">
+          <h2>⚙️ Blank Configuration</h2>
+          <button type="button" id="syncBlanksBtn" class="btn btn-sm">🔄 Sync Blanks</button>
+        </div>
+        <div id="blanksContainer"></div>
+      </section>
+
+      <!-- Preview Section -->
+<section class="form-section" id="previewSection" style="display:none;">
+  <div class="section-header">
+    <h2>👁️ Live Preview</h2>
+    <button type="button" id="refreshPreviewBtn" class="btn btn-sm">🔄 Refresh</button>
+  </div>
+  <div class="preview-container">
+    <iframe id="previewFrame" sandbox="allow-scripts"></iframe>
+  </div>
+  <p class="hint">Preview is interactive! Try selecting answers.</p>
+</section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="button" id="previewBtn" class="btn btn-outline" disabled>👁️ Show Preview</button>
+        <button type="button" id="generateBtn" class="btn btn-primary" disabled>📥 Generate & Download</button>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Load Exam Modal -->
+  <div id="loadModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📂 Load Saved Exam</h3>
+        <button id="closeLoadModal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="savedExamsList"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

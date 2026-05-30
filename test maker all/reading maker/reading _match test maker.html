@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>📖 Modern Reading Test Maker | Matching Type</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #f0f4fa 0%, #e2e8f0 100%);
+      font-family: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+      padding: 32px 24px;
+      color: #0f2c3b;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 44px;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(2px);
+      transition: 0.2s;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #1f4e8c, #3b82b6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #1e4a76;
+      margin-bottom: 1rem;
+      border-left: 5px solid #2c7da0;
+      padding-left: 16px;
+    }
+    h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #2c5a80; }
+    label {
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #2c3e50;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea, select, button {
+      font-family: inherit;
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+    input, textarea, select {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #2c7da0;
+      box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .row > div { flex: 1; min-width: 180px; }
+    .btn {
+      border: none;
+      padding: 10px 24px;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      background: #eef2f8;
+      color: #1e4a76;
+    }
+    .btn-primary { background: #1f6392; color: white; box-shadow: 0 4px 10px rgba(31,99,146,0.25); }
+    .btn-primary:hover { background: #0f4b6e; transform: translateY(-2px); }
+    .btn-secondary { background: #475569; color: white; }
+    .btn-success { background: #2b8c5e; color: white; }
+    .flex-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .section-card {
+      background: #ffffff;
+      border-radius: 36px;
+      padding: 24px;
+      margin-bottom: 32px;
+      border: 1px solid #e9edf2;
+      box-shadow: 0 8px 20px -8px rgba(0,0,0,0.08);
+    }
+    .matching-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .items-col, .options-col {
+      flex: 1;
+      min-width: 280px;
+      background: #fafcff;
+      border-radius: 28px;
+      padding: 18px;
+    }
+    .item-row, .option-row {
+      background: white;
+      border-radius: 24px;
+      padding: 12px;
+      margin-bottom: 14px;
+      border: 1px solid #e2edf2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .item-text { flex: 2; min-width: 160px; }
+    .correct-select { width: 100px; }
+    .remove-item, .remove-option {
+      background: #fee2e2;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .add-btn {
+      margin-top: 12px;
+      background: #e2e8f0;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .passage-area {
+      background: #fef9e6;
+      border-radius: 28px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+    .remove-section {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+    .audio-upload-area {
+      background: #f0f9fe;
+      border-radius: 40px;
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+    }
+    .file-name {
+      background: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #1f6392;
+    }
+    #previewFrame {
+      width: 100%;
+      height: 640px;
+      border-radius: 36px;
+      border: 1px solid #cbd5e1;
+      margin-top: 24px;
+      background: white;
+      display: none;
+      box-shadow: 0 12px 28px -12px rgba(0,0,0,0.2);
+    }
+    .legend {
+      font-size: 0.75rem;
+      background: #eef2ff;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 60px;
+      margin: 12px 0;
+    }
+    hr { margin: 20px 0; border-color: #e2e8f0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h1>📖 Reading Test Maker – Matching Type</h1>
+        <p style="color:#2c5f8a;">Create professional reading matching tests: passage (text/image), items (left), options (right + one extra). Modern output design.</p>
+      </div>
+      <button id="globalLangToggle" class="btn btn-primary" style="background:#2c7da0;">🇸🇦 العربية (Builder)</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Test Settings</h2>
+    <div class="row">
+      <div><label>Test Title</label><input type="text" id="testTitle" value="READING TEST – MATCHING"></div>
+      <div><label>Grade / Info</label><input type="text" id="gradeInfo" value="Grade 07 – Semester 01"></div>
+      <div><label>Background Color</label><input type="color" id="bgColor" value="#fefcf5"></div>
+      <div><label>⏱️ Timer (minutes)</label><input type="number" id="timerMin" min="0" value="0"></div>
+    </div>
+  </div>
+
+  <div id="sectionsContainer"></div>
+
+  <div class="card" style="text-align:center">
+    <button id="addSectionBtn" class="btn btn-secondary">+ Add Reading Section</button>
+    <div class="legend">💡 Each section: reading passage + matching items (left) + options (right, one extra distractor)</div>
+  </div>
+
+  <div class="card flex-buttons">
+    <button id="generateTestBtn" class="btn btn-primary">⬇️ Download Test HTML</button>
+    <button id="previewTestBtn" class="btn btn-success">👁️ Preview Test</button>
+  </div>
+  <iframe id="previewFrame"></iframe>
+</div>
+
+<script>
+  // ------------------- STATE (empty defaults) -------------------
+  let sections = [];
+  let builderLang = 'en';
+
+  const builderTrans = {
+    en: {
+      sectionTitle: "Section Title", instructions: "Instructions", passageLabel: "Reading Passage",
+      passageTextLabel: "Passage text", passageImageLabel: "Or upload image", chooseImage: "📁 Upload image",
+      noImage: "No image", itemsHeader: "Items (Left column – to be matched)", optionsHeader: "Options (Right column – one extra distractor)",
+      addItem: "+ Add Item", addOption: "+ Add Option", removeItem: "Remove", removeOption: "Remove",
+      itemTextPlaceholder: "Enter the description or statement...", optionTextPlaceholder: "Enter the matching text...",
+      correctMatchLabel: "Matches with option", removeSection: "Remove Section", defaultSectionTitle: "READING",
+      defaultInstructions: "Match the texts on the left with the correct options on the right. (There is ONE extra option.)",
+      defaultPassageText: "", extraDistractorHint: "One extra option (distractor) – it will not match any item.",
+      emptyWarning: "Complete all sections: each item must have text and a correct match. All options must have text.",
+      uploadImage: "Upload Image"
+    },
+    ar: {
+      sectionTitle: "عنوان القسم", instructions: "التعليمات", passageLabel: "نص القراءة",
+      passageTextLabel: "نص المقطع", passageImageLabel: "أو رفع صورة", chooseImage: "📁 رفع صورة",
+      noImage: "لا توجد صورة", itemsHeader: "العناصر (العمود الأيسر – للمطابقة)", optionsHeader: "الخيارات (العمود الأيمن – خيار زائد)",
+      addItem: "+ أضف عنصراً", addOption: "+ أضف خياراً", removeItem: "حذف", removeOption: "حذف",
+      itemTextPlaceholder: "أدخل الوصف أو العبارة...", optionTextPlaceholder: "أدخل النص المطابق...",
+      correctMatchLabel: "يطابق الخيار", removeSection: "حذف القسم", defaultSectionTitle: "قراءة",
+      defaultInstructions: "طابق النصوص على اليسار مع الخيارات الصحيحة على اليمين. (يوجد خيار زائد واحد.)",
+      defaultPassageText: "", extraDistractorHint: "خيار زائد (خادع) – لن يطابق أي عنصر.",
+      emptyWarning: "أكمل جميع الأقسام: كل عنصر يجب أن يحتوي على نص ومطابقة صحيحة. جميع الخيارات يجب أن تحتوي على نص.",
+      uploadImage: "رفع صورة"
+    }
+  };
+
+  function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+
+  // Create empty section with no default items/options
+  function createEmptySection() {
+    const t = builderTrans[builderLang];
+    const defaultTitle = builderLang === 'en' ? `READING ${sections.length+1}` : `قراءة ${sections.length+1}`;
+    return {
+      title: defaultTitle,
+      instructions: t.defaultInstructions,
+      passageText: "",
+      passageImage: null,
+      items: [],   // empty – user adds
+      options: []  // empty – user adds
+    };
+  }
+
+  function renderBuilder() {
+    const container = document.getElementById('sectionsContainer');
+    if (!container) return;
+    const t = builderTrans[builderLang];
+    if (sections.length === 0) {
+      container.innerHTML = `<div class="card" style="text-align:center; background:#f8fafc;">➕ Click "Add Reading Section" to begin.</div>`;
+      return;
+    }
+    let html = '';
+    sections.forEach((sec, secIdx) => {
+      html += `<div class="section-card" data-sec-idx="${secIdx}">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <h3>📌 ${t.sectionTitle}</h3>
+          <button class="remove-section" data-idx="${secIdx}">${t.removeSection}</button>
+        </div>
+        <div class="row"><div><label>${t.sectionTitle}</label><input type="text" class="sec-title" value="${escapeHtml(sec.title)}"></div></div>
+        <div><label>${t.instructions}</label><textarea class="sec-instr" rows="2" placeholder="${t.defaultInstructions}">${escapeHtml(sec.instructions)}</textarea></div>
+        <div class="passage-area">
+          <label>${t.passageLabel}</label>
+          <div><label>${t.passageTextLabel}</label><textarea class="passage-text" rows="3" placeholder="Enter the reading passage text here...">${escapeHtml(sec.passageText)}</textarea></div>
+          <div style="margin-top:12px;"><label>${t.passageImageLabel}</label>
+            <div class="audio-upload-area" style="background:#f5f0e0;">
+              <button class="upload-passage-img-btn btn" data-idx="${secIdx}" style="background:#8b5a2b; color:white;">${t.chooseImage}</button>
+              <span class="passage-img-filename">${sec.passageImage ? 'Image uploaded' : t.noImage}</span>
+              <input type="file" accept="image/*" class="hidden-passage-img" data-idx="${secIdx}" style="display:none;">
+            </div>
+            ${sec.passageImage ? `<img class="passage-img-preview" src="${sec.passageImage}" style="max-width:100%; max-height:150px; margin-top:8px; border-radius:20px;">` : ''}
+          </div>
+        </div>
+        <hr>
+        <div class="matching-grid">
+          <div class="items-col">
+            <h4>${t.itemsHeader}</h4>
+            <div class="items-list" data-sec="${secIdx}">`;
+      if (sec.items.length === 0) {
+        html += `<div style="text-align:center; color:#94a3b8; padding:20px;">No items yet. Click "+ Add Item"</div>`;
+      } else {
+        sec.items.forEach((item, itemIdx) => {
+          html += `<div class="item-row" data-itemidx="${itemIdx}">
+            <div class="item-text"><input type="text" class="item-text-input" value="${escapeHtml(item.text)}" placeholder="${t.itemTextPlaceholder}"></div>
+            <select class="correct-match-select" style="width:100px;">
+              ${sec.options.map(opt => `<option value="${opt.letter}" ${item.correctLetter === opt.letter ? 'selected' : ''}>${opt.letter}</option>`).join('')}
+            </select>
+            <button class="remove-item-btn" data-sec="${secIdx}" data-item="${itemIdx}" style="background:#fee2e2; border:none; padding:4px 12px; border-radius:30px;">${t.removeItem}</button>
+          </div>`;
+        });
+      }
+      html += `</div><button class="add-item-btn" data-sec="${secIdx}" class="add-btn">+ ${t.addItem}</button></div>
+          <div class="options-col">
+            <h4>${t.optionsHeader} <span style="font-size:0.7rem;">(${t.extraDistractorHint})</span></h4>
+            <div class="options-list" data-sec="${secIdx}">`;
+      if (sec.options.length === 0) {
+        html += `<div style="text-align:center; color:#94a3b8; padding:20px;">No options yet. Click "+ Add Option"</div>`;
+      } else {
+        sec.options.forEach((opt, optIdx) => {
+          html += `<div class="option-row" data-optidx="${optIdx}">
+            <span style="font-weight:bold; min-width:40px;">${opt.letter}.</span>
+            <div class="option-text" style="flex:1;"><input type="text" class="option-text-input" value="${escapeHtml(opt.text)}" placeholder="${t.optionTextPlaceholder}"></div>
+            <button class="remove-option-btn" data-sec="${secIdx}" data-opt="${optIdx}" style="background:#fee2e2; border:none; padding:4px 12px; border-radius:30px;">${t.removeOption}</button>
+          </div>`;
+        });
+      }
+      html += `</div><button class="add-option-btn" data-sec="${secIdx}" class="add-btn">+ ${t.addOption}</button></div>
+        </div>
+      </div>`;
+    });
+    container.innerHTML = html;
+    attachBuilderEvents();
+  }
+
+  function attachBuilderEvents() {
+    // Remove section
+    document.querySelectorAll('.remove-section').forEach(btn => {
+      btn.addEventListener('click', (e) => { const idx = parseInt(btn.dataset.idx); sections.splice(idx,1); renderBuilder(); });
+    });
+    for (let s=0; s<sections.length; s++) {
+      const card = document.querySelector(`.section-card[data-sec-idx="${s}"]`);
+      if (!card) continue;
+      const titleInp = card.querySelector('.sec-title');
+      const instrArea = card.querySelector('.sec-instr');
+      if (titleInp) titleInp.addEventListener('input', (e) => { sections[s].title = e.target.value; });
+      if (instrArea) instrArea.addEventListener('input', (e) => { sections[s].instructions = e.target.value; });
+      const passageText = card.querySelector('.passage-text');
+      if (passageText) passageText.addEventListener('input', (e) => { sections[s].passageText = e.target.value; });
+      // Passage image upload
+      const uploadImgBtn = card.querySelector('.upload-passage-img-btn');
+      const hiddenImgInput = card.querySelector('.hidden-passage-img');
+      if (uploadImgBtn && hiddenImgInput) {
+        uploadImgBtn.addEventListener('click', () => hiddenImgInput.click());
+        hiddenImgInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (ev) => { sections[s].passageImage = ev.target.result; renderBuilder(); };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+      // Add item
+      const addItemBtn = card.querySelector('.add-item-btn');
+      if (addItemBtn) {
+        addItemBtn.addEventListener('click', () => {
+          const defaultLetter = sections[s].options.length > 0 ? sections[s].options[0].letter : 'A';
+          sections[s].items.push({ text: "", correctLetter: defaultLetter });
+          renderBuilder();
+        });
+      }
+      // Add option
+      const addOptionBtn = card.querySelector('.add-option-btn');
+      if (addOptionBtn) {
+        addOptionBtn.addEventListener('click', () => {
+          const newLetter = String.fromCharCode(65 + sections[s].options.length);
+          sections[s].options.push({ letter: newLetter, text: "" });
+          renderBuilder();
+        });
+      }
+      // Remove item & option listeners (live)
+      const itemsList = card.querySelector('.items-list');
+      if (itemsList) {
+        itemsList.querySelectorAll('.remove-item-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const secIdx = parseInt(btn.dataset.sec);
+            const itemIdx = parseInt(btn.dataset.item);
+            sections[secIdx].items.splice(itemIdx, 1);
+            renderBuilder();
+          });
+        });
+        itemsList.querySelectorAll('.item-text-input').forEach((inp, idx) => {
+          inp.addEventListener('input', (e) => { sections[s].items[idx].text = e.target.value; });
+        });
+        itemsList.querySelectorAll('.correct-match-select').forEach((sel, idx) => {
+          sel.addEventListener('change', (e) => { sections[s].items[idx].correctLetter = e.target.value; });
+        });
+      }
+      const optionsList = card.querySelector('.options-list');
+      if (optionsList) {
+        optionsList.querySelectorAll('.remove-option-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const secIdx = parseInt(btn.dataset.sec);
+            const optIdx = parseInt(btn.dataset.opt);
+            sections[secIdx].options.splice(optIdx, 1);
+            renderBuilder();
+          });
+        });
+        optionsList.querySelectorAll('.option-text-input').forEach((inp, idx) => {
+          inp.addEventListener('input', (e) => { sections[s].options[idx].text = e.target.value; });
+        });
+      }
+    }
+  }
+
+  function addDefaultSection() {
+    sections.push(createEmptySection());
+    renderBuilder();
+  }
+
+  function collectTestData() {
+    const title = document.getElementById('testTitle').value.trim() || "Reading Test";
+    const grade = document.getElementById('gradeInfo').value.trim();
+    const bgColor = document.getElementById('bgColor').value;
+    const timer = parseInt(document.getElementById('timerMin').value) || 0;
+    const validSections = [];
+    const t = builderTrans[builderLang];
+    for (let i=0; i<sections.length; i++) {
+      const sec = sections[i];
+      const validItems = sec.items.filter(it => it.text.trim() !== "");
+      const validOptions = sec.options.filter(opt => opt.text.trim() !== "");
+      if (validItems.length === 0 || validOptions.length === 0) {
+        alert(`${t.emptyWarning} (${sec.title})`);
+        return null;
+      }
+      for (let it of validItems) {
+        if (!validOptions.some(opt => opt.letter === it.correctLetter)) {
+          alert(`Item "${it.text.substring(0,30)}" has correct letter ${it.correctLetter} which is not in options.`);
+          return null;
+        }
+      }
+      validSections.push({ ...sec, items: validItems, options: validOptions });
+    }
+    if (validSections.length === 0) { alert(t.emptyWarning); return null; }
+    return { title, grade, bgColor, timer, sections: validSections };
+  }
+
+  function generateTestHTML(data) {
+    let sectionsHTML = '';
+    let totalItems = 0;
+    data.sections.forEach((sec, secIdx) => {
+      totalItems += sec.items.length;
+      const passageHTML = sec.passageImage ? `<img src="${sec.passageImage}" class="passage-image" alt="Reading passage">` : (sec.passageText ? `<div class="passage-text-display">${escapeHtml(sec.passageText)}</div>` : '');
+      let itemsHTML = '';
+      sec.items.forEach((item, idx) => {
+        itemsHTML += `
+          <div class="matching-item">
+            <div class="item-number">${idx+1}</div>
+            <div class="item-text">${escapeHtml(item.text)}</div>
+            <div class="item-select">
+              <select name="match_${secIdx}_${idx}" data-correct="${item.correctLetter}">
+                <option value="">— Select —</option>
+                ${sec.options.map(opt => `<option value="${opt.letter}">${opt.letter}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+        `;
+      });
+      let optionsHTML = '';
+      sec.options.forEach(opt => {
+        optionsHTML += `<div class="option-card"><span class="opt-letter">${opt.letter}</span> <span class="opt-text">${escapeHtml(opt.text)}</span></div>`;
+      });
+      sectionsHTML += `
+        <div class="reading-section">
+          <div class="section-header">📖 ${escapeHtml(sec.title)}</div>
+          <div class="section-instr">🎯 ${escapeHtml(sec.instructions)}</div>
+          ${passageHTML ? `<div class="passage-box">${passageHTML}</div>` : ''}
+          <div class="matching-layout">
+            <div class="items-column">
+              <div class="column-title">📋 Match the following</div>
+              ${itemsHTML}
+            </div>
+            <div class="options-column">
+              <div class="column-title">🔘 Options (one extra)</div>
+              ${optionsHTML}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    const timerScript = data.timer > 0 ? `
+      let timeLeft = ${data.timer * 60};
+      const timerDiv = document.createElement('div');
+      timerDiv.id = "timerDisplay";
+      timerDiv.className = "timer-pill";
+      document.querySelector('.test-container').prepend(timerDiv);
+      const timerInterval = setInterval(() => {
+        if(timeLeft <= 0) { clearInterval(timerInterval); timerDiv.textContent = "⏰ Time's up!"; alert("Time is up!"); computeScore(); }
+        else { timeLeft--; const mins = Math.floor(timeLeft/60); const secs = timeLeft%60; timerDiv.textContent = \`⏱️ Time left: \${mins.toString().padStart(2,'0')}:\${secs.toString().padStart(2,'0')}\`; }
+      }, 1000);
+    ` : '';
+
+    const translations = { en: { submit:"✅ Submit Answers", clear:"🗑️ Clear All", back:"🏠 Back to Dashboard", score:"🏆 Your Score" }, ar: { submit:"✅ إرسال الإجابات", clear:"🗑️ مسح الكل", back:"🏠 العودة إلى لوحة التحكم", score:"🏆 درجتك" } };
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(data.title)}</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background: ${data.bgColor};
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    padding: 40px 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+    color: #1e293b;
+  }
+  .test-container{
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(2px);
+    border-radius: 56px;
+    padding: 36px 40px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+  }
+  h1{
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #1e4a76, #3b82b6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+  }
+  .sub{
+    color: #475569;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .reading-section{
+    background: white;
+    border-radius: 44px;
+    padding: 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    transition: 0.2s;
+  }
+  .section-header{
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e4a76;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-instr{
+    background: #f1f5f9;
+    padding: 14px 20px;
+    border-radius: 36px;
+    margin: 16px 0;
+    color: #334155;
+    border-left: 4px solid #3b82b6;
+  }
+  .passage-box{
+    background: #fef9e6;
+    border-radius: 36px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid #fde68a;
+  }
+  .passage-image{
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 28px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .passage-text-display{
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .matching-layout{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .items-column, .options-column{
+    flex: 1;
+    min-width: 280px;
+    background: #fafcff;
+    border-radius: 36px;
+    padding: 20px;
+  }
+  .column-title{
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    color: #2c5a80;
+    padding-left: 12px;
+    border-left: 4px solid #3b82b6;
+  }
+  .matching-item{
+    background: white;
+    border-radius: 28px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border: 1px solid #e9edf2;
+    transition: 0.1s;
+  }
+  .matching-item:hover{
+    border-color: #cbd5e1;
+  }
+  .item-number{
+    background: #eef2ff;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: #1e4a76;
+  }
+  .item-text{
+    flex: 2;
+    font-weight: 500;
+  }
+  .item-select select{
+    padding: 8px 16px;
+    border-radius: 60px;
+    border: 1.5px solid #cbd5e1;
+    background: white;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .option-card{
+    background: white;
+    border-radius: 28px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border: 1px solid #e2edf2;
+    transition: 0.1s;
+  }
+  .opt-letter{
+    font-weight: 800;
+    background: #eef2ff;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: #1e4a76;
+  }
+  .opt-text{
+    flex: 1;
+    line-height: 1.4;
+  }
+  .score-panel{
+    background: linear-gradient(135deg, #e6f0fa, #d9e8f5);
+    border-radius: 80px;
+    padding: 16px 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 32px 0;
+    color: #1e4a76;
+  }
+  .action-bar{
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 24px 0 16px;
+  }
+  button{
+    padding: 12px 30px;
+    border: none;
+    border-radius: 60px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f1f5f9;
+    font-size: 0.9rem;
+    transition: 0.2s;
+  }
+  .btn-submit{ background: #2c7da0; color: white; box-shadow: 0 4px 10px rgba(44,125,160,0.3); }
+  .btn-submit:hover{ background: #1f6392; transform: translateY(-2px); }
+  .btn-clear{ background: #94a3b8; color: white; }
+  .btn-clear:hover{ background: #64748b; }
+  .btn-dashboard{ background: #475569; color: white; }
+  .lang-toggle{ background: #1f6392; color: white; }
+  .timer-pill{
+    background: #0f172a;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 60px;
+    width: fit-content;
+    margin: 0 auto 24px auto;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  @media (max-width: 750px){
+    .test-container{ padding: 20px; }
+    .matching-item{ flex-direction: column; align-items: stretch; }
+  }
+</style>
+</head>
+<body>
+<div class="test-container">
+  <h1>📖 ${escapeHtml(data.title)}</h1>
+  <div class="sub">${escapeHtml(data.grade)}</div>
+  ${sectionsHTML}
+  <div class="score-panel" id="scorePanel">🏆 Your Score: 0 / ${totalItems}</div>
+  <div class="action-bar">
+    <button id="submitBtn" class="btn-submit">✅ Submit Answers</button>
+    <button id="clearBtn" class="btn-clear">🗑️ Clear All</button>
+    <button id="dashboardBtn" class="btn-dashboard">🏠 Back to Dashboard</button>
+    <button id="langToggleBtn" class="lang-toggle">🇸🇦 العربية</button>
+  </div>
+</div>
+<script>
+  const totalItems = ${totalItems};
+  let currentLang = 'en';
+  const translations = ${JSON.stringify(translations)};
+  function updateLanguage() {
+    document.getElementById('submitBtn').innerText = translations[currentLang].submit;
+    document.getElementById('clearBtn').innerText = translations[currentLang].clear;
+    document.getElementById('dashboardBtn').innerText = translations[currentLang].back;
+    let scoreEl = document.getElementById('scorePanel');
+    let curScore = scoreEl.innerText.match(/\\d+/)?.[0] || '0';
+    scoreEl.innerHTML = \`\${translations[currentLang].score}: \${curScore} / \${totalItems}\`;
+  }
+  function clearAll() {
+    document.querySelectorAll('select').forEach(sel => sel.value = '');
+    document.getElementById('scorePanel').innerHTML = \`\${translations[currentLang].score}: 0 / \${totalItems}\`;
+    document.querySelectorAll('select').forEach(sel => sel.style.borderColor = '');
+  }
+  function computeScore() {
+    let correct = 0;
+    document.querySelectorAll('select').forEach(sel => {
+      let selected = sel.value;
+      let correctVal = sel.getAttribute('data-correct');
+      if (selected && selected === correctVal) correct++;
+      sel.style.borderColor = (selected && selected === correctVal) ? '#10b981' : (selected ? '#ef4444' : '#cbd5e1');
+    });
+    document.getElementById('scorePanel').innerHTML = \`\${translations[currentLang].score}: \${correct} / \${totalItems}\`;
+  }
+  document.getElementById('submitBtn').addEventListener('click', computeScore);
+  document.getElementById('clearBtn').addEventListener('click', clearAll);
+  document.getElementById('dashboardBtn').addEventListener('click', () => window.location.href = '/');
+  document.getElementById('langToggleBtn').addEventListener('click', () => { currentLang = currentLang === 'en' ? 'ar' : 'en'; updateLanguage(); });
+  updateLanguage();
+  ${timerScript}
+<\/script>
+</body></html>`;
+  }
+
+  function downloadTest() {
+    const testData = collectTestData();
+    if (!testData) return;
+    const html = generateTestHTML(testData);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (testData.title.replace(/\s+/g, '_') + '_reading_test.html');
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function previewTest() {
+    const testData = collectTestData();
+    if (!testData) return;
+    const html = generateTestHTML(testData);
+    const frame = document.getElementById('previewFrame');
+    frame.style.display = 'block';
+    frame.srcdoc = html;
+    frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.getElementById('globalLangToggle').addEventListener('click', () => {
+    builderLang = builderLang === 'en' ? 'ar' : 'en';
+    renderBuilder();
+    document.getElementById('globalLangToggle').innerText = builderLang === 'en' ? '🇸🇦 العربية (Builder)' : '🇬🇧 English (Builder)';
+  });
+  document.getElementById('addSectionBtn').addEventListener('click', addDefaultSection);
+  document.getElementById('generateTestBtn').addEventListener('click', downloadTest);
+  document.getElementById('previewTestBtn').addEventListener('click', previewTest);
+  addDefaultSection(); // start with one empty section
+</script>
+</body>
+</html>

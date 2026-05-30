@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>READING 2 – City Life in Oman (Past & Present)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c2c, #2a5a3a);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e4a2e, #2c6e3a);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+
+        .instructions {
+            background: #eef4ea;
+            padding: 20px 40px;
+            border-bottom: 2px solid #cde0d0;
+        }
+
+        .instructions h2 {
+            color: #1e4a2e;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instruction-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .instruction-content p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c6e3a;
+            font-size: 0.95rem;
+        }
+
+        .test-content {
+            display: flex;
+            gap: 30px;
+            padding: 30px 40px;
+            background: #f9fbf7;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .test-content {
+                flex-direction: column;
+            }
+        }
+
+        .left-column {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+
+        .right-column {
+            flex: 1.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+
+        .questions-section {
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #deeae0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .questions-header {
+            background: #eef4ea;
+            padding: 18px 25px;
+            border-bottom: 2px solid #deeae0;
+            flex-shrink: 0;
+        }
+
+        .questions-header h2 {
+            color: #1e4a2e;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-description {
+            color: #4a6a5a;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .answer-tips {
+            background: #fef5e7;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #d69e2e;
+        }
+
+        .questions-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .question-item {
+            padding: 20px 25px;
+            border-bottom: 1px solid #e2ede2;
+            transition: background 0.2s;
+        }
+
+        .question-item:hover {
+            background: #fafdf8;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: #2c7a4a;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .answer-hint {
+            font-size: 0.8rem;
+            color: #718096;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #cbd5e0;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #2c7a4a;
+            box-shadow: 0 0 0 3px rgba(44,122,74,0.2);
+        }
+
+        .word-count {
+            font-size: 0.75rem;
+            color: #718096;
+            text-align: right;
+        }
+
+        .questions-tips {
+            background: #eef4ea;
+            padding: 18px 25px;
+            border-top: 2px solid #deeae0;
+            flex-shrink: 0;
+        }
+
+        .questions-tips h3 {
+            color: #1e4a2e;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .questions-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .questions-tips li {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #4a6a5a;
+        }
+
+        .reading-text-section {
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #deeae0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .reading-text-header {
+            background: #eef4ea;
+            padding: 18px 25px;
+            border-bottom: 2px solid #deeae0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .reading-text-header h2 {
+            color: #1e4a2e;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .word-limit {
+            background: #2c7a4a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        .reading-text-content {
+            padding: 30px;
+            background: #fefef7;
+            font-family: 'Merriweather', serif;
+            line-height: 1.8;
+            color: #2d3748;
+            font-size: 1rem;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .reading-text-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .reading-tips {
+            background: #eef4ea;
+            padding: 18px 25px;
+            border-top: 2px solid #deeae0;
+            flex-shrink: 0;
+        }
+
+        .reading-tips h3 {
+            color: #1e4a2e;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .reading-tips ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .reading-tips li {
+            font-size: 0.85rem;
+            color: #4a6a5a;
+        }
+
+        .actions {
+            padding: 20px 40px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            background: #f8fafc;
+            border-top: 2px solid #deeae0;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back { background: #4a5568; color: white; }
+        .btn-back:hover { background: #2d3748; transform: translateY(-2px); }
+
+        .btn-check { background: #2c7a4a; color: white; }
+        .btn-check:hover { background: #1f5434; transform: translateY(-2px); }
+
+        .btn-reset { background: #e53e3e; color: white; }
+        .btn-reset:hover { background: #c53030; transform: translateY(-2px); }
+
+        .btn-show { background: #38a169; color: white; }
+        .btn-show:hover { background: #2f855a; transform: translateY(-2px); }
+
+        .btn-swap { background: #805ad5; color: white; }
+        .btn-swap:hover { background: #6b46c1; transform: translateY(-2px); }
+
+        .results {
+            margin: 0 40px 30px 40px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+            display: none;
+            overflow: hidden;
+            border: 2px solid #deeae0;
+        }
+
+        .results-header {
+            background: linear-gradient(135deg, #1e4a2e, #2c7a4a);
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-results {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .score-container {
+            padding: 30px;
+        }
+
+        .score-display {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .score-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .score-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-circle-bg {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 10;
+        }
+
+        .score-circle-progress {
+            fill: none;
+            stroke: #2c7a4a;
+            stroke-width: 10;
+            stroke-dasharray: 339.292;
+            stroke-dashoffset: 339.292;
+            transition: stroke-dashoffset 0.5s;
+        }
+
+        .score-text {
+            fill: #2d3748;
+            font-size: 1.2rem;
+            font-weight: bold;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+
+        .score-details {
+            flex: 1;
+        }
+
+        .score-total {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .score-label { font-size: 0.9rem; color: #718096; }
+        .score-value { color: #2c7a4a; font-size: 2rem; }
+
+        .feedback {
+            background: #fffbeb;
+            padding: 15px;
+            border-radius: 16px;
+            border-left: 5px solid #ed8936;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn-review { background: #805ad5; color: white; }
+        .btn-try-again { background: #38a169; color: white; }
+
+        footer {
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+
+        .correct-highlight {
+            background: #c6f6d5;
+            border-left: 4px solid #38a169;
+        }
+
+        .custom-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #48bb78;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-weight: 500;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .swap-layout .test-content {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 900px) {
+            .swap-layout .test-content {
+                flex-direction: column;
+            }
+        }
+
+        .questions-list::-webkit-scrollbar,
+        .reading-text-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .questions-list::-webkit-scrollbar-track,
+        .reading-text-content::-webkit-scrollbar-track {
+            background: #e2ede2;
+            border-radius: 10px;
+        }
+
+        .questions-list::-webkit-scrollbar-thumb,
+        .reading-text-content::-webkit-scrollbar-thumb {
+            background: #2c7a4a;
+            border-radius: 10px;
+        }
+
+        .questions-list::-webkit-scrollbar-thumb:hover,
+        .reading-text-content::-webkit-scrollbar-thumb:hover {
+            background: #1f5434;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-city"></i> READING 2 – City Life in Oman</h1>
+            <p class="subtitle">Grade 07 - Semester 02 - 2024-2025</p>
+            <div class="header-info">
+                <div class="info-item"><i class="fas fa-clock"></i><span>Time: 20 minutes</span></div>
+                <div class="info-item"><i class="fas fa-question-circle"></i><span>Questions: 5</span></div>
+                <div class="info-item"><i class="fas fa-star"></i><span>Test ID: RC-OM-01</span></div>
+                <div class="info-item"><i class="fas fa-info-circle"></i><span>Read on Right - Answer on Left</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="instructions">
+        <h2><i class="fas fa-info-circle"></i> Instructions</h2>
+        <div class="instruction-content">
+            <p><i class="fas fa-book-reader"></i> <strong>Read the text on the RIGHT side</strong> carefully.</p>
+            <p><i class="fas fa-keyboard"></i> <strong>Answer the questions on the LEFT side</strong> (not more than FOUR WORDS).</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to keywords and details in the text.</p>
+            <p><i class="fas fa-arrows-alt-h"></i> Each column has its own scroll bar for easy reading.</p>
+        </div>
+    </div>
+
+    <main class="test-content" id="testContent">
+        <!-- LEFT COLUMN: Questions (Items 6-10) -->
+        <div class="left-column">
+            <section class="questions-section">
+                <div class="questions-header">
+                    <h2><i class="fas fa-question-circle"></i> Questions (6 - 10)</h2>
+                    <p class="section-description">Write your answers below (not more than FOUR WORDS)</p>
+                    <div class="answer-tips">
+                        <i class="fas fa-lightbulb"></i> Read the text on the right first →
+                    </div>
+                </div>
+
+                <div class="questions-list">
+                    <div class="question-item" data-q="6">
+                        <div class="question-number">Question 6</div>
+                        <div class="question-text">Where did people live in the past?</div>
+                        <div class="answer-hint"><i class="fas fa-search"></i> Look for the type of houses in paragraph 1</div>
+                        <input type="text" class="answer-input" placeholder="Type your answer (max 4 words)" maxlength="50">
+                        <div class="word-count">Words: <span>0</span>/4</div>
+                    </div>
+
+                    <div class="question-item" data-q="7">
+                        <div class="question-number">Question 7</div>
+                        <div class="question-text">What jobs did people do in the past?</div>
+                        <div class="answer-hint"><i class="fas fa-search"></i> Look for the work they did in paragraph 1</div>
+                        <input type="text" class="answer-input" placeholder="Type your answer (max 4 words)" maxlength="50">
+                        <div class="word-count">Words: <span>0</span>/4</div>
+                    </div>
+
+                    <div class="question-item" data-q="8">
+                        <div class="question-number">Question 8</div>
+                        <div class="question-text">How did people travel before?</div>
+                        <div class="answer-hint"><i class="fas fa-search"></i> Look for the means of transport in paragraph 1</div>
+                        <input type="text" class="answer-input" placeholder="Type your answer (max 4 words)" maxlength="50">
+                        <div class="word-count">Words: <span>0</span>/4</div>
+                    </div>
+
+                    <div class="question-item" data-q="9">
+                        <div class="question-number">Question 9</div>
+                        <div class="question-text">What can we see in cities today? (List one)</div>
+                        <div class="answer-hint"><i class="fas fa-search"></i> Look for modern features in paragraph 2</div>
+                        <input type="text" class="answer-input" placeholder="Type your answer (max 4 words)" maxlength="50">
+                        <div class="word-count">Words: <span>0</span>/4</div>
+                    </div>
+
+                    <div class="question-item" data-q="10">
+                        <div class="question-number">Question 10</div>
+                        <div class="question-text">What do people still wear today?</div>
+                        <div class="answer-hint"><i class="fas fa-search"></i> Look for clothing mentioned in paragraph 3</div>
+                        <input type="text" class="answer-input" placeholder="Type your answer (max 4 words)" maxlength="50">
+                        <div class="word-count">Words: <span>0</span>/4</div>
+                    </div>
+                </div>
+
+                <div class="questions-tips">
+                    <h3><i class="fas fa-tips"></i> Answering Tips:</h3>
+                    <ul>
+                        <li>✓ Read the text on the right side carefully</li>
+                        <li>✓ Use keywords from the text in your answers</li>
+                        <li>✓ Keep answers short (four words maximum)</li>
+                        <li>✓ Spelling is important – answers are case‑insensitive</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- RIGHT COLUMN: Reading Text -->
+        <div class="right-column">
+            <section class="reading-text-section">
+                <div class="reading-text-header">
+                    <h2><i class="fas fa-book-open"></i> Reading Text</h2>
+                    <div class="word-limit"><i class="fas fa-text-height"></i> Read Carefully</div>
+                </div>
+                <div class="reading-text-content">
+                    <p>In the past, city life in Oman was simple and quiet. People lived in small houses made of mud and stone. They worked in fishing and farming to earn a living. There were no tall buildings or wide roads. People walked long distances or used animals like camels to travel. Markets were small, and people knew each other well. Life was slow, and everyone helped one another.</p>
+
+                    <p>Today, city life in Oman is very different. There are tall buildings, big roads, and many shops. People travel by cars, buses and other modern transport. Many people work in offices, schools, and companies. Cities like Muscat are busy and modern. There are hospitals, universities, and places for entertainment and fun. Life is faster, and people have more opportunities to study and work.</p>
+
+                    <p>Even with these changes, people in Oman still care about their culture and traditions. They wear traditional clothes and celebrate important national and religious events. Families still gather together and respect their customs. Although life has changed a lot, the past remains important and is always remembered.</p>
+                </div>
+                <div class="reading-tips">
+                    <h3><i class="fas fa-binoculars"></i> Reading Tips:</h3>
+                    <ul>
+                        <li>✓ Read each paragraph slowly</li>
+                        <li>✓ Underline key information in your mind</li>
+                        <li>✓ Note the differences between past and present</li>
+                        <li>✓ Answer after you fully understand the text</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="actions">
+        <button class="btn btn-back" id="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Menu</button>
+        <button class="btn btn-check" id="check-btn"><i class="fas fa-check-circle"></i> Check Answers</button>
+        <button class="btn btn-reset" id="reset-btn"><i class="fas fa-redo"></i> Reset All</button>
+        <button class="btn btn-show" id="show-btn"><i class="fas fa-eye"></i> Show Answers</button>
+        <button class="btn btn-swap" id="swap-btn"><i class="fas fa-exchange-alt"></i> Swap Layout</button>
+    </div>
+
+    <div class="results" id="results">
+        <div class="results-header">
+            <h2><i class="fas fa-chart-line"></i> Test Results</h2>
+            <button class="close-results" id="close-results"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="score-container">
+            <div class="score-display">
+                <div class="score-circle">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="score-circle-bg" cx="60" cy="60" r="54"></circle>
+                        <circle class="score-circle-progress" cx="60" cy="60" r="54" id="score-circle"></circle>
+                        <text x="60" y="65" text-anchor="middle" class="score-text" id="score-percent">0%</text>
+                    </svg>
+                </div>
+                <div class="score-details">
+                    <div class="score-total">
+                        <span class="score-label">Your Score:</span>
+                        <span class="score-value" id="score-value">0</span>/5
+                    </div>
+                    <div class="feedback" id="feedback">
+                        <p>Complete the test to see your results!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="results-actions">
+                <button class="btn btn-review" id="review-btn"><i class="fas fa-search"></i> Review Answers</button>
+                <button class="btn btn-try-again" id="try-again-btn"><i class="fas fa-sync-alt"></i> Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>READING 2 – City Life in Oman &copy; 2024-2025 | Grade 07 - Semester 02</p>
+        <p class="footer-note">Based on official mock exam | Text on Right - Questions on Left</p>
+    </footer>
+</div>
+
+<script>
+    // Correct answers with flexible matching
+    const answerMap = {
+        6: ["in small houses", "small houses", "mud and stone houses", "small mud houses", "houses of mud and stone"],
+        7: ["fishing and farming", "fishing & farming", "fishing, farming", "fishing or farming"],
+        8: ["walked or used animals", "walked or used camels", "by walking or camels", "on foot or camels", "walked or animals", "used animals to travel"],
+        9: ["tall buildings, big roads and many shops", "big roads", "many shops", "hospitals", "universities", "modern transport", "cars and buses"],
+        10: ["traditional clothes", "traditional clothing", "their traditional clothes", "traditional dress"]
+    };
+
+    let currentLayout = "normal";
+
+    function normalize(str) {
+        return str.trim().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    function isAnswerCorrect(qNum, userAnswer) {
+        if (!userAnswer) return false;
+        const normUser = normalize(userAnswer);
+        const variants = answerMap[qNum];
+        for (let v of variants) {
+            const normV = normalize(v);
+            if (normUser === normV) return true;
+            if (normUser.includes(normV) && normUser.length > 3) return true;
+            if (normV.includes(normUser) && normUser.length > 2) return true;
+        }
+        return false;
+    }
+
+    function updateWordCounts() {
+        document.querySelectorAll('.answer-input').forEach(inp => {
+            const words = inp.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+            const span = inp.parentElement.querySelector('.word-count span');
+            if (span) span.textContent = words;
+        });
+    }
+
+    function resetAll() {
+        document.querySelectorAll('.answer-input').forEach(inp => {
+            inp.value = '';
+            inp.style.borderColor = '#cbd5e0';
+            inp.closest('.question-item').classList.remove('correct-highlight');
+        });
+        updateWordCounts();
+        document.getElementById('results').style.display = 'none';
+        showToast('All answers have been reset', 'info');
+    }
+
+    function checkAnswers() {
+        let correct = 0;
+        for (let i = 6; i <= 10; i++) {
+            const qDiv = document.querySelector(`.question-item[data-q="${i}"]`);
+            const input = qDiv.querySelector('.answer-input');
+            const userVal = input.value.trim();
+            const isCor = userVal && isAnswerCorrect(i, userVal);
+            if (isCor) {
+                correct++;
+                input.style.borderColor = '#38a169';
+                qDiv.classList.add('correct-highlight');
+            } else {
+                input.style.borderColor = '#e53e3e';
+                qDiv.classList.remove('correct-highlight');
+            }
+        }
+        const percent = Math.round((correct / 5) * 100);
+        document.getElementById('score-value').innerText = correct;
+        document.getElementById('score-percent').innerText = `${percent}%`;
+        updateProgressCircle(percent);
+
+        let feedbackMsg = '';
+        if (percent === 100) feedbackMsg = '🎉 Perfect! Excellent reading comprehension.';
+        else if (percent >= 80) feedbackMsg = '🌟 Great job! You understood the text very well.';
+        else if (percent >= 60) feedbackMsg = '👍 Good effort. Review the text to improve.';
+        else feedbackMsg = '📚 Keep practicing. Read the text carefully and try again.';
+        document.getElementById('feedback').innerHTML = `<p>${feedbackMsg}</p>`;
+        document.getElementById('results').style.display = 'block';
+        showToast(`Score: ${correct}/5 (${percent}%)`, 'success');
+    }
+
+    function updateProgressCircle(percent) {
+        const circle = document.getElementById('score-circle');
+        const circum = 339.292;
+        const offset = circum - (percent / 100) * circum;
+        if (circle) circle.style.strokeDashoffset = offset;
+    }
+
+    function showAnswers() {
+        for (let i = 6; i <= 10; i++) {
+            const qDiv = document.querySelector(`.question-item[data-q="${i}"]`);
+            const input = qDiv.querySelector('.answer-input');
+            const correctAnswer = answerMap[i][0];
+            input.value = correctAnswer;
+            updateWordCounts();
+            input.style.borderColor = '#cbd5e0';
+            qDiv.classList.remove('correct-highlight');
+        }
+        showToast('Correct answers have been filled', 'info');
+        checkAnswers();
+    }
+
+    function reviewAnswers() {
+        let firstWrong = null;
+        for (let i = 6; i <= 10; i++) {
+            const qDiv = document.querySelector(`.question-item[data-q="${i}"]`);
+            const input = qDiv.querySelector('.answer-input');
+            const userVal = input.value.trim();
+            if (!userVal || !isAnswerCorrect(i, userVal)) {
+                firstWrong = input;
+                break;
+            }
+        }
+        if (firstWrong) {
+            firstWrong.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstWrong.focus();
+            showToast('Reviewing first incorrect or unanswered question', 'info');
+        } else {
+            showToast('All answers are correct! 🎉', 'success');
+        }
+    }
+
+    function swapLayout() {
+        const container = document.getElementById('testContent');
+        if (currentLayout === 'normal') {
+            container.classList.add('swap-layout');
+            currentLayout = 'swapped';
+            showToast('Layout swapped: Questions on right, text on left', 'info');
+        } else {
+            container.classList.remove('swap-layout');
+            currentLayout = 'normal';
+            showToast('Layout restored: Questions on left, text on right', 'info');
+        }
+    }
+
+    function goBack() {
+        if (confirm('Go back to main menu? Unsaved progress will be lost.')) {
+            window.location.href = '../Reading 2- Grade 7.html';
+        }
+    }
+
+    function showToast(msg, type) {
+        const existing = document.querySelector('.custom-toast');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+        toast.style.background = type === 'success' ? '#48bb78' : '#2c7a4a';
+        toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${msg}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
+
+    document.getElementById('check-btn').addEventListener('click', checkAnswers);
+    document.getElementById('reset-btn').addEventListener('click', resetAll);
+    document.getElementById('show-btn').addEventListener('click', showAnswers);
+    document.getElementById('swap-btn').addEventListener('click', swapLayout);
+    document.getElementById('back-btn').addEventListener('click', goBack);
+    document.getElementById('close-results').addEventListener('click', () => document.getElementById('results').style.display = 'none');
+    document.getElementById('review-btn').addEventListener('click', reviewAnswers);
+    document.getElementById('try-again-btn').addEventListener('click', () => { resetAll(); document.getElementById('results').style.display = 'none'; });
+
+    document.querySelectorAll('.answer-input').forEach(inp => inp.addEventListener('input', updateWordCounts));
+    updateWordCounts();
+</script>
+</body>
+</html>

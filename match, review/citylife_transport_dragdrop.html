@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>City Life – Transport Vocabulary</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="dragdrop.js" defer></script>
+
+</head>
+
+<body>
+
+<h1 class="title">City Life – Transport Vocabulary</h1>
+
+<button class="toggle-btn" onclick="toggleArabic()">Show / Hide Arabic</button>
+
+
+<!-- WORD BANK -->
+
+<div class="phrase-bank">
+
+<div class="phrase" draggable="true" data-answer="1">taxi <span class="ar">سيارة أجرة</span></div>
+<div class="phrase" draggable="true" data-answer="2">coach <span class="ar">حافلة</span></div>
+<div class="phrase" draggable="true" data-answer="3">lorry <span class="ar">شاحنة</span></div>
+<div class="phrase" draggable="true" data-answer="4">road sign <span class="ar">لافتة طريق</span></div>
+<div class="phrase" draggable="true" data-answer="5">railway station <span class="ar">محطة قطار</span></div>
+<div class="phrase" draggable="true" data-answer="6">fire engine <span class="ar">سيارة إطفاء</span></div>
+<div class="phrase" draggable="true" data-answer="7">crossroads <span class="ar">مفترق طرق</span></div>
+<div class="phrase" draggable="true" data-answer="8">roundabout <span class="ar">الدوار</span></div>
+<div class="phrase" draggable="true" data-answer="9">pavement <span class="ar">الرصيف</span></div>
+<div class="phrase" draggable="true" data-answer="10">traffic lights <span class="ar">إشارات المرور</span></div>
+<div class="phrase" draggable="true" data-answer="11">traffic jam <span class="ar">زحمة مرور</span></div>
+<div class="phrase" draggable="true" data-answer="12">neighbourhood <span class="ar">الحي</span></div>
+
+</div>
+
+
+
+<!-- IMAGES -->
+
+<div class="image-grid">
+
+<div class="item">
+<img src="images/taxi.jpg">
+<div class="drop-box" data-id="1">1</div>
+</div>
+
+<div class="item">
+<img src="images/coach.jpg">
+<div class="drop-box" data-id="2">2</div>
+</div>
+
+<div class="item">
+<img src="images/lorry.jpg">
+<div class="drop-box" data-id="3">3</div>
+</div>
+
+<div class="item">
+<img src="images/road_sign.jpg">
+<div class="drop-box" data-id="4">4</div>
+</div>
+
+<div class="item">
+<img src="images/railway_station.jpg">
+<div class="drop-box" data-id="5">5</div>
+</div>
+
+<div class="item">
+<img src="images/fire_engine.jpg">
+<div class="drop-box" data-id="6">6</div>
+</div>
+
+<div class="item">
+<img src="images/crossroads.jpg">
+<div class="drop-box" data-id="7">7</div>
+</div>
+
+<div class="item">
+<img src="images/roundabout.jpg">
+<div class="drop-box" data-id="8">8</div>
+</div>
+
+<div class="item">
+<img src="images/pavement.jpg">
+<div class="drop-box" data-id="9">9</div>
+</div>
+
+<div class="item">
+<img src="images/traffic_lights.jpg">
+<div class="drop-box" data-id="10">10</div>
+</div>
+
+<div class="item">
+<img src="images/traffic_jam.jpg">
+<div class="drop-box" data-id="11">11</div>
+</div>
+
+<div class="item">
+<img src="images/neighbourhood.jpg">
+<div class="drop-box" data-id="12">12</div>
+</div>
+
+</div>
+
+
+
+<div class="bottom-area">
+
+<button onclick="checkAnswers()">Submit</button>
+<button onclick="history.back()">Back</button>
+
+<p id="resultText"></p>
+
+</div>
+
+</body>
+</html>

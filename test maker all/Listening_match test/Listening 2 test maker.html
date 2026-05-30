@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>📋 Listening Test Maker | Multi‑Section + MP3 + Arabic/English</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(145deg, #eef2f7 0%, #dfe6ed 100%);
+      font-family: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+      padding: 32px 24px;
+      color: #0f2c3b;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 40px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #1f4e8c, #3b7bb7);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #1e4a76;
+      margin-bottom: 1rem;
+      border-left: 5px solid #2c7da0;
+      padding-left: 16px;
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.5rem;
+      color: #2c5a80;
+    }
+    label {
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #2c3e50;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea, select, button {
+      font-family: inherit;
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+    input, textarea, select {
+      background: #fbfdff;
+      border: 1.5px solid #e2e8f0;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #2c7da0;
+      box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .row > div { flex: 1; min-width: 180px; }
+    .btn {
+      border: none;
+      padding: 10px 24px;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      background: #eef2f8;
+      color: #1e4a76;
+    }
+    .btn-primary { background: #1f6392; color: white; box-shadow: 0 4px 10px rgba(31,99,146,0.25); }
+    .btn-primary:hover { background: #0f4b6e; transform: translateY(-2px); }
+    .btn-secondary { background: #475569; color: white; }
+    .btn-success { background: #2b8c5e; color: white; }
+    .btn-danger { background: #b91c1c; color: white; }
+    .flex-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .section-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 20px;
+      margin-bottom: 32px;
+      border: 1px solid #e2edf2;
+      box-shadow: 0 6px 12px -8px rgba(0,0,0,0.05);
+    }
+    .question-item {
+      background: #fafcff;
+      border-radius: 24px;
+      padding: 16px;
+      margin-bottom: 18px;
+      border: 1px solid #e9edf2;
+    }
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 12px;
+    }
+    .option-input { flex: 1; min-width: 150px; }
+    .remove-question, .remove-section {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .audio-upload-area {
+      background: #f0f9fe;
+      border-radius: 40px;
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+      margin: 10px 0;
+    }
+    .file-name {
+      background: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #1f6392;
+    }
+    #previewFrame {
+      width: 100%;
+      height: 620px;
+      border-radius: 32px;
+      border: 1px solid #cbd5e1;
+      margin-top: 24px;
+      background: white;
+      display: none;
+    }
+    .legend {
+      font-size: 0.75rem;
+      background: #eef2ff;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 60px;
+      margin: 12px 0;
+    }
+    hr { margin: 16px 0; border-color: #e2e8f0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h1>📋 Listening Test Maker (Multi‑Section)</h1>
+        <p style="color:#2c5f8a;">Create tests like the example: multiple listening passages, each with its own MP3 audio and multiple‑choice questions. Output includes language toggle, timer, scoring & dashboard button.</p>
+      </div>
+      <button id="globalLangToggle" class="btn btn-primary" style="background:#2c7da0;">🇸🇦 العربية (Builder)</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Global Test Settings</h2>
+    <div class="row">
+      <div><label>Test Title</label><input type="text" id="testTitle" value="LISTENING TEST – GRADE 07 – SEM 02"></div>
+      <div><label>Grade / Info</label><input type="text" id="gradeInfo" value="Semester 02 2024-2025"></div>
+      <div><label>Background Color</label><input type="color" id="bgColor" value="#ffffff"></div>
+      <div><label>⏱️ Timer (minutes, 0=off)</label><input type="number" id="timerMin" min="0" value="0"></div>
+    </div>
+  </div>
+
+  <div id="sectionsContainer"></div>
+
+  <div class="card" style="text-align:center">
+    <button id="addSectionBtn" class="btn btn-secondary">+ Add Listening Section</button>
+  </div>
+
+  <div class="card flex-buttons">
+    <button id="generateTestBtn" class="btn btn-primary">⬇️ Download Test HTML</button>
+    <button id="previewTestBtn" class="btn btn-success">👁️ Preview Test</button>
+  </div>
+  <iframe id="previewFrame"></iframe>
+</div>
+
+<script>
+  // ------------------- STATE -------------------
+  let sections = [];   // each: { title, instructions, audioBase64, audioFileName, questions: [{ text, optA, optB, optC, correctLetter }] }
+  let builderLang = 'en'; // 'en' or 'ar'
+
+  // Translations for builder UI
+  const builderTrans = {
+    en: {
+      sectionTitleLabel: "Section Title (e.g., LISTENING 01)",
+      instructionsLabel: "Instructions (e.g., You are going to hear some information about a great traveller.)",
+      audioLabel: "🎵 Audio for this section (MP3)",
+      chooseMp3: "📁 Choose MP3",
+      noFile: "No file selected",
+      questionsHeader: "Questions",
+      addQuestion: "+ Add Question",
+      removeSection: "🗑️ Remove Section",
+      questionTextLabel: "Question text",
+      optionALabel: "Option A",
+      optionBLabel: "Option B",
+      optionCLabel: "Option C",
+      correctLabel: "Correct letter",
+      removeQuestion: "Remove",
+      defaultSectionTitle: "LISTENING",
+      defaultInstructions: "You are going to hear a text. Listen and choose the correct option.",
+      defaultQuestionText: "New question",
+      defaultOptA: "Option A",
+      defaultOptB: "Option B",
+      defaultOptC: "Option C",
+      emptyWarning: "Please fill all sections, each with at least one question and all options filled, and upload all MP3 files.",
+      audioWarning: "Please upload MP3 audio for each section."
+    },
+    ar: {
+      sectionTitleLabel: "عنوان القسم (مثال: استماع 01)",
+      instructionsLabel: "التعليمات (مثال: سوف تستمع إلى معلومات عن رحالة مشهور)",
+      audioLabel: "🎵 الصوت الخاص بهذا القسم (MP3)",
+      chooseMp3: "📁 اختر MP3",
+      noFile: "لم يتم اختيار ملف",
+      questionsHeader: "الأسئلة",
+      addQuestion: "+ أضف سؤالاً",
+      removeSection: "🗑️ حذف القسم",
+      questionTextLabel: "نص السؤال",
+      optionALabel: "الخيار أ",
+      optionBLabel: "الخيار ب",
+      optionCLabel: "الخيار ج",
+      correctLabel: "الحرف الصحيح",
+      removeQuestion: "حذف",
+      defaultSectionTitle: "استماع",
+      defaultInstructions: "سوف تستمع إلى نص. استمع واختر الإجابة الصحيحة.",
+      defaultQuestionText: "سؤال جديد",
+      defaultOptA: "خيار أ",
+      defaultOptB: "خيار ب",
+      defaultOptC: "خيار ج",
+      emptyWarning: "يرجى ملء جميع الأقسام بكل سؤال وخيارات، ورفع ملفات MP3.",
+      audioWarning: "يرجى رفع ملف MP3 لكل قسم."
+    }
+  };
+
+  // Helper: escapeHtml
+  function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+
+  // Render the entire builder (sections + questions)
+  function renderBuilder() {
+    const container = document.getElementById('sectionsContainer');
+    if (!container) return;
+    const t = builderTrans[builderLang];
+    if (sections.length === 0) {
+      container.innerHTML = `<div class="card" style="text-align:center; color:#6c757d;">➕ Click "Add Listening Section" to start building your test.</div>`;
+      return;
+    }
+    let html = '';
+    sections.forEach((sec, secIdx) => {
+      html += `
+        <div class="section-card" data-sec-idx="${secIdx}">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+            <h3>📌 ${t.sectionTitleLabel}</h3>
+            <button class="remove-section" data-idx="${secIdx}">${t.removeSection}</button>
+          </div>
+          <div class="row">
+            <div><label>${t.sectionTitleLabel}</label><input type="text" class="sec-title" value="${escapeHtml(sec.title)}" placeholder="e.g., LISTENING 01"></div>
+          </div>
+          <div><label>${t.instructionsLabel}</label><textarea class="sec-instr" rows="2">${escapeHtml(sec.instructions)}</textarea></div>
+          <div><label>${t.audioLabel}</label>
+            <div class="audio-upload-area">
+              <button class="upload-audio-btn btn" data-idx="${secIdx}" style="background:#2c7da0; color:white;">${t.chooseMp3}</button>
+              <span class="audio-filename">${sec.audioFileName || t.noFile}</span>
+              <input type="file" accept="audio/mpeg" class="hidden-audio-input" data-idx="${secIdx}" style="display:none;">
+            </div>
+          </div>
+          <hr>
+          <h4>${t.questionsHeader}</h4>
+          <div class="questions-list" data-sec="${secIdx}">
+      `;
+      sec.questions.forEach((q, qIdx) => {
+        html += `
+          <div class="question-item" data-qidx="${qIdx}">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+              <strong>${builderLang === 'en' ? 'Q' : 'س'} ${qIdx+1}</strong>
+              <button class="remove-question-btn" data-sec="${secIdx}" data-q="${qIdx}" style="background:#fee2e2; border:none; padding:4px 12px; border-radius:30px;">${t.removeQuestion}</button>
+            </div>
+            <div style="margin:12px 0;"><label>${t.questionTextLabel}</label><input type="text" class="q-text" value="${escapeHtml(q.text)}"></div>
+            <div class="options-row">
+              <div class="option-input"><label>${t.optionALabel}</label><input type="text" class="opt-a" value="${escapeHtml(q.optA)}"></div>
+              <div class="option-input"><label>${t.optionBLabel}</label><input type="text" class="opt-b" value="${escapeHtml(q.optB)}"></div>
+              <div class="option-input"><label>${t.optionCLabel}</label><input type="text" class="opt-c" value="${escapeHtml(q.optC)}"></div>
+            </div>
+            <div><label>${t.correctLabel}</label>
+              <select class="correct-letter">
+                <option value="A" ${q.correctLetter === 'A' ? 'selected' : ''}>A</option>
+                <option value="B" ${q.correctLetter === 'B' ? 'selected' : ''}>B</option>
+                <option value="C" ${q.correctLetter === 'C' ? 'selected' : ''}>C</option>
+              </select>
+            </div>
+          </div>
+        `;
+      });
+      html += `
+          </div>
+          <div style="margin-top:16px;">
+            <button class="add-question-to-section btn btn-secondary" data-sec="${secIdx}" style="background:#94a3b8;">+ ${t.addQuestion}</button>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+
+    // Attach dynamic events: remove section, upload audio, add question, remove question, update fields
+    document.querySelectorAll('.remove-section').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(btn.getAttribute('data-idx'));
+        if (!isNaN(idx)) { sections.splice(idx, 1); renderBuilder(); }
+      });
+    });
+
+    document.querySelectorAll('.upload-audio-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.getAttribute('data-idx'));
+        const fileInput = btn.parentElement.querySelector('.hidden-audio-input');
+        if (fileInput) fileInput.click();
+      });
+    });
+
+    document.querySelectorAll('.hidden-audio-input').forEach(input => {
+      input.addEventListener('change', (e) => {
+        const secIdx = parseInt(input.getAttribute('data-idx'));
+        const file = e.target.files[0];
+        if (file && file.type.includes('mpeg')) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            sections[secIdx].audioBase64 = ev.target.result;
+            sections[secIdx].audioFileName = file.name;
+            renderBuilder(); // refresh to show filename
+          };
+          reader.readAsDataURL(file);
+        } else if (file) alert('Please select MP3 file');
+      });
+    });
+
+    document.querySelectorAll('.add-question-to-section').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.getAttribute('data-sec'));
+        const t = builderTrans[builderLang];
+        sections[secIdx].questions.push({
+          text: t.defaultQuestionText,
+          optA: t.defaultOptA,
+          optB: t.defaultOptB,
+          optC: t.defaultOptC,
+          correctLetter: 'A'
+        });
+        renderBuilder();
+      });
+    });
+
+    document.querySelectorAll('.remove-question-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.getAttribute('data-sec'));
+        const qIdx = parseInt(btn.getAttribute('data-q'));
+        sections[secIdx].questions.splice(qIdx, 1);
+        renderBuilder();
+      });
+    });
+
+    // Bind live updates for text fields and selects
+    for (let s = 0; s < sections.length; s++) {
+      const secCard = document.querySelector(`.section-card[data-sec-idx="${s}"]`);
+      if (!secCard) continue;
+      const titleInput = secCard.querySelector('.sec-title');
+      const instrTextarea = secCard.querySelector('.sec-instr');
+      if (titleInput) titleInput.addEventListener('input', (e) => { sections[s].title = e.target.value; });
+      if (instrTextarea) instrTextarea.addEventListener('input', (e) => { sections[s].instructions = e.target.value; });
+
+      const questionDivs = secCard.querySelectorAll('.question-item');
+      questionDivs.forEach((div, qIdx) => {
+        const qText = div.querySelector('.q-text');
+        const optA = div.querySelector('.opt-a');
+        const optB = div.querySelector('.opt-b');
+        const optC = div.querySelector('.opt-c');
+        const correctSelect = div.querySelector('.correct-letter');
+        if (qText) qText.addEventListener('input', (e) => { sections[s].questions[qIdx].text = e.target.value; });
+        if (optA) optA.addEventListener('input', (e) => { sections[s].questions[qIdx].optA = e.target.value; });
+        if (optB) optB.addEventListener('input', (e) => { sections[s].questions[qIdx].optB = e.target.value; });
+        if (optC) optC.addEventListener('input', (e) => { sections[s].questions[qIdx].optC = e.target.value; });
+        if (correctSelect) correctSelect.addEventListener('change', (e) => { sections[s].questions[qIdx].correctLetter = e.target.value; });
+      });
+    }
+  }
+
+  // Add new section with default structure
+  function addDefaultSection() {
+    const t = builderTrans[builderLang];
+    const defaultTitle = builderLang === 'en' ? `LISTENING ${sections.length+1}` : `استماع ${sections.length+1}`;
+    sections.push({
+      title: defaultTitle,
+      instructions: t.defaultInstructions,
+      audioBase64: null,
+      audioFileName: null,
+      questions: [
+        { text: t.defaultQuestionText + " 1", optA: t.defaultOptA, optB: t.defaultOptB, optC: t.defaultOptC, correctLetter: 'A' },
+        { text: t.defaultQuestionText + " 2", optA: t.defaultOptA, optB: t.defaultOptB, optC: t.defaultOptC, correctLetter: 'B' }
+      ]
+    });
+    renderBuilder();
+  }
+
+  // Validate and collect full data
+  function collectTestData() {
+    const title = document.getElementById('testTitle').value.trim() || "Listening Test";
+    const grade = document.getElementById('gradeInfo').value.trim();
+    const bgColor = document.getElementById('bgColor').value;
+    const timer = parseInt(document.getElementById('timerMin').value) || 0;
+    const validSections = [];
+    for (let i = 0; i < sections.length; i++) {
+      const sec = sections[i];
+      if (!sec.audioBase64) { alert((builderLang === 'en' ? `Section ${i+1} missing MP3 audio.` : `القسم ${i+1} يفتقد إلى ملف MP3.`)); return null; }
+      const validQuestions = sec.questions.filter(q => q.text.trim() !== "" && q.optA.trim() !== "" && q.optB.trim() !== "" && q.optC.trim() !== "");
+      if (validQuestions.length === 0) { alert(builderLang === 'en' ? `Section ${i+1} has no valid questions.` : `القسم ${i+1} ليس لديه أسئلة صالحة.`); return null; }
+      validSections.push({
+        title: sec.title || `Listening ${i+1}`,
+        instructions: sec.instructions || "",
+        audioBase64: sec.audioBase64,
+        questions: validQuestions.map(q => ({ text: q.text, optA: q.optA, optB: q.optB, optC: q.optC, correctLetter: q.correctLetter }))
+      });
+    }
+    if (validSections.length === 0) { alert(builderLang === 'en' ? "Add at least one section." : "أضف قسمًا واحدًا على الأقل."); return null; }
+    return { title, grade, bgColor, timer, sections: validSections };
+  }
+
+  // Generate final test HTML (with language toggle, dashboard, submit, timer)
+  function generateTestHTML(data) {
+    let sectionsHTML = '';
+    let totalQuestionsCount = 0;
+    data.sections.forEach((sec, secIdx) => {
+      let questionsHTML = '';
+      sec.questions.forEach((q, qIdx) => {
+        totalQuestionsCount++;
+        const radioName = `sec${secIdx}_q${qIdx}`;
+        questionsHTML += `
+          <div class="question-row">
+            <div class="question-stem">${qIdx+1}. ${escapeHtml(q.text)}</div>
+            <div class="options">
+              <label class="opt-label"><input type="radio" name="${radioName}" value="A" data-correct="${q.correctLetter === 'A'}"> <span>A. ${escapeHtml(q.optA)}</span></label>
+              <label class="opt-label"><input type="radio" name="${radioName}" value="B" data-correct="${q.correctLetter === 'B'}"> <span>B. ${escapeHtml(q.optB)}</span></label>
+              <label class="opt-label"><input type="radio" name="${radioName}" value="C" data-correct="${q.correctLetter === 'C'}"> <span>C. ${escapeHtml(q.optC)}</span></label>
+            </div>
+          </div>
+        `;
+      });
+      const audioEmbed = `<audio controls class="section-audio"><source src="${sec.audioBase64}" type="audio/mpeg"></audio>`;
+      sectionsHTML += `
+        <div class="listening-section">
+          <div class="section-header">🎧 ${escapeHtml(sec.title)}</div>
+          <div class="section-instr">📢 ${escapeHtml(sec.instructions)}</div>
+          <div class="audio-wrapper">${audioEmbed}</div>
+          <div class="questions-area">${questionsHTML}</div>
+        </div>
+      `;
+    });
+
+    const timerScript = data.timer > 0 ? `
+      let timeLeft = ${data.timer * 60};
+      const timerDiv = document.createElement('div');
+      timerDiv.id = "timerDisplay";
+      timerDiv.className = "timer-pill";
+      document.querySelector('.test-container').prepend(timerDiv);
+      const timerInterval = setInterval(() => {
+        if(timeLeft <= 0) { clearInterval(timerInterval); timerDiv.textContent = "⏰ Time's up!"; alert("Time is up!"); computeScore(); }
+        else { timeLeft--; const mins = Math.floor(timeLeft/60); const secs = timeLeft%60; timerDiv.textContent = \`⏱️ Time left: \${mins.toString().padStart(2,'0')}:\${secs.toString().padStart(2,'0')}\`; }
+      }, 1000);
+    ` : '';
+
+    const outputTranslations = {
+      en: { submit: "✅ Submit Answers", clear: "🗑️ Clear All", back: "🏠 Back to Dashboard", score: "🏆 Your Score", restart: "⟳ Restart Test" },
+      ar: { submit: "✅ إرسال الإجابات", clear: "🗑️ مسح الكل", back: "🏠 العودة إلى لوحة التحكم", score: "🏆 درجتك", restart: "⟳ إعادة الاختبار" }
+    };
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(data.title)}</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:${data.bgColor};font-family:'Segoe UI',system-ui,sans-serif;padding:30px 20px;max-width:1100px;margin:0 auto;color:#1f3a4b;}
+  .test-container{background:white;border-radius:48px;padding:32px 36px;box-shadow:0 20px 35px rgba(0,0,0,0.1);}
+  h1{color:#1e4a76;margin-bottom:8px;}
+  .sub{color:#2c6280;margin-bottom:20px;}
+  .listening-section{background:#fefefe;border-radius:32px;padding:24px;margin-bottom:32px;border:1px solid #e2edf2;}
+  .section-header{font-size:1.5rem;font-weight:bold;color:#1f6392;margin-bottom:6px;}
+  .section-instr{background:#eef3fc;padding:12px 18px;border-radius:28px;margin:12px 0;}
+  .audio-wrapper{text-align:center;margin:18px 0;}
+  .section-audio{width:100%;max-width:450px;}
+  .question-row{background:#fafdff;border-radius:28px;padding:16px;margin-bottom:20px;border:1px solid #e9edf2;}
+  .question-stem{font-weight:600;margin-bottom:12px;font-size:1rem;}
+  .options{display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+  .opt-label{display:flex;align-items:center;gap:8px;background:#f9fafc;padding:6px 16px;border-radius:40px;cursor:pointer;border:1px solid #dee4ec;}
+  .opt-label input{appearance:none;width:18px;height:18px;border:2px solid #2c5a80;border-radius:50%;cursor:pointer;}
+  .opt-label input:checked{background:#1f6392;border-color:#1f6392;box-shadow:inset 0 0 0 3px white;}
+  .opt-label input.correct-highlight{background:#10b981;border-color:#10b981;}
+  .opt-label input.incorrect-highlight{background:#ef4444;border-color:#ef4444;}
+  .score-panel{background:#eef3fa;border-radius:60px;padding:14px;text-align:center;font-weight:bold;font-size:1.2rem;margin:24px 0;}
+  .action-bar{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0 16px;}
+  button{padding:10px 26px;border:none;border-radius:60px;font-weight:600;cursor:pointer;background:#eef2f8;font-size:0.85rem;}
+  .btn-submit{background:#2c7da0;color:white;}
+  .btn-clear{background:#94a3b8;color:white;}
+  .btn-dashboard{background:#475569;color:white;}
+  .lang-toggle{background:#1f6392;color:white;}
+  .timer-pill{background:#0f172a;color:white;padding:8px 20px;border-radius:60px;width:fit-content;margin:0 auto 20px auto;}
+  @media (max-width:700px){.test-container{padding:20px;} .options{flex-direction:column;align-items:stretch;}}
+</style>
+</head>
+<body>
+<div class="test-container">
+  <h1>${escapeHtml(data.title)}</h1>
+  <div class="sub">${escapeHtml(data.grade)}</div>
+  ${sectionsHTML}
+  <div class="score-panel" id="scorePanel">🏆 Your Score: 0 / ${totalQuestionsCount}</div>
+  <div class="action-bar">
+    <button id="submitBtn" class="btn-submit">✅ Submit Answers</button>
+    <button id="clearBtn" class="btn-clear">🗑️ Clear All</button>
+    <button id="dashboardBtn" class="btn-dashboard">🏠 Back to Dashboard</button>
+    <button id="langToggleBtn" class="lang-toggle">🇸🇦 العربية</button>
+  </div>
+</div>
+<script>
+  const totalQ = ${totalQuestionsCount};
+  let currentLang = 'en';
+  const translations = ${JSON.stringify(outputTranslations)};
+
+  function updateLanguage() {
+    document.getElementById('submitBtn').innerText = translations[currentLang].submit;
+    document.getElementById('clearBtn').innerText = translations[currentLang].clear;
+    document.getElementById('dashboardBtn').innerText = translations[currentLang].back;
+    const scoreEl = document.getElementById('scorePanel');
+    const currentScore = scoreEl.innerText.match(/\\d+/)?.[0] || '0';
+    scoreEl.innerHTML = \`\${translations[currentLang].score}: \${currentScore} / \${totalQ}\`;
+  }
+
+  function clearAllSelections() {
+    document.querySelectorAll('.opt-label input').forEach(r => { r.checked = false; r.classList.remove('correct-highlight', 'incorrect-highlight'); });
+    document.getElementById('scorePanel').innerHTML = \`\${translations[currentLang].score}: 0 / \${totalQ}\`;
+  }
+
+  function computeScore() {
+    let correctCount = 0;
+    let radioIndex = 0;
+    const allRadios = document.querySelectorAll('.opt-label input');
+    // group by question name
+    const radioGroups = new Map();
+    allRadios.forEach(r => { const name = r.getAttribute('name'); if (!radioGroups.has(name)) radioGroups.set(name, []); radioGroups.get(name).push(r); });
+    for (let [name, radios] of radioGroups.entries()) {
+      let selectedVal = null;
+      radios.forEach(r => { if (r.checked) selectedVal = r.value; });
+      radios.forEach(r => {
+        r.classList.remove('correct-highlight', 'incorrect-highlight');
+        const isCorrect = r.getAttribute('data-correct') === 'true';
+        if (isCorrect) r.classList.add('correct-highlight');
+        if (selectedVal && r.value === selectedVal && !isCorrect) r.classList.add('incorrect-highlight');
+      });
+      const correctRadio = Array.from(radios).find(r => r.getAttribute('data-correct') === 'true');
+      if (selectedVal && correctRadio && correctRadio.value === selectedVal) correctCount++;
+    }
+    document.getElementById('scorePanel').innerHTML = \`\${translations[currentLang].score}: \${correctCount} / \${totalQ}\`;
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', computeScore);
+  document.getElementById('clearBtn').addEventListener('click', clearAllSelections);
+  document.getElementById('dashboardBtn').addEventListener('click', () => window.location.href = '/');
+  document.getElementById('langToggleBtn').addEventListener('click', () => { currentLang = currentLang === 'en' ? 'ar' : 'en'; updateLanguage(); });
+  updateLanguage();
+  ${timerScript}
+<\/script>
+</body></html>`;
+  }
+
+  // Download and Preview
+  function downloadTest() {
+    const data = collectTestData();
+    if (!data) return;
+    const html = generateTestHTML(data);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (data.title.replace(/\s+/g, '_') + '_listening_test.html');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function previewTest() {
+    const data = collectTestData();
+    if (!data) return;
+    const html = generateTestHTML(data);
+    const frame = document.getElementById('previewFrame');
+    frame.style.display = 'block';
+    frame.srcdoc = html;
+    frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Builder language toggle
+  document.getElementById('globalLangToggle').addEventListener('click', () => {
+    builderLang = builderLang === 'en' ? 'ar' : 'en';
+    renderBuilder();
+    document.getElementById('globalLangToggle').innerText = builderLang === 'en' ? '🇸🇦 العربية (Builder)' : '🇬🇧 English (Builder)';
+  });
+
+  // Initialize with default two sections similar to image
+  function initDefaultSections() {
+    sections = [];
+    const tEn = builderTrans.en;
+    // Section 1: Ibn Battuta
+    sections.push({
+      title: "LISTENING 01 (Items 1-5)",
+      instructions: "You are going to hear some information about a great traveller. Listen and for each item, shade the bubble next to the correct option.",
+      audioBase64: null, audioFileName: null,
+      questions: [
+        { text: "The speaker is talking in a ______.", optA: "restaurant", optB: "hospital", optC: "classroom", correctLetter: "C" },
+        { text: "Ibn Battuta was born in ______.", optA: "1304", optB: "1314", optC: "1340", correctLetter: "A" },
+        { text: "Ibn Battuta travelled for about ______ years.", optA: "3", optB: "13", optC: "30", correctLetter: "C" },
+        { text: "He travelled to Muscat by a ______.", optA: "plane", optB: "car", optC: "ship", correctLetter: "C" },
+        { text: "Ibn Battuta died in ______.", optA: "Dhofar", optB: "Morocco", optC: "India", correctLetter: "B" }
+      ]
+    });
+    // Section 2: Whales
+    sections.push({
+      title: "LISTENING 02 (Items 1-5)",
+      instructions: "You are going to hear a text about Whales. Listen and for each item, shade the bubble next to the correct option.",
+      audioBase64: null, audioFileName: null,
+      questions: [
+        { text: "Whales are ______.", optA: "fish", optB: "mammals", optC: "reptiles", correctLetter: "B" },
+        { text: "Whales have soft bodies for easy ______.", optA: "moving", optB: "eating", optC: "crawling", correctLetter: "A" },
+        { text: "Blue whales can weigh about ______ tones.", optA: "190", optB: "119", optC: "109", correctLetter: "C" },
+        { text: "Blue whales hunt other animals with their ______.", optA: "wings", optB: "teeth", optC: "tails", correctLetter: "B" },
+        { text: "Now days the whale population is increasing because of the discovery of ______.", optA: "gas", optB: "stone", optC: "petrol", correctLetter: "C" }
+      ]
+    });
+    renderBuilder();
+  }
+
+  document.getElementById('addSectionBtn').addEventListener('click', addDefaultSection);
+  document.getElementById('generateTestBtn').addEventListener('click', downloadTest);
+  document.getElementById('previewTestBtn').addEventListener('click', previewTest);
+  initDefaultSections();
+</script>
+</body>
+</html>

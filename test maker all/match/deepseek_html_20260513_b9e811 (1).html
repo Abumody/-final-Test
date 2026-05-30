@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ اختبارات المطابقة | صور وجمل وأحرف</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+        body{background:linear-gradient(135deg,#fef9e3 0%,#fde68a 100%);padding:25px 15px}
+        .container{max-width:1400px;margin:0 auto}
+        header{background:white;border-radius:28px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+        h1{color:#1e3a8a}
+        .lang-switch{display:flex;justify-content:flex-end;gap:10px;margin-bottom:15px}
+        .lang-btn{background:#facc15;border:none;padding:6px 20px;border-radius:40px;cursor:pointer;font-weight:bold;transition:0.2s}
+        .lang-btn.active{background:#1e3a8a;color:white}
+        .card{background:white;border-radius:28px;padding:20px;margin-bottom:20px;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
+        .flex-row{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:15px}
+        .input-group{flex:1;min-width:180px}
+        label{font-weight:600;display:block;margin-bottom:6px;color:#1e293b}
+        input,textarea,select{width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:20px}
+        button{cursor:pointer;transition:0.2s}
+        .btn-group{display:flex;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap}
+        .btn{padding:10px 24px;border-radius:60px;font-weight:bold;border:none;cursor:pointer}
+        .btn-primary{background:#facc15;color:#1e293b}
+        .btn-secondary{background:#1e3a8a;color:white}
+        .btn-outline{background:transparent;border:2px solid #1e3a8a;color:#1e3a8a}
+        .load-section{text-align:center;margin:15px auto;display:flex;justify-content:center;gap:15px;align-items:center;flex-wrap:wrap}
+        .load-section select{width:260px;padding:8px}
+        .pictures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:15px}
+        .pic-card{background:#f8fafc;border-radius:24px;padding:15px;border:1px solid #e2e8f0;text-align:center}
+        .pic-preview{width:120px;height:120px;margin:0 auto 10px;background:#e2e8f0;border-radius:24px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .pic-preview img{width:100%;height:100%;object-fit:cover}
+        .file-input{display:block;width:100%;margin-top:8px;padding:6px;font-size:0.75rem}
+        .question-item{background:#fefce8;border:2px solid #fde047;border-radius:24px;padding:18px;margin-bottom:15px}
+        .question-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+        .delete-question-btn{background:#dc2626;color:white;border:none;border-radius:40px;padding:4px 14px;cursor:pointer}
+        .add-question-btn{background:#1e3a8a;color:white;border:none;border-radius:60px;padding:12px;margin-top:10px;width:100%;font-weight:bold;cursor:pointer}
+        .small-input-group{margin-bottom:12px}
+        .correct-badge{background:#facc15;padding:2px 12px;border-radius:40px;font-size:0.75rem}
+        .num-control{display:flex;gap:10px;align-items:center;margin-bottom:15px;flex-wrap:wrap}
+        .num-control button{background:#1e3a8a;color:white;border:none;border-radius:30px;width:36px;height:36px;font-weight:bold;cursor:pointer}
+        footer{text-align:center;margin-top:15px;color:#1e3a8a}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+    <header>
+        <h1><i class="fas fa-puzzle-piece"></i> <span data-key="title">منشئ اختبارات المطابقة (صور وجمل)</span></h1>
+        <p data-key="subtitle">حدد عدد الصور وارفع صوراً لكل حرف، ثم أضف جمل واختر الحرف الصحيح لكل جملة. الاختبار النهائي يعرض الصور بالأعلى والجمل بشكل عشوائي مع دوائر خيارات.</p>
+    </header>
+
+    <div class="btn-group">
+        <button id="saveTestBtn" class="btn btn-secondary"><i class="fas fa-save"></i> <span data-key="save">حفظ الاختبار</span></button>
+        <button id="newTestBtn" class="btn btn-secondary"><i class="fas fa-file"></i> <span data-key="new">جديد</span></button>
+        <button id="loadTestBtn" class="btn btn-secondary"><i class="fas fa-folder-open"></i> <span data-key="load">تحميل اختبار</span></button>
+    </div>
+    <div class="load-section">
+        <label data-key="select_test">اختر اختباراً محفوظاً:</label>
+        <select id="loadTestSelect"></select>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-cogs"></i> <span data-key="settings">إعدادات الاختبار</span></h2>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="test_name">اسم الاختبار</label><input type="text" id="testName" placeholder="مثال: اختبار الوحدة الأولى"></div>
+            <div class="input-group"><label data-key="grade">الصف</label><input type="text" id="grade" placeholder="Grade 6"></div>
+            <div class="input-group"><label data-key="num_pictures">عدد الصور / الأحرف (2-8)</label><input type="number" id="numPictures" min="2" max="8" value="6" step="1"></div>
+        </div>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="timer">المؤقت (دقائق)</label><input type="number" id="timerMinutes" value="15"></div>
+            <div class="input-group"><label data-key="total_score">الدرجة الكلية</label><input type="number" id="totalScore" value="100" step="1"></div>
+            <div class="input-group"><label data-key="max_attempts">الحد الأقصى للمحاولات</label><input type="number" id="maxAttempts" value="3" min="1"></div>
+            <div class="input-group"><label data-key="bg_color">لون الخلفية</label><input type="color" id="bgColor" value="#fef9e3"></div>
+        </div>
+        <div class="input-group"><label data-key="instructions">تعليمات عامة</label><textarea id="extraConditions" rows="2" placeholder="مثل: اختر الحرف المناسب لكل جملة"></textarea></div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-images"></i> <span data-key="pictures_section">الصور والأحرف (ارفع صورة لكل حرف)</span></h2>
+        <div id="picturesContainer" class="pictures-grid"></div>
+        <small data-key="upload_hint">👇 اضغط على زر "اختر ملف" لرفع صورة من جهازك لكل حرف (PNG, JPG, GIF)</small>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-list-ul"></i> <span data-key="sentences_section">الجمل والحرف الصحيح</span></h2>
+        <div class="num-control">
+            <span data-key="num_sentences">عدد الجمل:</span>
+            <button id="decrementSentences">-</button>
+            <span id="sentencesCountDisplay" style="font-weight:bold;width:40px;text-align:center;">0</span>
+            <button id="incrementSentences">+</button>
+            <span data-key="adjust_hint" style="font-size:0.8rem;">(يمكنك أيضاً إضافة أو حذف يدوياً)</span>
+        </div>
+        <div id="questionsContainer"></div>
+        <button id="addQuestionBtn" class="add-question-btn"><i class="fas fa-plus-circle"></i> <span data-key="add_sentence">إضافة جملة يدوياً</span></button>
+        <small data-key="sentences_hint">لكل جملة اختر الحرف الصحيح المطابق للصورة. في الاختبار النهائي ستظهر الجمل بشكل عشوائي.</small>
+    </div>
+
+    <div class="btn-group">
+        <button id="previewBtn" class="btn btn-outline"><i class="fas fa-eye"></i> <span data-key="preview">معاينة الاختبار</span></button>
+        <button id="generateBtn" class="btn btn-primary"><i class="fas fa-download"></i> <span data-key="download">تحميل ملف الاختبار</span></button>
+    </div>
+    <footer><p data-key="footer">يمكنك حفظ وتحميل اختبارات متعددة. الاختبار الناتج يعرض الصور المرفوعة بالأعلى والجمل عشوائياً مع دوائر خيارات.</p></footer>
+</div>
+
+<script>
+    // ------------------- الترجمة الكاملة -------------------
+    const translations = {
+        ar: {
+            title: "منشئ اختبارات المطابقة (صور وجمل)",
+            subtitle: "حدد عدد الصور وارفع صوراً لكل حرف، ثم أضف جمل واختر الحرف الصحيح لكل جملة. الاختبار النهائي يعرض الصور بالأعلى والجمل بشكل عشوائي مع دوائر خيارات.",
+            save: "حفظ الاختبار", new: "جديد", load: "تحميل اختبار", select_test: "اختر اختباراً محفوظاً:",
+            settings: "إعدادات الاختبار", test_name: "اسم الاختبار", grade: "الصف", num_pictures: "عدد الصور / الأحرف (2-8)",
+            timer: "المؤقت (دقائق)", total_score: "الدرجة الكلية", max_attempts: "الحد الأقصى للمحاولات", bg_color: "لون الخلفية",
+            instructions: "تعليمات عامة", pictures_section: "الصور والأحرف (ارفع صورة لكل حرف)", upload_hint: "👇 اضغط على زر 'اختر ملف' لرفع صورة من جهازك لكل حرف (PNG, JPG, GIF)",
+            sentences_section: "الجمل والحرف الصحيح", num_sentences: "عدد الجمل:", adjust_hint: "(يمكنك أيضاً إضافة أو حذف يدوياً)",
+            add_sentence: "إضافة جملة يدوياً", sentences_hint: "لكل جملة اختر الحرف الصحيح المطابق للصورة. في الاختبار النهائي ستظهر الجمل بشكل عشوائي.",
+            preview: "معاينة الاختبار", download: "تحميل ملف الاختبار", footer: "يمكنك حفظ وتحميل اختبارات متعددة. الاختبار الناتج يعرض الصور المرفوعة بالأعلى والجمل عشوائياً مع دوائر خيارات.",
+            sentence_label: "نص الجملة:", correct_letter_label: "الحرف الصحيح:", delete_btn: "حذف", optional_caption: "وصف اختياري", choose_file: "اختر ملف"
+        },
+        en: {
+            title: "Matching Test Maker (Pictures & Sentences)",
+            subtitle: "Set number of pictures, upload images, add sentences and choose correct letter for each sentence. Final test shows pictures on top and randomized sentences with radio buttons.",
+            save: "Save Test", new: "New", load: "Load Test", select_test: "Select a saved test:",
+            settings: "Test Settings", test_name: "Test Name", grade: "Grade", num_pictures: "Number of pictures (2-8)",
+            timer: "Timer (minutes)", total_score: "Total Score", max_attempts: "Max Attempts", bg_color: "Background Color",
+            instructions: "General Instructions", pictures_section: "Pictures & Letters (upload image for each letter)", upload_hint: "👇 Click 'Choose File' to upload an image for each letter (PNG, JPG, GIF)",
+            sentences_section: "Sentences & Correct Letter", num_sentences: "Number of sentences:", adjust_hint: "(you can also add/delete manually)",
+            add_sentence: "Add Sentence manually", sentences_hint: "For each sentence select the correct letter. Sentences will be randomized in final test.",
+            preview: "Preview Test", download: "Download Test File", footer: "Save & load multiple tests. The generated test displays uploaded pictures on top and randomized sentences with radio buttons.",
+            sentence_label: "Sentence text:", correct_letter_label: "Correct letter:", delete_btn: "Delete", optional_caption: "Optional caption", choose_file: "Choose File"
+        }
+    };
+    let currentLang = 'ar';
+
+    // تحديث اتجاه الصفحة وكل النصوص
+    function updateUILanguage() {
+        // تحديث اتجاه الصفحة
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = currentLang;
+        // تحديث النصوص الثابتة
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[currentLang][key]) {
+                if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
+                    el.placeholder = translations[currentLang][key];
+                } else if (el.tagName === 'TEXTAREA' && el.hasAttribute('placeholder')) {
+                    el.placeholder = translations[currentLang][key];
+                } else {
+                    el.innerText = translations[currentLang][key];
+                }
+            }
+        });
+        // تحديث النصوص داخل الصور والجمل
+        renderPictures();
+        renderQuestions();
+        // تحديث نص الـ select label
+        const loadLabel = document.querySelector('.load-section label');
+        if (loadLabel) loadLabel.innerText = translations[currentLang].select_test;
+    }
+
+    // البيانات الأساسية
+    let pictures = [];     // { letter, imageDataURL, label }
+    let questions = [];    // { id, text, correctLetter }
+    let nextId = 1;
+
+    function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+
+    // رسم الصور
+    function renderPictures() {
+        const num = parseInt(document.getElementById('numPictures').value);
+        const container = document.getElementById('picturesContainer');
+        if (!container) return;
+        // تحديث المصفوفة pictures
+        const newPictures = [];
+        for (let i = 0; i < num; i++) {
+            const letter = String.fromCharCode(65 + i);
+            const existing = pictures.find(p => p.letter === letter);
+            if (existing) newPictures.push(existing);
+            else newPictures.push({ letter, imageDataURL: null, label: letter });
+        }
+        pictures = newPictures;
+        container.innerHTML = '';
+        pictures.forEach(pic => {
+            const previewHtml = pic.imageDataURL ? `<img src="${pic.imageDataURL}" style="width:100%;height:100%;object-fit:cover;">` : `<i class="fas fa-cloud-upload-alt" style="font-size:40px;color:#94a3b8;"></i>`;
+            const card = document.createElement('div');
+            card.className = 'pic-card';
+            card.innerHTML = `
+                <div style="font-weight:800;font-size:1.6rem;">${pic.letter}</div>
+                <div class="pic-preview">${previewHtml}</div>
+                <input type="file" accept="image/png, image/jpeg, image/jpg, image/gif" class="file-input-image" data-letter="${pic.letter}" style="margin-top:8px; padding:5px;">
+                <div style="margin-top:6px;">
+                    <label style="font-size:0.75rem;">${translations[currentLang].optional_caption}</label>
+                    <input type="text" class="pic-caption" data-letter="${pic.letter}" value="${escapeHtml(pic.label || '')}" placeholder="${translations[currentLang].optional_caption}" style="width:100%;padding:5px;border-radius:20px;border:1px solid #ccc;">
+                </div>
+            `;
+            container.appendChild(card);
+        });
+        // ربط الأحداث
+        document.querySelectorAll('.file-input-image').forEach(input => {
+            input.removeEventListener('change', handleImageUpload);
+            input.addEventListener('change', handleImageUpload);
+        });
+        document.querySelectorAll('.pic-caption').forEach(inp => {
+            inp.removeEventListener('change', handleCaptionChange);
+            inp.addEventListener('change', handleCaptionChange);
+        });
+    }
+
+    function handleImageUpload(e) {
+        const letter = e.target.getAttribute('data-letter');
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            const pic = pictures.find(p => p.letter === letter);
+            if (pic) {
+                pic.imageDataURL = ev.target.result;
+                renderPictures();
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function handleCaptionChange(e) {
+        const letter = e.target.getAttribute('data-letter');
+        const newCaption = e.target.value;
+        const pic = pictures.find(p => p.letter === letter);
+        if (pic) pic.label = newCaption;
+    }
+
+    // رسم الجمل
+    function renderQuestions() {
+        const container = document.getElementById('questionsContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        if (questions.length === 0) {
+            container.innerHTML = `<div style="text-align:center;padding:30px;">✨ ${currentLang === 'ar' ? 'لا توجد جمل، اضف جملة جديدة' : 'No sentences, add a new sentence'}</div>`;
+            updateCounter();
+            return;
+        }
+        const letters = pictures.map(p => p.letter);
+        questions.forEach((q, idx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-item';
+            qDiv.dataset.id = q.id;
+            qDiv.innerHTML = `
+                <div class="question-header">
+                    <span><i class="fas fa-comment"></i> ${currentLang === 'ar' ? 'جملة' : 'Sentence'} ${idx+1} <span class="correct-badge">✔️ ${q.correctLetter}</span></span>
+                    <button class="delete-q-btn" data-id="${q.id}"><i class="fas fa-trash"></i> ${translations[currentLang].delete_btn}</button>
+                </div>
+                <div class="small-input-group">
+                    <label>${translations[currentLang].sentence_label}</label>
+                    <textarea class="sentence-text" data-id="${q.id}" rows="2" placeholder="${currentLang === 'ar' ? 'مثال: سارة تنتظر القطار في المحطة.' : 'Example: Sarah is waiting for the train.'}">${escapeHtml(q.text)}</textarea>
+                </div>
+                <div class="small-input-group">
+                    <label>${translations[currentLang].correct_letter_label}</label>
+                    <select class="sentence-letter-select" data-id="${q.id}" style="width:auto;padding:6px 16px;border-radius:30px;">
+                        ${letters.map(l => `<option value="${l}" ${q.correctLetter === l ? 'selected' : ''}>${l}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+        // ربط الأحداث
+        document.querySelectorAll('.delete-q-btn').forEach(btn => {
+            btn.removeEventListener('click', handleDeleteQuestion);
+            btn.addEventListener('click', handleDeleteQuestion);
+        });
+        document.querySelectorAll('.sentence-text').forEach(ta => {
+            ta.removeEventListener('input', handleSentenceTextChange);
+            ta.addEventListener('input', handleSentenceTextChange);
+        });
+        document.querySelectorAll('.sentence-letter-select').forEach(sel => {
+            sel.removeEventListener('change', handleLetterChange);
+            sel.addEventListener('change', handleLetterChange);
+        });
+        updateCounter();
+    }
+
+    function handleDeleteQuestion(e) {
+        const id = parseInt(e.currentTarget.getAttribute('data-id'));
+        questions = questions.filter(q => q.id !== id);
+        renderQuestions();
+    }
+    function handleSentenceTextChange(e) {
+        const id = parseInt(e.currentTarget.getAttribute('data-id'));
+        const q = questions.find(qq => qq.id === id);
+        if (q) q.text = e.target.value;
+    }
+    function handleLetterChange(e) {
+        const id = parseInt(e.currentTarget.getAttribute('data-id'));
+        const q = questions.find(qq => qq.id === id);
+        if (q) q.correctLetter = e.target.value;
+        renderQuestions();
+    }
+
+    function addNewQuestion() {
+        if (pictures.length === 0) {
+            alert(currentLang === 'ar' ? 'يرجى تحديد عدد الصور أولاً' : 'Please set number of pictures first');
+            return;
+        }
+        const newId = nextId++;
+        questions.push({ id: newId, text: "", correctLetter: pictures[0].letter });
+        renderQuestions();
+    }
+
+    function setSentencesCount(count) {
+        if (count < 0) count = 0;
+        while (questions.length < count) addNewQuestion();
+        if (questions.length > count) {
+            questions = questions.slice(0, count);
+            renderQuestions();
+        }
+    }
+
+    function updateCounter() {
+        document.getElementById('sentencesCountDisplay').innerText = questions.length;
+    }
+
+    // حفظ وتحميل البيانات
+    function getCurrentTestData() {
+        return {
+            testName: document.getElementById('testName').value,
+            grade: document.getElementById('grade').value,
+            numPictures: parseInt(document.getElementById('numPictures').value),
+            timerMinutes: parseInt(document.getElementById('timerMinutes').value),
+            totalScore: parseFloat(document.getElementById('totalScore').value),
+            maxAttempts: parseInt(document.getElementById('maxAttempts').value),
+            bgColor: document.getElementById('bgColor').value,
+            extraConditions: document.getElementById('extraConditions').value,
+            pictures: pictures.map(p => ({ letter: p.letter, imageDataURL: p.imageDataURL, label: p.label })),
+            questions: questions.map(q => ({ id: q.id, text: q.text, correctLetter: q.correctLetter }))
+        };
+    }
+
+    function setTestData(data) {
+        document.getElementById('testName').value = data.testName || '';
+        document.getElementById('grade').value = data.grade || '';
+        document.getElementById('numPictures').value = data.numPictures || 6;
+        document.getElementById('timerMinutes').value = data.timerMinutes ?? 15;
+        document.getElementById('totalScore').value = data.totalScore ?? 100;
+        document.getElementById('maxAttempts').value = data.maxAttempts ?? 3;
+        document.getElementById('bgColor').value = data.bgColor || '#fef9e3';
+        document.getElementById('extraConditions').value = data.extraConditions || '';
+        if (data.pictures) pictures = data.pictures.map(p => ({ ...p }));
+        else pictures = [];
+        if (data.questions) questions = data.questions.map(q => ({ id: q.id || nextId++, text: q.text, correctLetter: q.correctLetter }));
+        else questions = [];
+        renderPictures();
+        if (questions.length === 0) addNewQuestion();
+        else renderQuestions();
+        updateCounter();
+    }
+
+    function getAllSaved() { return JSON.parse(localStorage.getItem('match_test_builder') || '[]'); }
+    function saveTestList(list) { localStorage.setItem('match_test_builder', JSON.stringify(list)); }
+    function refreshLoadSelect() {
+        const select = document.getElementById('loadTestSelect');
+        const tests = getAllSaved();
+        select.innerHTML = `<option value="">${currentLang === 'ar' ? '-- اختبار محفوظ --' : '-- Saved test --'}</option>`;
+        tests.forEach(t => { const opt = document.createElement('option'); opt.value = t.name; opt.textContent = t.name; select.appendChild(opt); });
+    }
+    function saveTest() {
+        let name = document.getElementById('testName').value.trim();
+        if (!name) name = prompt(currentLang === 'ar' ? 'أدخل اسم الاختبار' : 'Enter test name');
+        if (!name) return;
+        const tests = getAllSaved();
+        const idx = tests.findIndex(t => t.name === name);
+        const data = getCurrentTestData();
+        if (idx !== -1) { if (confirm(currentLang === 'ar' ? `الاختبار "${name}" موجود، استبدال؟` : `Test "${name}" exists, overwrite?`)) tests[idx].data = data; else return; }
+        else tests.push({ name, data });
+        saveTestList(tests);
+        refreshLoadSelect();
+        alert(currentLang === 'ar' ? `تم حفظ "${name}"` : `Saved "${name}"`);
+    }
+    function loadTest() {
+        const select = document.getElementById('loadTestSelect');
+        const name = select.value;
+        if (!name) { alert(currentLang === 'ar' ? 'اختر اختباراً' : 'Select a test'); return; }
+        const tests = getAllSaved();
+        const found = tests.find(t => t.name === name);
+        if (found) setTestData(found.data);
+        else alert('Not found');
+    }
+    function newTest() {
+        if (confirm(currentLang === 'ar' ? 'مسح كل البيانات الحالية؟' : 'Clear all current data?')) {
+            pictures = [];
+            questions = [];
+            nextId = 1;
+            document.getElementById('testName').value = '';
+            document.getElementById('grade').value = '';
+            document.getElementById('numPictures').value = 6;
+            document.getElementById('timerMinutes').value = 15;
+            document.getElementById('totalScore').value = 100;
+            document.getElementById('maxAttempts').value = 3;
+            document.getElementById('bgColor').value = '#fef9e3';
+            document.getElementById('extraConditions').value = '';
+            renderPictures();
+            questions = [];
+            addNewQuestion();
+            renderQuestions();
+        }
+    }
+
+    // إنشاء ملف الاختبار النهائي (معاينة أو تحميل)
+    function generateTestFile(isPreview) {
+        const testData = getCurrentTestData();
+        if (testData.questions.length === 0) { alert(currentLang === 'ar' ? 'أضف جملة واحدة على الأقل' : 'Add at least one sentence'); return; }
+        if (testData.pictures.length === 0) { alert(currentLang === 'ar' ? 'يرجى تحديد عدد الصور' : 'Please set number of pictures'); return; }
+        
+        // اتجاه الصفحة في الاختبار النهائي: يعتمد على لغة المنشئ الحالية (currentLang)
+        const testLang = currentLang; // نستخدم اللغة الحالية للمنشئ لتحديد اتجاه الاختبار
+        const testDir = testLang === 'ar' ? 'rtl' : 'ltr';
+        
+        // خلط الجمل
+        let shuffled = [...testData.questions];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        const correctMap = {};
+        shuffled.forEach((q, idx) => { correctMap[idx] = q.correctLetter; });
+        const pointsEach = testData.totalScore / shuffled.length;
+        
+        // بناء الصور
+        let picsHtml = `<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-bottom:40px;">`;
+        testData.pictures.forEach(pic => {
+            const imgTag = pic.imageDataURL ? `<img src="${pic.imageDataURL}" style="width:100px;height:100px;object-fit:cover;border-radius:30px;border:3px solid #facc15;">` : `<div style="width:100px;height:100px;background:#e2e8f0;border-radius:30px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-image fa-3x"></i></div>`;
+            picsHtml += `
+                <div style="text-align:center;">
+                    <div style="background:#facc15;width:55px;height:55px;line-height:55px;border-radius:50%;margin:0 auto 8px;font-weight:bold;font-size:1.6rem;">${pic.letter}</div>
+                    ${imgTag}
+                    <div style="font-size:0.7rem;">${escapeHtml(pic.label || '')}</div>
+                </div>
+            `;
+        });
+        picsHtml += `</div>`;
+        
+        // بناء الجمل
+        let questionsHtml = `<div style="display:grid;gap:20px;">`;
+        const lettersList = testData.pictures.map(p => p.letter);
+        shuffled.forEach((q, idx) => {
+            questionsHtml += `
+                <div style="background:#fef9e6;border-radius:32px;padding:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid #fde047;">
+                    <div style="flex:3;font-size:1rem;">${idx+1}. ${escapeHtml(q.text)}</div>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                        ${lettersList.map(letter => `
+                            <label style="display:inline-flex;align-items:center;gap:6px;background:white;padding:5px 16px;border-radius:60px;border:1px solid #cbd5e1;cursor:pointer;">
+                                <input type="radio" name="q_${idx}" value="${letter}"> <strong>${letter}</strong>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        questionsHtml += `</div>`;
+        
+        // نصوص الاختبار بناءً على اللغة المختارة
+        const testTexts = testLang === 'ar' ? {
+            timer: "الوقت المتبقي",
+            score: "الدرجة",
+            submit: "✅ تسليم الإجابات وحساب الدرجة",
+            retry: "🔄 محاولة جديدة",
+            teacher: "👩‍🏫 تقييم المعلم",
+            manualPlaceholder: "تعديل الدرجة (0-",
+            saveScore: "حفظ الدرجة",
+            attemptsTitle: "📋 المحاولات السابقة",
+            scoreLabel: "الدرجة:",
+            timeUp: "انتهى الوقت!",
+            maxAttemptsMsg: "لقد استنفدت جميع المحاولات",
+            cantRetry: "لا يمكن إعادة المحاولة",
+            scoreUpdated: "✅ تم تحديث الدرجة"
+        } : {
+            timer: "Time left",
+            score: "Score",
+            submit: "✅ Submit & Calculate Score",
+            retry: "🔄 New Attempt",
+            teacher: "👩‍🏫 Teacher Evaluation",
+            manualPlaceholder: "Adjust score (0-",
+            saveScore: "Save Score",
+            attemptsTitle: "📋 Previous Attempts",
+            scoreLabel: "Score:",
+            timeUp: "Time is up!",
+            maxAttemptsMsg: "You have reached maximum attempts",
+            cantRetry: "Cannot retry",
+            scoreUpdated: "✅ Score updated"
+        };
+        
+        const finalHtml = `<!DOCTYPE html><html lang="${testLang}" dir="${testDir}"><head><meta charset="UTF-8"><title>${escapeHtml(testData.testName)}</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>
+            body{background:${testData.bgColor};font-family:'Poppins',sans-serif;padding:20px;margin:0}
+            .container{max-width:1300px;margin:0 auto}
+            .card{background:white;border-radius:48px;padding:30px;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
+            button{padding:10px 24px;border-radius:60px;border:none;font-weight:bold;margin:5px;cursor:pointer}
+            .submit-btn{background:#facc15}
+            .retry-btn{background:#1e3a8a;color:white}
+            .score-area{background:#eef2ff;border-radius:32px;padding:20px;margin-top:20px}
+            input[type="radio"]{transform:scale(1.1);margin-left:5px;margin-right:5px}
+            ${testDir === 'rtl' ? '.sentence-item{direction:rtl}' : '.sentence-item{direction:ltr}'}
+        </style></head><body><div class="container"><div class="card"><h1>${escapeHtml(testData.testName)}</h1><p><strong>${testData.grade}</strong> | ⏱️ ${testTexts.timer}: <span id="timerDisplay">--</span> | 🎯 ${testTexts.score}: ${testData.totalScore}</p><p>📌 ${escapeHtml(testData.extraConditions)}</p>${picsHtml}<hr>${questionsHtml}<div style="margin-top:30px;text-align:center;"><button id="submitBtn" class="submit-btn">${testTexts.submit}</button><button id="retryBtn" class="retry-btn">${testTexts.retry}</button></div><div id="resultArea"></div><div id="attemptsArea"></div><div id="teacherPanel" style="margin-top:30px;border-top:2px dashed #ccc;padding:20px"><h3>${testTexts.teacher}</h3><input type="number" id="manualScore" placeholder="${testTexts.manualPlaceholder}${testData.totalScore})" style="padding:8px;border-radius:40px;"><button id="saveManualBtn" class="retry-btn">${testTexts.saveScore}</button><div id="teacherMsg"></div></div></div></div><script>
+            const correctAnswers = ${JSON.stringify(correctMap)};
+            const pointsPerQuestion = ${pointsEach};
+            const totalQuestions = ${shuffled.length};
+            const maxAttempts = ${testData.maxAttempts};
+            const storageKey = "test_" + "${escapeHtml(testData.testName)}";
+            let timerSeconds = ${testData.timerMinutes * 60};
+            let timerInterval;
+            function loadAttempts() { return JSON.parse(localStorage.getItem(storageKey) || '[]'); }
+            function saveAttempts(att) { localStorage.setItem(storageKey, JSON.stringify(att)); }
+            function computeScore() { let score = 0; for(let i=0; i<totalQuestions; i++) { let sel = document.querySelector('input[name="q_'+i+'"]:checked'); if(sel && sel.value === correctAnswers[i]) score += pointsPerQuestion; } return score; }
+            function displayResult(score) { document.getElementById('resultArea').innerHTML = '<div class="score-area"><h2>⭐ ${testTexts.scoreLabel} '+score.toFixed(2)+' / ${testData.totalScore}</h2></div>'; }
+            function showAttempts() { let att = loadAttempts(); let html = '<h3>${testTexts.attemptsTitle}</h3><ul>'; att.forEach(a => { html += '<li>'+a.date+' - ${testTexts.scoreLabel} '+a.score.toFixed(2)+' / ${testData.totalScore}</li>'; }); html += '</ul>'; document.getElementById('attemptsArea').innerHTML = html; }
+            function submitHandler() { let att = loadAttempts(); if(att.length >= maxAttempts) { alert("${testTexts.maxAttemptsMsg}"); return; } let score = computeScore(); displayResult(score); att.push({score: score, date: new Date().toLocaleString()}); saveAttempts(att); showAttempts(); if(timerInterval) clearInterval(timerInterval); }
+            function retryHandler() { if(loadAttempts().length >= maxAttempts) { alert("${testTexts.cantRetry}"); return; } document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false); document.getElementById('resultArea').innerHTML = ''; startTimer(); }
+            function startTimer() { if(timerInterval) clearInterval(timerInterval); timerInterval = setInterval(() => { if(timerSeconds <= 0) { clearInterval(timerInterval); alert("${testTexts.timeUp}"); submitHandler(); } else { timerSeconds--; let mins = Math.floor(timerSeconds/60); let secs = timerSeconds%60; document.getElementById('timerDisplay').innerText = mins+':'+(secs<10?'0'+secs:secs); } }, 1000); }
+            document.getElementById('submitBtn').addEventListener('click', submitHandler);
+            document.getElementById('retryBtn').addEventListener('click', retryHandler);
+            document.getElementById('saveManualBtn').addEventListener('click', () => { let newScore = parseFloat(document.getElementById('manualScore').value); if(!isNaN(newScore) && newScore>=0 && newScore<=${testData.totalScore}) { let att = loadAttempts(); if(att.length) { att[att.length-1].score = newScore; saveAttempts(att); showAttempts(); document.getElementById('teacherMsg').innerHTML = '${testTexts.scoreUpdated}'; } } });
+            startTimer(); showAttempts();
+        <\/script></body></html>`;
+        
+        if (isPreview) {
+            const win = window.open();
+            if (win) { win.document.write(finalHtml); win.document.close(); }
+            else alert(currentLang === 'ar' ? 'الرجاء السماح بالنوافذ المنبثقة' : 'Please allow popups');
+        } else {
+            const blob = new Blob([finalHtml], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${testData.testName.replace(/[^a-z0-9]/gi, '_')}_matching_test.html`;
+            a.click();
+            URL.revokeObjectURL(blob);
+        }
+    }
+
+    // ربط الأحداث العامة
+    document.getElementById('saveTestBtn').addEventListener('click', saveTest);
+    document.getElementById('loadTestBtn').addEventListener('click', loadTest);
+    document.getElementById('newTestBtn').addEventListener('click', newTest);
+    document.getElementById('previewBtn').addEventListener('click', () => generateTestFile(true));
+    document.getElementById('generateBtn').addEventListener('click', () => generateTestFile(false));
+    document.getElementById('addQuestionBtn').addEventListener('click', addNewQuestion);
+    document.getElementById('incrementSentences').addEventListener('click', () => setSentencesCount(questions.length + 1));
+    document.getElementById('decrementSentences').addEventListener('click', () => setSentencesCount(questions.length - 1));
+    document.getElementById('numPictures').addEventListener('change', () => { renderPictures(); renderQuestions(); });
+    document.getElementById('totalScore').addEventListener('input', () => {});
+
+    // أزرار الترجمة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLang = btn.getAttribute('data-lang');
+            updateUILanguage();
+        });
+    });
+
+    // تهيئة أولية
+    renderPictures();
+    if (questions.length === 0) addNewQuestion();
+    renderQuestions();
+    refreshLoadSelect();
+    updateUILanguage();
+</script>
+</body>
+</html>

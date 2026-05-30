@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Comprehension Test 07 • READINGS 14, 15 & 16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c2c, #2c5a3a);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c2c, #2c7a4a);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+
+        .instructions {
+            background: #eef4ea;
+            padding: 20px 40px;
+            border-bottom: 2px solid #cde0d0;
+        }
+
+        .instructions h2 {
+            color: #1e4a2e;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instruction-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .instruction-content p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c6e3a;
+            font-size: 0.95rem;
+        }
+
+        .test-content {
+            padding: 30px 40px;
+        }
+
+        .reading-section {
+            margin-bottom: 50px;
+            border: 2px solid #deeae0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .section-header {
+            background: #eef4ea;
+            padding: 18px 25px;
+            border-bottom: 2px solid #deeae0;
+        }
+
+        .section-header h2 {
+            color: #1e4a2e;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-description {
+            color: #4a6a5a;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .texts-to-match {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .match-item {
+            background: #fefef7;
+            border: 2px solid #e0eae0;
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            transition: all 0.2s;
+        }
+
+        .match-item:hover {
+            border-color: #2c7a4a;
+            box-shadow: 0 4px 12px rgba(44,122,74,0.1);
+        }
+
+        .match-number {
+            background: #2c7a4a;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .match-text {
+            flex: 1;
+            font-size: 1rem;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+
+        .match-answer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 1px solid #cbd5e0;
+        }
+
+        .answer-label {
+            font-size: 0.8rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .answer-select {
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid #cbd5e0;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .answer-select:focus {
+            outline: none;
+            border-color: #2c7a4a;
+            box-shadow: 0 0 0 3px rgba(44,122,74,0.2);
+        }
+
+        .options-box {
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 2px solid #deeae0;
+            overflow: hidden;
+        }
+
+        .options-header {
+            background: #e6f0e6;
+            padding: 15px 20px;
+            border-bottom: 2px solid #cfe0d0;
+        }
+
+        .options-header h3 {
+            color: #1e4a2e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .options-note {
+            font-size: 0.8rem;
+            color: #c53030;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2ede2;
+            transition: background 0.2s;
+        }
+
+        .option-item:hover {
+            background: #f1f9f1;
+        }
+
+        .option-letter {
+            background: #2c7a4a;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .actions {
+            padding: 20px 40px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            background: #f8fafc;
+            border-top: 2px solid #deeae0;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back { background: #4a5568; color: white; }
+        .btn-back:hover { background: #2d3748; transform: translateY(-2px); }
+
+        .btn-check { background: #2c7a4a; color: white; }
+        .btn-check:hover { background: #1f5434; transform: translateY(-2px); }
+
+        .btn-reset { background: #e53e3e; color: white; }
+        .btn-reset:hover { background: #c53030; transform: translateY(-2px); }
+
+        .btn-show { background: #38a169; color: white; }
+        .btn-show:hover { background: #2f855a; transform: translateY(-2px); }
+
+        .btn-explanation { background: #805ad5; color: white; }
+        .btn-explanation:hover { background: #6b46c1; transform: translateY(-2px); }
+
+        .results {
+            margin: 0 40px 30px 40px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+            display: none;
+            overflow: hidden;
+            border: 2px solid #deeae0;
+        }
+
+        .results-header {
+            background: linear-gradient(135deg, #1e3c2c, #2c7a4a);
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-results {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .score-container {
+            padding: 30px;
+        }
+
+        .score-display {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .score-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .score-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-circle-bg {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 10;
+        }
+
+        .score-circle-progress {
+            fill: none;
+            stroke: #2c7a4a;
+            stroke-width: 10;
+            stroke-dasharray: 339.292;
+            stroke-dashoffset: 339.292;
+            transition: stroke-dashoffset 0.5s;
+        }
+
+        .score-text {
+            fill: #2d3748;
+            font-size: 1.2rem;
+            font-weight: bold;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+
+        .score-details { flex: 1; }
+        .score-total { font-size: 1.6rem; font-weight: bold; color: #2d3748; margin-bottom: 15px; }
+        .score-label { font-size: 0.9rem; color: #718096; }
+        .score-value { color: #2c7a4a; font-size: 2rem; }
+
+        .score-breakdown {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .breakdown-item {
+            background: #f7fafc;
+            padding: 8px 18px;
+            border-radius: 30px;
+        }
+        .breakdown-label { font-weight: 500; color: #4a5568; }
+        .breakdown-value { font-weight: bold; color: #2c7a4a; margin-left: 8px; }
+
+        .feedback {
+            background: #fffbeb;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 5px solid #ed8936;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-review { background: #805ad5; color: white; }
+        .btn-try-again { background: #38a169; color: white; }
+
+        footer {
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+
+        .correct-match {
+            background: #c6f6d5;
+            border-color: #48bb78;
+        }
+        .incorrect-match {
+            background: #fed7d7;
+            border-color: #f56565;
+        }
+
+        .custom-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #48bb78;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-weight: 500;
+            animation: fadeInUp 0.3s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-book-open"></i> Reading Comprehension Test 07</h1>
+            <p class="subtitle">READINGS 14, 15 & 16 | Grade 07 - Semester 02</p>
+            <div class="header-info">
+                <div class="info-item"><i class="fas fa-clock"></i><span>Time: 35 minutes</span></div>
+                <div class="info-item"><i class="fas fa-question-circle"></i><span>Questions: 12</span></div>
+                <div class="info-item"><i class="fas fa-star"></i><span>Test ID: RC-07</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="instructions">
+        <h2><i class="fas fa-info-circle"></i> Instructions</h2>
+        <div class="instruction-content">
+            <p><i class="fas fa-mouse-pointer"></i> For each text on the left, select the correct matching text from the box on the right.</p>
+            <p><i class="fas fa-exclamation-triangle"></i> There are <strong>two extra texts</strong> in each box that do NOT match any text on the left.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to keywords and main ideas.</p>
+        </div>
+    </div>
+
+    <main class="test-content">
+        <!-- READING 14 (Items 1-4) -->
+        <section class="reading-section">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> READING 14 (Items 1 - 4)</h2>
+                <p class="section-description">Match the four texts on the left with the texts in the box. Two extra texts do not match.</p>
+            </div>
+            <div class="matching-container">
+                <div class="texts-to-match">
+                    <div class="match-item" data-q="1">
+                        <div class="match-number">1</div>
+                        <div class="match-text">Many people believe that robots will become more common in the future because they can do jobs quickly and accurately.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="1">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="2">
+                        <div class="match-number">2</div>
+                        <div class="match-text">When tourists visit a city, they often take photos of famous monuments and learn about the history of the place.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="2">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="3">
+                        <div class="match-number">3</div>
+                        <div class="match-text">Mystery stories keep readers interested because they want to discover what happened and who is responsible.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="3">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="4">
+                        <div class="match-number">4</div>
+                        <div class="match-text">Rainforests are important because they provide homes for many animals and help keep the environment healthy.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="4">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-box">
+                    <div class="options-header">
+                        <h3><i class="fas fa-th-list"></i> Options Box (Reading 14)</h3>
+                        <p class="options-note">Two extra texts do not match any text</p>
+                    </div>
+                    <div class="option-item"><div class="option-letter">A</div><div class="option-text">These books usually contain a problem that is solved at the end of the story.</div></div>
+                    <div class="option-item"><div class="option-letter">B</div><div class="option-text">They are large areas with heavy rainfall and a great variety of plants and animals.</div></div>
+                    <div class="option-item"><div class="option-letter">C</div><div class="option-text">People often visit them to watch football matches and other sports events.</div></div>
+                    <div class="option-item"><div class="option-letter">D</div><div class="option-text">They may help humans by performing tasks that are difficult, dangerous, or repetitive.</div></div>
+                    <div class="option-item"><div class="option-letter">E</div><div class="option-text">Visitors enjoy exploring cultural landmarks and finding out more about local traditions.</div></div>
+                    <div class="option-item"><div class="option-letter">F</div><div class="option-text">It is a place where trains arrive and leave.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- READING 15 (Items 5-8) - New section -->
+        <section class="reading-section">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> READING 15 (Items 5 - 8)</h2>
+                <p class="section-description">Match the four texts on the left with the texts in the box. Two extra texts do not match.</p>
+            </div>
+            <div class="matching-container">
+                <div class="texts-to-match">
+                    <div class="match-item" data-q="5">
+                        <div class="match-number">5</div>
+                        <div class="match-text">A chef needs to be creative and know how to combine different ingredients to make delicious dishes.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="5">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="6">
+                        <div class="match-number">6</div>
+                        <div class="match-text">Libraries are quiet places where people can read, study, and borrow books for free.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="6">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="7">
+                        <div class="match-number">7</div>
+                        <div class="match-text">Volunteering helps people gain new skills and makes a positive difference in the community.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="7">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="8">
+                        <div class="match-number">8</div>
+                        <div class="match-text">The internet allows people to communicate instantly with others around the world.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="8">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-box">
+                    <div class="options-header">
+                        <h3><i class="fas fa-th-list"></i> Options Box (Reading 15)</h3>
+                        <p class="options-note">Two extra texts do not match any text</p>
+                    </div>
+                    <div class="option-item"><div class="option-letter">A</div><div class="option-text">It provides access to information and connects people across continents.</div></div>
+                    <div class="option-item"><div class="option-letter">B</div><div class="option-text">This person prepares meals and often works in restaurants or hotels.</div></div>
+                    <div class="option-item"><div class="option-letter">C</div><div class="option-text">You can find thousands of books, magazines, and computers there.</div></div>
+                    <div class="option-item"><div class="option-letter">D</div><div class="option-text">It is an activity where you offer your time to help others without payment.</div></div>
+                    <div class="option-item"><div class="option-letter">E</div><div class="option-text">They are used to build houses and other structures.</div></div>
+                    <div class="option-item"><div class="option-letter">F</div><div class="option-text">It is a type of animal that lives in the ocean.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- READING 16 (Items 9-12) - Challenge activity -->
+        <section class="reading-section">
+            <div class="section-header">
+                <h2><i class="fas fa-star-of-life"></i> READING 16 (Items 9 - 12) – Challenge</h2>
+                <p class="section-description">Match the four texts on the left with the texts in the box. Two extra texts do not match.</p>
+            </div>
+            <div class="matching-container">
+                <div class="texts-to-match">
+                    <div class="match-item" data-q="9">
+                        <div class="match-number">9</div>
+                        <div class="match-text">Recycling helps reduce waste and protects natural resources for future generations.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="9">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="10">
+                        <div class="match-number">10</div>
+                        <div class="match-text">Physical exercise is important for staying healthy and reducing stress.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="10">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="11">
+                        <div class="match-number">11</div>
+                        <div class="match-text">A pilot has the responsibility to fly passengers safely to their destinations.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="11">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="12">
+                        <div class="match-number">12</div>
+                        <div class="match-text">Museums preserve historical artifacts and teach visitors about the past.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="12">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-box">
+                    <div class="options-header">
+                        <h3><i class="fas fa-th-list"></i> Options Box (Reading 16)</h3>
+                        <p class="options-note">Two extra texts do not match any text</p>
+                    </div>
+                    <div class="option-item"><div class="option-letter">A</div><div class="option-text">It includes activities like running, swimming, and playing sports.</div></div>
+                    <div class="option-item"><div class="option-letter">B</div><div class="option-text">This person controls an aircraft and works for an airline.</div></div>
+                    <div class="option-item"><div class="option-letter">C</div><div class="option-text">They are buildings where valuable objects from history are displayed.</div></div>
+                    <div class="option-item"><div class="option-letter">D</div><div class="option-text">Turning used materials into new products saves energy and landfill space.</div></div>
+                    <div class="option-item"><div class="option-letter">E</div><div class="option-text">It is a machine used to cut wood.</div></div>
+                    <div class="option-item"><div class="option-letter">F</div><div class="option-text">They help farmers grow crops more efficiently.</div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="actions">
+        <button class="btn btn-back" onclick="goBackToMain()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+        <button class="btn btn-check" id="check-btn"><i class="fas fa-check-circle"></i> Check Answers</button>
+        <button class="btn btn-reset" id="reset-btn"><i class="fas fa-redo"></i> Reset All</button>
+        <button class="btn btn-show" id="show-btn"><i class="fas fa-eye"></i> Show Answers</button>
+        <button class="btn btn-explanation" id="explanation-btn"><i class="fas fa-question-circle"></i> Show Explanations</button>
+    </div>
+
+    <div class="results" id="results">
+        <div class="results-header">
+            <h2><i class="fas fa-chart-line"></i> Test Results</h2>
+            <button class="close-results" id="close-results"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="score-container">
+            <div class="score-display">
+                <div class="score-circle">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="score-circle-bg" cx="60" cy="60" r="54"></circle>
+                        <circle class="score-circle-progress" cx="60" cy="60" r="54" id="score-circle"></circle>
+                        <text x="60" y="65" text-anchor="middle" class="score-text" id="score-percent">0%</text>
+                    </svg>
+                </div>
+                <div class="score-details">
+                    <div class="score-total"><span class="score-label">Your Score:</span> <span class="score-value" id="score-value">0</span>/12</div>
+                    <div class="score-breakdown">
+                        <div class="breakdown-item"><span class="breakdown-label">Reading 14:</span><span class="breakdown-value" id="reading-14-score">0/4</span></div>
+                        <div class="breakdown-item"><span class="breakdown-label">Reading 15:</span><span class="breakdown-value" id="reading-15-score">0/4</span></div>
+                        <div class="breakdown-item"><span class="breakdown-label">Reading 16:</span><span class="breakdown-value" id="reading-16-score">0/4</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback" id="feedback"><p>Complete the test to see your results!</p></div>
+            <div class="results-actions">
+                <button class="btn btn-review" id="review-btn"><i class="fas fa-search"></i> Review Answers</button>
+                <button class="btn btn-try-again" id="try-again-btn"><i class="fas fa-sync-alt"></i> Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Reading Comprehension Test 07 &copy; 2024-2025 | Grade 07 - Semester 02</p>
+        <p class="footer-note">Answer key: Reading 14 (1D,2E,3A,4B) | Reading 15 (5B,6C,7D,8A) | Reading 16 (9D,10A,11B,12C)</p>
+    </footer>
+</div>
+
+<script>
+    // Correct answers
+    const CORRECT_ANSWERS = {
+        1: "D", 2: "E", 3: "A", 4: "B",
+        5: "B", 6: "C", 7: "D", 8: "A",
+        9: "D", 10: "A", 11: "B", 12: "C"
+    };
+
+    const EXPLANATIONS = {
+        1: "Robots doing jobs quickly and accurately → 'They may help humans by performing tasks that are difficult, dangerous, or repetitive.' (D)",
+        2: "Tourists visiting monuments and learning history → 'Visitors enjoy exploring cultural landmarks and finding out more about local traditions.' (E)",
+        3: "Mystery stories about discovering what happened → 'These books usually contain a problem that is solved at the end of the story.' (A)",
+        4: "Rainforests providing homes for animals → 'They are large areas with heavy rainfall and a great variety of plants and animals.' (B)",
+        5: "Chef combining ingredients → 'This person prepares meals and often works in restaurants or hotels.' (B)",
+        6: "Libraries for reading and borrowing → 'You can find thousands of books, magazines, and computers there.' (C)",
+        7: "Volunteering helping community → 'It is an activity where you offer your time to help others without payment.' (D)",
+        8: "Internet connecting people worldwide → 'It provides access to information and connects people across continents.' (A)",
+        9: "Recycling reduces waste → 'Turning used materials into new products saves energy and landfill space.' (D)",
+        10: "Exercise for health and stress relief → 'It includes activities like running, swimming, and playing sports.' (A)",
+        11: "Pilot flying passengers → 'This person controls an aircraft and works for an airline.' (B)",
+        12: "Museums preserving history → 'They are buildings where valuable objects from history are displayed.' (C)"
+    };
+
+    function updateProgressCircle(percentage) {
+        const circle = document.getElementById('score-circle');
+        const circumference = 339.292;
+        const offset = circumference - (percentage / 100) * circumference;
+        if (circle) circle.style.strokeDashoffset = offset;
+    }
+
+    function showToast(message, type = 'info') {
+        const existing = document.querySelector('.custom-toast');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+        toast.style.background = type === 'success' ? '#48bb78' : '#2c7a4a';
+        toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
+
+    function resetAll() {
+        document.querySelectorAll('.answer-select').forEach(select => select.value = '');
+        document.querySelectorAll('.match-item').forEach(item => {
+            item.classList.remove('correct-match', 'incorrect-match');
+        });
+        document.getElementById('results').style.display = 'none';
+        showToast('All answers have been reset', 'info');
+    }
+
+    function checkAnswers() {
+        let correctCount = 0;
+        let r14 = 0, r15 = 0, r16 = 0;
+
+        for (let i = 1; i <= 12; i++) {
+            const select = document.querySelector(`.answer-select[data-question="${i}"]`);
+            const userAnswer = select ? select.value : '';
+            const isCorrect = (userAnswer === CORRECT_ANSWERS[i]);
+            if (isCorrect) {
+                correctCount++;
+                if (i <= 4) r14++;
+                else if (i <= 8) r15++;
+                else r16++;
+            }
+            const parentItem = select?.closest('.match-item');
+            if (parentItem) {
+                parentItem.classList.remove('correct-match', 'incorrect-match');
+                if (userAnswer) {
+                    if (isCorrect) parentItem.classList.add('correct-match');
+                    else parentItem.classList.add('incorrect-match');
+                }
+            }
+        }
+
+        const percentage = Math.round((correctCount / 12) * 100);
+        document.getElementById('score-value').innerText = correctCount;
+        document.getElementById('reading-14-score').innerText = `${r14}/4`;
+        document.getElementById('reading-15-score').innerText = `${r15}/4`;
+        document.getElementById('reading-16-score').innerText = `${r16}/4`;
+        document.getElementById('score-percent').innerText = `${percentage}%`;
+        updateProgressCircle(percentage);
+
+        let feedbackMsg = '';
+        if (percentage === 100) feedbackMsg = '🎉 Perfect! Excellent matching skills!';
+        else if (percentage >= 80) feedbackMsg = '🌟 Great job! You understood the passages very well.';
+        else if (percentage >= 60) feedbackMsg = '👍 Good effort! Review the explanations to improve.';
+        else feedbackMsg = '📚 Keep practicing! Read each text carefully and try again.';
+        document.getElementById('feedback').innerHTML = `<p>${feedbackMsg}</p>`;
+
+        document.getElementById('results').style.display = 'block';
+        showToast(`Score: ${correctCount}/12 (${percentage}%)`, 'success');
+    }
+
+    function showAnswers() {
+        for (let i = 1; i <= 12; i++) {
+            const select = document.querySelector(`.answer-select[data-question="${i}"]`);
+            if (select) {
+                select.value = CORRECT_ANSWERS[i];
+                const event = new Event('change');
+                select.dispatchEvent(event);
+            }
+        }
+        showToast('Correct answers have been filled', 'info');
+        checkAnswers();
+    }
+
+    function showExplanations() {
+        let explanationHtml = '<div style="background:#eef5ea; padding:15px; border-radius:16px;"><h4 style="color:#1e4a2e; margin-bottom:12px;"><i class="fas fa-lightbulb"></i> Detailed Explanations:</h4><ul style="list-style:none; padding-left:0;">';
+        for (let i = 1; i <= 12; i++) {
+            explanationHtml += `<li style="margin-bottom:12px; background:white; padding:10px; border-radius:12px;"><strong>Item ${i}:</strong> ${EXPLANATIONS[i]}</li>`;
+        }
+        explanationHtml += '</ul></div>';
+        document.getElementById('feedback').innerHTML = explanationHtml;
+        document.getElementById('results').style.display = 'block';
+    }
+
+    function reviewAnswers() {
+        const incorrectSelects = [];
+        for (let i = 1; i <= 12; i++) {
+            const select = document.querySelector(`.answer-select[data-question="${i}"]`);
+            if (select && select.value !== CORRECT_ANSWERS[i]) {
+                incorrectSelects.push(select);
+            }
+        }
+        if (incorrectSelects.length === 0) {
+            showToast('All answers are correct! 🎉', 'success');
+        } else {
+            incorrectSelects[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            incorrectSelects[0].focus();
+            showToast(`Reviewing first incorrect answer (${incorrectSelects.length} total)`, 'info');
+        }
+    }
+
+    function goBackToMain() {
+        if (confirm('Go back to main activities page? Unsaved progress will be lost.')) {
+            window.location.href = '../Reading 1- Grade 7.html';
+        }
+    }
+
+    // Event listeners
+    document.getElementById('check-btn').addEventListener('click', checkAnswers);
+    document.getElementById('reset-btn').addEventListener('click', resetAll);
+    document.getElementById('show-btn').addEventListener('click', showAnswers);
+    document.getElementById('explanation-btn').addEventListener('click', showExplanations);
+    document.getElementById('close-results').addEventListener('click', () => document.getElementById('results').style.display = 'none');
+    document.getElementById('review-btn').addEventListener('click', reviewAnswers);
+    document.getElementById('try-again-btn').addEventListener('click', () => { resetAll(); document.getElementById('results').style.display = 'none'; });
+
+    // Load FontAwesome and Poppins if missing
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const fa = document.createElement('link');
+        fa.rel = 'stylesheet';
+        fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fa);
+    }
+    if (!document.querySelector('link[href*="Poppins"]')) {
+        const font = document.createElement('link');
+        font.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
+        font.rel = 'stylesheet';
+        document.head.appendChild(font);
+    }
+</script>
+</body>
+</html>

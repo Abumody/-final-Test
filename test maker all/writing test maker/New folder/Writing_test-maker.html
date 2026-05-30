@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ اختبارات الكتابة | Test Maker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #344955;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(74, 101, 114, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-content {
+            padding: 30px;
+            text-align: center;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #f9aa33, #ffb74d, #ffb74d, #4a6572);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #344955, #4a6572);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        h1 i {
+            font-size: 2.8rem;
+            color: #f9aa33;
+        }
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        .lang-btn {
+            background: #f9aa33;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: white;
+        }
+        .lang-btn.active {
+            background: #4a6572;
+            transform: scale(0.98);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(74, 101, 114, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .card h2 {
+            font-size: 1.7rem;
+            color: #344955;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: 4px solid #f9aa33;
+            padding-right: 15px;
+        }
+        .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4a6572;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.2s;
+            background: white;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #f9aa33;
+            box-shadow: 0 0 0 3px rgba(249, 170, 51, 0.2);
+        }
+        textarea {
+            resize: vertical;
+        }
+        .btn-group-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .btn-group-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f9aa33, #ff8a00);
+            color: white;
+        }
+        .btn-secondary {
+            background: #4a6572;
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #4a6572;
+            color: #4a6572;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .color-preview {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+        }
+        .api-status {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .api-status.success {
+            color: #2e7d32;
+        }
+        .api-status.error {
+            color: #c62828;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #4a6572;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- زر تبديل اللغة -->
+    <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+
+    <!-- الترويسة -->
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-pen-fancy"></i> <span data-key="maker_title">منشئ اختبارات الكتابة</span></h1>
+            <p data-key="maker_sub">أنشئ اختباراً متكاملاً بالذكاء الاصطناعي مع تقييم فوري ومراجعة أخطاء</p>
+        </div>
+    </header>
+
+    <!-- الأزرار العلوية (Save, New, Edit, Load) -->
+    <div class="btn-group-top">
+        <button id="saveTestBtn" class="btn btn-secondary"><i class="fas fa-save"></i> <span data-key="save_btn">حفظ الاختبار</span></button>
+        <button id="newTestBtn" class="btn btn-secondary"><i class="fas fa-file"></i> <span data-key="new_btn">جديد</span></button>
+        <button id="editTestBtn" class="btn btn-secondary"><i class="fas fa-edit"></i> <span data-key="edit_btn">تعديل</span></button>
+        <button id="loadTestBtn" class="btn btn-secondary"><i class="fas fa-folder-open"></i> <span data-key="load_btn">تحميل اختبار</span></button>
+    </div>
+
+    <!-- قسم مفتاح API -->
+    <div class="card">
+        <h2><i class="fas fa-key"></i> <span data-key="api_title">مفتاح OpenAI / Gemini API (يُحفظ مرة واحدة)</span></h2>
+        <div class="flex-row">
+            <div class="input-group" style="flex:3;">
+                <input type="password" id="apiKeyInput" placeholder="sk-... أو AIza..." autocomplete="off">
+            </div>
+            <div class="input-group" style="flex:1;">
+                <button id="saveApiBtn" class="btn btn-secondary" style="width:100%;">💾 حفظ المفتاح</button>
+            </div>
+        </div>
+        <div id="apiStatus" class="api-status"></div>
+        <div class="conditions-hint" style="font-size:0.8rem; margin-top:8px;">🔐 سيتم تخزين المفتاح في متصفحك فقط. يدعم Gemini (مجاني) و OpenAI.</div>
+    </div>
+
+    <!-- معلومات الاختبار الأساسية -->
+    <div class="card">
+        <h2><i class="fas fa-info-circle"></i> <span data-key="basic_info">معلومات الاختبار الأساسية</span></h2>
+        <div class="flex-row">
+            <div class="input-group">
+                <label data-key="test_name">اسم الاختبار</label>
+                <input type="text" id="testName" placeholder="مثال: اختبار الكتابة - الفصل الأول">
+            </div>
+            <div class="input-group">
+                <label data-key="grade">الصف / المستوى</label>
+                <input type="text" id="grade" placeholder="Grade 7 / الصف السابع">
+            </div>
+            <div class="input-group">
+                <label data-key="semester">الفصل الدراسي</label>
+                <input type="text" id="semester" placeholder="Semester 1">
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="input-group">
+                <label data-key="timer">المؤقت (بالدقائق)</label>
+                <input type="number" id="timerMinutes" value="30" min="0" step="5">
+                <small data-key="timer_hint">0 = بدون مؤقت</small>
+            </div>
+            <div class="input-group">
+                <label data-key="bg_color">لون خلفية الاختبار</label>
+                <input type="color" id="bgColor" value="#fef3c7">
+                <div class="color-preview" style="background:#fef3c7;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- سؤال الكتابة والشروط -->
+    <div class="card">
+        <h2><i class="fas fa-question-circle"></i> <span data-key="question_section">سؤال الكتابة والشروط</span></h2>
+        <div class="input-group">
+            <label data-key="essay_question">السؤال الأساسي</label>
+            <textarea id="question" rows="3" placeholder="مثال: Do you agree or disagree that artificial intelligence will replace teachers? Justify your opinion with reasons and examples."></textarea>
+        </div>
+        <div class="flex-row">
+            <div class="input-group">
+                <label data-key="min_words">الحد الأدنى لعدد الكلمات</label>
+                <input type="number" id="minWords" value="80" min="20">
+            </div>
+            <div class="input-group">
+                <label data-key="extra_conditions">شروط إضافية (نص حر)</label>
+                <textarea id="extraConditions" rows="2" placeholder="مثال: يجب أن تكون الكتابة منظمة، تحتوي على مقدمة وخاتمة."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- معايير التقييم (Rubric) -->
+    <div class="card">
+        <h2><i class="fas fa-chalkboard-teacher"></i> <span data-key="rubric_section">معايير التقييم (Rubric)</span></h2>
+        <textarea id="rubric" rows="6" placeholder="أدخل المعايير التي يقيّم عليها الذكاء الاصطناعي، مثل:
+- المحتوى والحجج: 30%
+- التنظيم والترابط: 25%
+- الأسلوب والوضوح: 20%
+- القواعد والإملاء: 25%"></textarea>
+        <small data-key="rubric_hint">سيستخدم الذكاء الاصطناعي هذه المعايير ليمنح درجة مفصلة وملاحظات.</small>
+    </div>
+
+    <!-- الأزرار السفلية (Preview و Generate) -->
+    <div class="btn-group-bottom">
+        <button id="previewTestBtn" class="btn btn-outline"><i class="fas fa-eye"></i> <span data-key="preview_btn">معاينة الاختبار</span></button>
+        <button id="generateTestBtn" class="btn btn-primary"><i class="fas fa-magic"></i> <span data-key="generate_btn">إنشاء الاختبار وفتحه</span></button>
+    </div>
+
+    <footer>
+        <p data-key="footer_note">يمكنك حفظ الاختبارات المحلية وتحميلها لاحقاً. استخدم Preview لمعاينة الاختبار قبل الإنشاء.</p>
+    </footer>
+</div>
+
+<script src="test-maker.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ اختبارات الكتابة | Test Maker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+        body{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);padding:30px 20px}
+        .container{max-width:1200px;margin:0 auto}
+        header{background:white;border-radius:20px;padding:20px;text-align:center;margin-bottom:25px}
+        h1{color:#344955}
+        .lang-switch{display:flex;justify-content:flex-end;gap:10px;margin-bottom:20px}
+        .lang-btn{background:#f9aa33;border:none;padding:8px 20px;border-radius:40px;cursor:pointer}
+        .lang-btn.active{background:#4a6572;color:white}
+        .card{background:white;border-radius:20px;padding:25px;margin-bottom:25px}
+        .flex-row{display:flex;flex-wrap:wrap;gap:25px;margin-bottom:20px}
+        .input-group{flex:1}
+        label{display:block;font-weight:600;margin-bottom:8px}
+        input,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px}
+        .btn-group{display:flex;justify-content:center;gap:15px;margin:20px 0;flex-wrap:wrap}
+        .btn{padding:12px 28px;border-radius:40px;font-weight:bold;border:none;cursor:pointer}
+        .btn-primary{background:#f9aa33;color:white}
+        .btn-secondary{background:#4a6572;color:white}
+        .btn-outline{background:transparent;border:1px solid #4a6572;color:#4a6572}
+        .load-section{text-align:center;margin:15px auto;display:flex;justify-content:center;gap:15px;align-items:center}
+        .load-section select{width:250px;padding:10px;border-radius:40px}
+        footer{text-align:center;margin-top:20px;color:#4a6572}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+    <header><h1><i class="fas fa-pen-fancy"></i> <span data-key="maker_title">منشئ اختبارات الكتابة</span></h1>
+    <p data-key="maker_sub">أنشئ اختباراً مع نموذج إجابة وتصحيح تفاعلي وتقييم ومحاولات محدودة</p></header>
+
+    <div class="btn-group">
+        <button id="saveTestBtn" class="btn btn-secondary"><i class="fas fa-save"></i> <span data-key="save_btn">حفظ الاختبار</span></button>
+        <button id="newTestBtn" class="btn btn-secondary"><i class="fas fa-file"></i> <span data-key="new_btn">جديد</span></button>
+        <button id="editTestBtn" class="btn btn-secondary"><i class="fas fa-edit"></i> <span data-key="edit_btn">تعديل</span></button>
+        <button id="loadTestBtn" class="btn btn-secondary"><i class="fas fa-folder-open"></i> <span data-key="load_btn">تحميل اختبار</span></button>
+    </div>
+
+    <div class="load-section">
+        <label data-key="load_select_label">اختر اختباراً محفوظاً:</label>
+        <select id="loadTestSelect"></select>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-info-circle"></i> <span data-key="basic_info">معلومات الاختبار الأساسية</span></h2>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="test_name">اسم الاختبار</label><input type="text" id="testName"></div>
+            <div class="input-group"><label data-key="grade">الصف</label><input type="text" id="grade"></div>
+            <div class="input-group"><label data-key="semester">الفصل</label><input type="text" id="semester"></div>
+        </div>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="timer">المؤقت (دقائق)</label><input type="number" id="timerMinutes" value="30"></div>
+            <div class="input-group"><label data-key="total_score">الدرجة الكلية (Total Score)</label><input type="number" id="totalScore" value="100" min="0" step="1"></div>
+            <div class="input-group"><label data-key="max_attempts">الحد الأقصى للمحاولات</label><input type="number" id="maxAttempts" value="3" min="1" max="10"></div>
+            <div class="input-group"><label data-key="bg_color">لون خلفية الاختبار</label><input type="color" id="bgColor" value="#fef3c7"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-question-circle"></i> <span data-key="question_section">السؤال والشروط</span></h2>
+        <div class="input-group"><label data-key="essay_question">السؤال الأساسي</label><textarea id="question" rows="3"></textarea></div>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="min_words">الحد الأدنى للكلمات</label><input type="number" id="minWords" value="80"></div>
+            <div class="input-group"><label data-key="extra_conditions">شروط إضافية</label><textarea id="extraConditions" rows="2"></textarea></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-star-of-life"></i> <span data-key="model_section">نموذج الإجابة (Model Answer)</span></h2>
+        <textarea id="modelAnswer" rows="6"></textarea>
+        <small data-key="model_hint">سيظهر هذا النموذج في صفحة الاختبار بعد تسليم الإجابة.</small>
+    </div>
+
+    <div class="btn-group">
+        <button id="previewTestBtn" class="btn btn-outline"><i class="fas fa-eye"></i> <span data-key="preview_btn">معاينة الاختبار</span></button>
+        <button id="generateTestBtn" class="btn btn-primary"><i class="fas fa-download"></i> <span data-key="generate_btn">إنشاء ملف الاختبار وتحميله</span></button>
+    </div>
+
+    <footer><p data-key="footer_note">حفظ وتحميل اختبارات متعددة. صفحة الاختبار تدعم التصحيح التفاعلي، إعادة المحاولة، تقييم المعلم، وتسجيل النتائج.</p></footer>
+</div>
+<script src="test-maker.js"></script>
+</body>
+</html>

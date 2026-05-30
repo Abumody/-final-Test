@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Unit 4 – City Life</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="dragdrop.js" defer></script>
+
+</head>
+
+<body>
+
+<h1 class="title">Unit 4: City Life</h1>
+
+<button class="toggle-btn" onclick="toggleArabic()">Show / Hide Arabic</button>
+
+
+<!-- WORD BANK -->
+
+<div class="phrase-bank">
+
+<div class="phrase" draggable="true" data-answer="1">
+the capital city
+<span class="ar">العاصمة</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="2">
+statue
+<span class="ar">تمثال</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="3">
+police station
+<span class="ar">مركز الشرطة</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="4">
+monument
+<span class="ar">معلم</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="5">
+fountain
+<span class="ar">نافورة</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="6">
+clock tower
+<span class="ar">برج الساعة</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="7">
+backpacker
+<span class="ar">الرحالة</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="8">
+tour guide
+<span class="ar">مرشد سياحي</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="9">
+tourist information centre
+<span class="ar">مركز المعلومات السياحية</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="10">
+tourist
+<span class="ar">سائح</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="11">
+luggage
+<span class="ar">أمتعة</span>
+</div>
+
+<div class="phrase" draggable="true" data-answer="12">
+accommodation
+<span class="ar">مكان الإقامة</span>
+</div>
+
+</div>
+
+
+
+<!-- IMAGE GRID -->
+
+<div class="image-grid">
+
+<div class="item">
+<img src="images/capital_city.jpg">
+<div class="drop-box" data-id="1">1</div>
+</div>
+
+<div class="item">
+<img src="images/statue.jpg">
+<div class="drop-box" data-id="2">2</div>
+</div>
+
+<div class="item">
+<img src="images/police_station.jpg">
+<div class="drop-box" data-id="3">3</div>
+</div>
+
+<div class="item">
+<img src="images/monument.jpg">
+<div class="drop-box" data-id="4">4</div>
+</div>
+
+<div class="item">
+<img src="images/fountain.jpg">
+<div class="drop-box" data-id="5">5</div>
+</div>
+
+<div class="item">
+<img src="images/clock_tower.jpg">
+<div class="drop-box" data-id="6">6</div>
+</div>
+
+<div class="item">
+<img src="images/backpacker.jpg">
+<div class="drop-box" data-id="7">7</div>
+</div>
+
+<div class="item">
+<img src="images/tour_guide.jpg">
+<div class="drop-box" data-id="8">8</div>
+</div>
+
+<div class="item">
+<img src="images/information_centre.jpg">
+<div class="drop-box" data-id="9">9</div>
+</div>
+
+<div class="item">
+<img src="images/tourist.jpg">
+<div class="drop-box" data-id="10">10</div>
+</div>
+
+<div class="item">
+<img src="images/luggage.jpg">
+<div class="drop-box" data-id="11">11</div>
+</div>
+
+<div class="item">
+<img src="images/accommodation.jpg">
+<div class="drop-box" data-id="12">12</div>
+</div>
+
+</div>
+
+
+
+<!-- BUTTONS -->
+
+<div class="bottom-area">
+
+<button onclick="checkAnswers()">Submit</button>
+
+<button onclick="history.back()">Back</button>
+
+<p id="resultText"></p>
+
+</div>
+
+</body>
+</html>

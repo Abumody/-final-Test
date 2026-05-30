@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Test Maker - Sentence Based</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <h1>📝 Test Maker</h1>
+      <p>Build sentence-based dropdown tests.</p>
+      
+      <div class="workflow-buttons">
+        <button type="button" id="newBtn" class="btn-workflow">🆕 New</button>
+        <button type="button" id="saveBtn" class="btn-workflow" disabled>💾 Save</button>
+        <button type="button" id="loadBtn" class="btn-workflow">📂 Load</button>
+        <button type="button" id="editBtn" class="btn-workflow" disabled>✏️ Edit</button>
+      </div>
+      
+      <div class="tip-card">
+        <h3>💡 How to use</h3>
+        <ol>
+          <li>Enter test title and grade</li>
+          <li>Set number of sentences (questions)</li>
+          <li>Set number of options per blank</li>
+          <li>Enter each sentence with <code>(1)</code>, <code>(2)</code>, etc.</li>
+          <li>Below each sentence, configure options and correct answer</li>
+          <li>Customize colors → Preview → Generate</li>
+        </ol>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <!-- Metadata Section -->
+      <section class="form-section">
+        <h2>📋 Test Metadata</h2>
+        <div class="grid">
+          <label>Test Title
+            <input type="text" id="testTitle" placeholder="e.g., Grammar Test 01" required>
+          </label>
+          <label>Grade & Semester
+            <input type="text" id="gradeSem" placeholder="e.g., Grade 07 Semester 02" required>
+          </label>
+          <label>Total Score
+            <input type="number" id="totalScore" value="10" min="1" required>
+          </label>
+          <label>Number of Sentences
+            <input type="number" id="qCount" value="5" min="1" max="50" required>
+          </label>
+          <label>Options per Blank
+            <input type="number" id="optionsCount" value="4" min="2" max="6" required>
+          </label>
+        </div>
+      </section>
+
+      <!-- Page Color Section -->
+      <section class="form-section">
+        <h2>🎨 Page Color Customization</h2>
+        <div class="grid">
+          <label>Background Color
+            <select id="bgColor">
+              <option value="linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%)">Green Gradient (Default)</option>
+              <option value="linear-gradient(135deg,#e0f2fe 0%,#bae6fd 100%)">Blue Gradient</option>
+              <option value="linear-gradient(135deg,#fef3c7 0%,#fde68a 100%)">Yellow Gradient</option>
+              <option value="linear-gradient(135deg,#fce7f3 0%,#fbcfe8 100%)">Pink Gradient</option>
+              <option value="linear-gradient(135deg,#e0e7ff 0%,#c7d2fe 100%)">Purple Gradient</option>
+              <option value="#ffffff">White</option>
+              <option value="#f1f5f9">Light Gray</option>
+            </select>
+          </label>
+          <label>Header Color
+            <select id="headerColor">
+              <option value="#4caf50">Green (Default)</option>
+              <option value="#2563eb">Blue</option>
+              <option value="#d97706">Yellow/Orange</option>
+              <option value="#db2777">Pink</option>
+              <option value="#7c3aed">Purple</option>
+              <option value="#dc2626">Red</option>
+            </select>
+          </label>
+          <label>Card Background
+            <select id="cardBgColor">
+              <option value="#ffffff">White (Default)</option>
+              <option value="#f8fafc">Slate</option>
+              <option value="#f0fdf4">Light Green</option>
+              <option value="#eff6ff">Light Blue</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- Sentences and Blanks Section -->
+      <section class="form-section">
+        <h2>📝 Sentences & Blanks Configuration</h2>
+        <p class="hint">Use <code>(1)</code>, <code>(2)</code>, etc. where dropdowns should appear in each sentence.</p>
+        <button type="button" id="syncBlanksBtn" class="btn btn-sm" style="margin-bottom: 1rem;">🔄 Sync Sentences & Blanks</button>
+        <div id="sentencesContainer"></div>
+      </section>
+
+      <!-- Preview Section -->
+      <section class="form-section" id="previewSection" style="display:none;">
+        <div class="section-header">
+          <h2>👁️ Live Preview</h2>
+          <button type="button" id="refreshPreviewBtn" class="btn btn-sm">🔄 Refresh</button>
+        </div>
+        <div class="preview-container">
+          <iframe id="previewFrame" sandbox="allow-scripts"></iframe>
+        </div>
+        <p class="hint">Preview is interactive! Try selecting answers.</p>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="button" id="previewBtn" class="btn btn-outline" disabled>👁️ Show Preview</button>
+        <button type="button" id="generateBtn" class="btn btn-primary" disabled>📥 Generate & Download</button>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Load Exam Modal -->
+  <div id="loadModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📂 Load Saved Exam</h3>
+        <button id="closeLoadModal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="savedExamsList"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

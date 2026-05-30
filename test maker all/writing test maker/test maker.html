@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ اختبارات الكتابة | Test Maker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+        body{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);padding:30px 20px}
+        .container{max-width:1200px;margin:0 auto}
+        header{background:white;border-radius:20px;padding:20px;text-align:center;margin-bottom:25px}
+        h1{color:#344955}
+        .lang-switch{display:flex;justify-content:flex-end;gap:10px;margin-bottom:20px}
+        .lang-btn{background:#f9aa33;border:none;padding:8px 20px;border-radius:40px;cursor:pointer;font-weight:bold}
+        .lang-btn.active{background:#4a6572;color:white}
+        .card{background:white;border-radius:20px;padding:25px;margin-bottom:25px;box-shadow:0 8px 20px rgba(0,0,0,0.05)}
+        .flex-row{display:flex;flex-wrap:wrap;gap:25px;margin-bottom:20px}
+        .input-group{flex:1;min-width:180px}
+        label{display:block;font-weight:600;margin-bottom:8px}
+        input,textarea,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;font-size:1rem}
+        .btn-group{display:flex;justify-content:center;gap:15px;margin:20px 0;flex-wrap:wrap}
+        .btn{padding:12px 28px;border-radius:40px;font-weight:bold;border:none;cursor:pointer;transition:0.2s}
+        .btn-primary{background:#f9aa33;color:white}
+        .btn-secondary{background:#4a6572;color:white}
+        .btn-outline{background:transparent;border:1px solid #4a6572;color:#4a6572}
+        .load-section{text-align:center;margin:15px auto;display:flex;justify-content:center;gap:15px;align-items:center;flex-wrap:wrap}
+        .load-section select{width:250px;padding:10px;border-radius:40px}
+        footer{text-align:center;margin-top:20px;color:#4a6572}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+    <header><h1><i class="fas fa-pen-fancy"></i> <span data-key="maker_title">منشئ اختبارات الكتابة</span></h1>
+    <p data-key="maker_sub">أنشئ اختباراً مع نموذج إجابة وتصحيح تفاعلي وتقييم</p></header>
+
+    <div class="btn-group">
+        <button id="saveTestBtn" class="btn btn-secondary"><i class="fas fa-save"></i> <span data-key="save_btn">حفظ الاختبار</span></button>
+        <button id="newTestBtn" class="btn btn-secondary"><i class="fas fa-file"></i> <span data-key="new_btn">جديد</span></button>
+        <button id="editTestBtn" class="btn btn-secondary"><i class="fas fa-edit"></i> <span data-key="edit_btn">تعديل</span></button>
+        <button id="loadTestBtn" class="btn btn-secondary"><i class="fas fa-folder-open"></i> <span data-key="load_btn">تحميل اختبار</span></button>
+    </div>
+
+    <div class="load-section">
+        <label data-key="load_select_label">اختر اختباراً محفوظاً:</label>
+        <select id="loadTestSelect"></select>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-info-circle"></i> <span data-key="basic_info">معلومات الاختبار الأساسية</span></h2>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="test_name">اسم الاختبار</label><input type="text" id="testName" placeholder="مثال: اختبار الكتابة"></div>
+            <div class="input-group"><label data-key="grade">الصف</label><input type="text" id="grade" placeholder="Grade 7"></div>
+            <div class="input-group"><label data-key="semester">الفصل</label><input type="text" id="semester" placeholder="Semester 1"></div>
+        </div>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="timer">المؤقت (دقائق)</label><input type="number" id="timerMinutes" value="30"></div>
+            <div class="input-group"><label data-key="total_score">الدرجة الكلية (Total Score)</label><input type="number" id="totalScore" value="100" min="0"></div>
+            <div class="input-group"><label data-key="max_attempts">الحد الأقصى للمحاولات</label><input type="number" id="maxAttempts" value="3" min="1"></div>
+            <div class="input-group"><label data-key="bg_color">لون خلفية الاختبار</label><input type="color" id="bgColor" value="#fef3c7"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-question-circle"></i> <span data-key="question_section">السؤال والشروط</span></h2>
+        <div class="input-group"><label data-key="essay_question">السؤال الأساسي</label><textarea id="question" rows="3" placeholder="اكتب سؤال المقال هنا..."></textarea></div>
+        <div class="flex-row">
+            <div class="input-group"><label data-key="min_words">الحد الأدنى للكلمات</label><input type="number" id="minWords" value="80"></div>
+            <div class="input-group"><label data-key="extra_conditions">شروط إضافية</label><textarea id="extraConditions" rows="2" placeholder="شروط إضافية للطالب"></textarea></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-star-of-life"></i> <span data-key="model_section">نموذج الإجابة (Model Answer)</span></h2>
+        <textarea id="modelAnswer" rows="5" placeholder="اكتب نموذج الإجابة هنا... سيظهر بعد تسليم الإجابة"></textarea>
+        <small data-key="model_hint">سيظهر هذا النموذج في صفحة الاختبار بعد أن يضغط الطالب على 'حفظ التصحيح' أول مرة.</small>
+    </div>
+
+    <div class="btn-group">
+        <button id="previewTestBtn" class="btn btn-outline"><i class="fas fa-eye"></i> <span data-key="preview_btn">معاينة الاختبار</span></button>
+        <button id="generateTestBtn" class="btn btn-primary"><i class="fas fa-download"></i> <span data-key="generate_btn">إنشاء ملف الاختبار وتحميله</span></button>
+    </div>
+
+    <footer><p data-key="footer_note">حفظ وتحميل اختبارات متعددة. صفحة الاختبار الناتجة تدعم التصحيح التفاعلي وإعادة المحاولة وتقييم المعلم.</p></footer>
+</div>
+
+<script>
+    // ------------------- الترجمة الثنائية -------------------
+    const translations = {
+        ar: {
+            maker_title: "منشئ اختبارات الكتابة", maker_sub: "أنشئ اختباراً مع نموذج إجابة وتصحيح تفاعلي وتقييم",
+            basic_info: "معلومات الاختبار الأساسية", test_name: "اسم الاختبار", grade: "الصف", semester: "الفصل",
+            timer: "المؤقت (دقائق)", total_score: "الدرجة الكلية", bg_color: "لون خلفية الاختبار", max_attempts: "الحد الأقصى للمحاولات",
+            question_section: "السؤال والشروط", essay_question: "السؤال الأساسي", min_words: "الحد الأدنى للكلمات",
+            extra_conditions: "شروط إضافية", model_section: "نموذج الإجابة", model_hint: "سيظهر في صفحة الاختبار بعد تسليم الإجابة",
+            preview_btn: "معاينة الاختبار", generate_btn: "إنشاء ملف الاختبار وتحميله",
+            save_btn: "حفظ الاختبار", load_btn: "تحميل اختبار", new_btn: "جديد", edit_btn: "تعديل",
+            load_select_label: "اختر اختباراً محفوظاً:", footer_note: "حفظ وتحميل اختبارات متعددة."
+        },
+        en: {
+            maker_title: "Writing Test Maker", maker_sub: "Create a test with model answer, interactive correction & grading",
+            basic_info: "Basic Test Information", test_name: "Test Name", grade: "Grade", semester: "Semester",
+            timer: "Timer (minutes)", total_score: "Total Score", bg_color: "Background Color", max_attempts: "Maximum Attempts",
+            question_section: "Question & Conditions", essay_question: "Essay Question", min_words: "Minimum Words",
+            extra_conditions: "Extra Conditions", model_section: "Model Answer", model_hint: "Appears after submission",
+            preview_btn: "Preview Test", generate_btn: "Generate & Download Test File",
+            save_btn: "Save Test", load_btn: "Load Test", new_btn: "New", edit_btn: "Edit",
+            load_select_label: "Select a saved test:", footer_note: "Save and load multiple tests."
+        }
+    };
+    let currentLang = 'ar';
+
+    function updateUILanguage() {
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[currentLang][key]) {
+                if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.hasAttribute('placeholder')) {
+                    el.placeholder = translations[currentLang][key];
+                } else {
+                    el.innerText = translations[currentLang][key];
+                }
+            }
+        });
+        document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        const loadLabel = document.querySelector('.load-section label');
+        if (loadLabel) loadLabel.innerText = translations[currentLang].load_select_label;
+        const select = document.getElementById('loadTestSelect');
+        if (select && select.options.length && select.options[0].value === '') {
+            select.options[0].text = currentLang === 'ar' ? '-- اختبار محفوظ --' : '-- Saved test --';
+        }
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLang = btn.getAttribute('data-lang');
+            updateUILanguage();
+        });
+    });
+    updateUILanguage();
+
+    // ------------------- إدارة الاختبارات -------------------
+    function getAllSavedTests() { return JSON.parse(localStorage.getItem('saved_tests_list') || '[]'); }
+    function saveTestsList(tests) { localStorage.setItem('saved_tests_list', JSON.stringify(tests)); }
+    function refreshLoadSelect() {
+        const select = document.getElementById('loadTestSelect');
+        if (!select) return;
+        const tests = getAllSavedTests();
+        select.innerHTML = `<option value="">${currentLang === 'ar' ? '-- اختبار محفوظ --' : '-- Saved test --'}</option>`;
+        tests.forEach(t => {
+            const opt = document.createElement('option');
+            opt.value = t.name;
+            opt.textContent = `${t.name} (${t.data.testName || t.name})`;
+            select.appendChild(opt);
+        });
+    }
+    function getCurrentTestData() {
+        return {
+            testName: document.getElementById('testName')?.value || "Writing Test",
+            grade: document.getElementById('grade')?.value || "Grade 7",
+            semester: document.getElementById('semester')?.value || "Semester 1",
+            timerMinutes: parseInt(document.getElementById('timerMinutes')?.value) || 0,
+            totalScore: parseInt(document.getElementById('totalScore')?.value) || 100,
+            maxAttempts: parseInt(document.getElementById('maxAttempts')?.value) || 3,
+            bgColor: document.getElementById('bgColor')?.value || "#fef3c7",
+            question: document.getElementById('question')?.value || "Write an essay about...",
+            minWords: parseInt(document.getElementById('minWords')?.value) || 80,
+            extraConditions: document.getElementById('extraConditions')?.value || "",
+            modelAnswer: document.getElementById('modelAnswer')?.value || ""
+        };
+    }
+    function setCurrentTestData(data) {
+        document.getElementById('testName').value = data.testName || "";
+        document.getElementById('grade').value = data.grade || "";
+        document.getElementById('semester').value = data.semester || "";
+        document.getElementById('timerMinutes').value = data.timerMinutes || 0;
+        document.getElementById('totalScore').value = data.totalScore || 100;
+        document.getElementById('maxAttempts').value = data.maxAttempts || 3;
+        document.getElementById('bgColor').value = data.bgColor || "#fef3c7";
+        document.getElementById('question').value = data.question || "";
+        document.getElementById('minWords').value = data.minWords || 80;
+        document.getElementById('extraConditions').value = data.extraConditions || "";
+        document.getElementById('modelAnswer').value = data.modelAnswer || "";
+    }
+    function saveTest() {
+        let name = prompt(currentLang === 'ar' ? 'أدخل اسماً لهذا الاختبار:' : 'Enter a name for this test:', getCurrentTestData().testName);
+        if (!name) return;
+        let tests = getAllSavedTests();
+        let idx = tests.findIndex(t => t.name === name);
+        let newData = getCurrentTestData();
+        if (idx !== -1) {
+            if (confirm(currentLang === 'ar' ? `اختبار "${name}" موجود، استبدال؟` : `Test "${name}" exists, overwrite?`)) tests[idx].data = newData;
+            else return;
+        } else {
+            tests.push({ name, data: newData });
+        }
+        saveTestsList(tests);
+        refreshLoadSelect();
+        alert(currentLang === 'ar' ? `تم حفظ "${name}"` : `Saved "${name}"`);
+    }
+    function loadTest() {
+        let select = document.getElementById('loadTestSelect');
+        let name = select.value;
+        if (!name) { alert(currentLang === 'ar' ? 'اختر اختباراً من القائمة' : 'Select a test'); return; }
+        let tests = getAllSavedTests();
+        let found = tests.find(t => t.name === name);
+        if (found) setCurrentTestData(found.data);
+        else alert('Not found');
+    }
+    function newTest() { if (confirm(currentLang === 'ar' ? 'مسح البيانات الحالية؟' : 'Clear current data?')) setCurrentTestData({ timerMinutes:30, totalScore:100, maxAttempts:3, bgColor:'#fef3c7', minWords:80 }); }
+    function editTest() { alert(currentLang === 'ar' ? 'عدّل الحقول ثم استخدم حفظ' : 'Edit fields then use Save'); }
+
+    // ------------------- توليد صفحة الاختبار -------------------
+    function generateTestPage(isPreview) {
+        const data = getCurrentTestData();
+        const lang = currentLang;
+        const escape = str => str ? str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])) : '';
+        const t = {
+            ar: {
+                essay_q: "سؤال المقالة", conditions: "الشروط:", min_words: "الحد الأدنى للكلمات:",
+                model_title: "نموذج الإجابة (ظهر بعد تسليم الإجابة):", your_answer: "إجابتك:",
+                correction_btn: "🔧 تصحيح الأخطاء (نقر على الكلمة)", save_corr_btn: "💾 حفظ التصحيح (تسليم الإجابة)",
+                retry_btn: "🔄 محاولة جديدة", word_count: "عدد الكلمات:", attempts_title: "المحاولات السابقة",
+                no_attempts: "لا توجد محاولات", correction_mode_on: "وضع التصحيح مفعّل", correction_off: "تم إلغاء التصحيح",
+                saved: "تم الحفظ", time_up: "انتهى الوقت!", teacher_evaluation: "تقييم المعلم",
+                student_score: "درجة الطالب", save_score: "حفظ الدرجة", out_of: "من", score_saved: "تم حفظ الدرجة",
+                back_dashboard: "العودة إلى لوحة التحكم"
+            },
+            en: {
+                essay_q: "Essay Question", conditions: "Conditions:", min_words: "Minimum words:",
+                model_title: "Model Answer (shown after submission):", your_answer: "Your Answer:",
+                correction_btn: "🔧 Correct errors (click on word)", save_corr_btn: "💾 Save Correction (Submit Answer)",
+                retry_btn: "🔄 New Attempt", word_count: "Word count:", attempts_title: "Previous attempts",
+                no_attempts: "No attempts yet", correction_mode_on: "Correction mode active", correction_off: "Correction off",
+                saved: "Saved", time_up: "Time is up!", teacher_evaluation: "Teacher's Evaluation",
+                student_score: "Student Score", save_score: "Save Score", out_of: "out of", score_saved: "Score saved",
+                back_dashboard: "Back to Dashboard"
+            }
+        }[lang];
+
+        const testHTML = `<!DOCTYPE html><html lang="${lang}" dir="${lang === 'ar' ? 'rtl' : 'ltr'}">
+<head><meta charset="UTF-8"><title>${escape(data.testName)}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:${data.bgColor};padding:20px}
+.container{max-width:1300px;margin:0 auto}
+header{background:white;border-radius:20px;padding:20px;text-align:center;margin-bottom:25px}
+h1{color:#344955}
+.test-info{display:flex;justify-content:center;gap:20px;margin:10px 0;flex-wrap:wrap}
+.badge{background:#f9aa33;padding:5px 15px;border-radius:40px;color:white}
+.card{background:white;border-radius:20px;padding:25px;margin-bottom:25px}
+.question-box{background:#fef9ef;border:2px solid #f9aa33;border-radius:20px;padding:20px;text-align:center}
+.question-text{font-size:1.8rem;font-weight:bold;margin:15px 0}
+.conditions{background:#fff8e7;padding:15px;border-radius:15px;margin:15px 0}
+.answer-container{border:2px solid #ccc;border-radius:20px;padding:20px;min-height:200px;background:#fff;margin-top:10px;white-space:pre-wrap;line-height:1.6}
+button{margin:10px 5px 0 0;padding:10px 20px;border-radius:40px;background:#f9aa33;border:none;cursor:pointer}
+.corrected-word{background:#fff3cd;border-bottom:2px solid #ffc107}
+.attempt-history{max-height:300px;overflow-y:auto;margin-top:20px;padding-top:15px}
+.attempt-item{padding:10px;border-bottom:1px solid #ddd;cursor:pointer}
+.attempt-item:hover{background:#f5f5f5}
+.model-answer{background:#e8f0fe;padding:15px;border-radius:15px;margin:15px 0;display:none}
+.evaluation-box{background:#e0f2fe;padding:15px;border-radius:15px;margin:15px 0}
+.evaluation-box input{width:100px;padding:8px;border-radius:20px;border:1px solid #ccc;margin:0 5px}
+.status{font-size:0.9rem;margin-top:8px;color:#2e7d32}
+.back-btn{background:#4a6572;color:white}
+</style></head>
+<body><div class="container">
+<header><h1>${escape(data.testName)}</h1><div class="test-info">
+<span class="badge">📖 ${escape(data.grade)}</span>
+<span class="badge">📅 ${escape(data.semester)}</span>
+<span class="badge">⏱️ ${data.timerMinutes} ${lang === 'ar' ? 'دقيقة' : 'min'}</span>
+<span class="badge">🎯 ${t.out_of} ${data.totalScore}</span>
+<span class="badge" id="attemptsBadge">${lang === 'ar' ? 'المحاولات:' : 'Attempts:'} 0 / ${data.maxAttempts}</span>
+</div></header>
+<div class="card">
+<div class="question-box"><h2>${t.essay_q}</h2><div class="question-text">${escape(data.question)}</div></div>
+<div class="conditions"><strong>${t.conditions}</strong> ${escape(data.extraConditions || '-')}<br>
+<strong>${t.min_words}</strong> ${data.minWords}</div>
+<div class="model-answer" id="modelAnswerDiv"><strong>${t.model_title}</strong><br>${escape(data.modelAnswer) || '-'}</div>
+<label>${t.your_answer}</label>
+<div class="answer-container" id="answerContainer" contenteditable="true"></div>
+<div><button id="correctionBtn"><i class="fas fa-edit"></i> ${t.correction_btn}</button>
+<button id="saveCorrBtn"><i class="fas fa-save"></i> ${t.save_corr_btn}</button>
+<button id="retryBtn"><i class="fas fa-redo"></i> ${t.retry_btn}</button>
+<button id="backBtn" class="back-btn"><i class="fas fa-arrow-left"></i> ${t.back_dashboard}</button></div>
+<div>${t.word_count} <span id="wordCount">0</span></div>
+<div class="evaluation-box" id="evalBox">
+<strong>${t.teacher_evaluation}</strong><br>
+${t.student_score}: <input type="number" id="scoreInput" min="0" max="${data.totalScore}" step="0.5" value="0"> ${t.out_of} ${data.totalScore}
+<button id="saveScoreBtn"><i class="fas fa-check"></i> ${t.save_score}</button>
+</div>
+<div id="statusMsg" class="status"></div>
+</div>
+<div class="card"><h3>${t.attempts_title}</h3><div id="attemptsList"></div></div>
+</div>
+<script>
+const testData = ${JSON.stringify(data)};
+const lang = '${lang}';
+const t = ${JSON.stringify(t)};
+const MAX_ATTEMPTS = testData.maxAttempts;
+let attempts = [], currentIdx = -1, correctionMode = false, modelAnswerShown = false;
+const ATTEMPTS_KEY = 'attempts_' + testData.testName;
+const RESULTS_KEY = "examResults";
+
+function loadAttempts() {
+    const stored = localStorage.getItem(ATTEMPTS_KEY);
+    if(stored) attempts = JSON.parse(stored);
+    if(attempts.length===0) {
+        attempts.push({ id: Date.now(), text: "", timestamp: new Date().toLocaleString(), lastEdited: null, score: null });
+        saveAttempts();
+    }
+    currentIdx = attempts.length-1;
+    updateAttemptsBadge();
+    renderAttemptsList();
+    if(attempts.length >= MAX_ATTEMPTS) document.getElementById('retryBtn').disabled = true;
+}
+function saveAttempts() { localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(attempts)); updateAttemptsBadge(); }
+function updateAttemptsBadge() { document.getElementById('attemptsBadge').innerHTML = (lang==='ar'?'المحاولات:':'Attempts:') + ' ' + attempts.length + ' / ' + MAX_ATTEMPTS; }
+function updateWordCount(){ const text=document.getElementById('answerContainer').innerText; const words=text.trim().split(/\\s+/).filter(w=>w.length>0).length; document.getElementById('wordCount').innerText=words; }
+function renderText(text){ document.getElementById('answerContainer').innerText = text; updateWordCount(); }
+function saveCorrections(){
+    if(attempts.length===0){ alert(lang==='ar'?'لا توجد محاولة':'No attempt'); return; }
+    attempts[currentIdx].text = document.getElementById('answerContainer').innerText;
+    attempts[currentIdx].lastEdited = new Date().toLocaleString();
+    saveAttempts(); renderAttemptsList();
+    document.getElementById('statusMsg').innerHTML='✅ '+t.saved;
+    setTimeout(()=>document.getElementById('statusMsg').innerHTML='',2000);
+    if(!modelAnswerShown){ document.getElementById('modelAnswerDiv').style.display='block'; modelAnswerShown=true; }
+}
+function saveScore(){
+    let newScore = parseFloat(document.getElementById('scoreInput').value);
+    if(isNaN(newScore)) newScore=0;
+    if(attempts.length===0) return;
+    attempts[currentIdx].score = newScore;
+    saveAttempts(); renderAttemptsList();
+    let examResults = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    examResults.push({
+        student: localStorage.getItem('currentStudent') || 'guest',
+        testId: testData.testName.toLowerCase().replace(/\\s+/g, '_'),
+        score: newScore + '/' + testData.totalScore,
+        date: new Date().toLocaleString(),
+        attemptNumber: attempts.length
+    });
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(examResults));
+    document.getElementById('statusMsg').innerHTML='✅ '+t.score_saved;
+    setTimeout(()=>document.getElementById('statusMsg').innerHTML='',2000);
+}
+function newAttempt(){
+    if(attempts.length >= MAX_ATTEMPTS){ alert(t.max_attempts_reached); return; }
+    let newObj = { id: Date.now(), text: "", timestamp: new Date().toLocaleString(), lastEdited: null, score: null };
+    attempts.push(newObj); currentIdx = attempts.length-1;
+    renderText("");
+    saveAttempts(); renderAttemptsList();
+    correctionMode=false; document.getElementById('correctionBtn').style.background='#f9aa33'; document.getElementById('correctionBtn').innerHTML='<i class="fas fa-edit"></i> '+t.correction_btn;
+    document.getElementById('scoreInput').value=0;
+    if(attempts.length >= MAX_ATTEMPTS) document.getElementById('retryBtn').disabled=true;
+    document.getElementById('statusMsg').innerHTML = lang==='ar'?'محاولة جديدة':'New attempt';
+}
+function renderAttemptsList(){
+    const container = document.getElementById('attemptsList');
+    if(attempts.length===0){ container.innerHTML='<p>'+t.no_attempts+'</p>'; return; }
+    let html='';
+    attempts.forEach((att,i)=>{
+        let preview = att.text.substring(0,60)+(att.text.length>60?'...':'');
+        let scoreText = (att.score!==undefined && att.score!==null) ? ' | 🎯 ' + att.score + '/' + testData.totalScore : '';
+        html+='<div class="attempt-item" data-idx="'+i+'"><strong>'+(lang==='ar'?'محاولة':'Attempt')+' '+(i+1)+'</strong> - '+att.timestamp+scoreText+(att.lastEdited?' <span style="color:#2e7d32">(✏️ '+att.lastEdited+')</span>':'')+'<br><small>'+preview+'</small></div>';
+    });
+    container.innerHTML = html;
+    document.querySelectorAll('.attempt-item').forEach(el=>{
+        el.addEventListener('click',()=>{
+            let idx = parseInt(el.dataset.idx);
+            if(!isNaN(idx) && attempts[idx]){
+                currentIdx=idx; renderText(attempts[idx].text);
+                correctionMode=false; document.getElementById('correctionBtn').style.background='#f9aa33'; document.getElementById('correctionBtn').innerHTML='<i class="fas fa-edit"></i> '+t.correction_btn;
+                document.getElementById('scoreInput').value = attempts[idx].score || 0;
+                document.getElementById('statusMsg').innerHTML=lang==='ar'?'عرض محاولة سابقة':'Viewing previous attempt';
+            }
+        });
+    });
+}
+function toggleCorrection(){
+    correctionMode = !correctionMode;
+    const btn = document.getElementById('correctionBtn');
+    const container = document.getElementById('answerContainer');
+    if(correctionMode){
+        btn.style.background='#ff9800'; btn.innerHTML='<i class="fas fa-times"></i> '+(lang==='ar'?'إلغاء التصحيح':'Exit correction');
+        document.getElementById('statusMsg').innerHTML=t.correction_mode_on;
+        const text = container.innerText;
+        if(text.trim().length>0){
+            const words = text.split(/(\\s+)/);
+            container.innerHTML = '';
+            words.forEach(word=>{
+                if(word.trim().length===0) container.appendChild(document.createTextNode(word));
+                else{
+                    const span = document.createElement('span');
+                    span.textContent = word;
+                    span.style.display='inline-block'; span.style.margin='0 2px'; span.style.cursor='pointer';
+                    span.addEventListener('click',(e)=>{
+                        e.stopPropagation();
+                        if(!correctionMode) return;
+                        let newWord = prompt(lang==='ar'?'تصحيح الكلمة:':'Correct word:', span.textContent);
+                        if(newWord && newWord!==span.textContent){ span.textContent=newWord; span.classList.add('corrected-word'); updateWordCount(); document.getElementById('statusMsg').innerHTML='✅ '+t.saved; setTimeout(()=>document.getElementById('statusMsg').innerHTML='',2000); }
+                    });
+                    container.appendChild(span);
+                }
+            });
+        }
+    } else {
+        btn.style.background='#f9aa33'; btn.innerHTML='<i class="fas fa-edit"></i> '+t.correction_btn;
+        document.getElementById('statusMsg').innerHTML=t.correction_off;
+        let plainText = '';
+        container.childNodes.forEach(node=>{
+            if(node.nodeType===Node.TEXT_NODE) plainText += node.textContent;
+            else if(node.tagName==='SPAN') plainText += node.textContent;
+        });
+        container.innerText = plainText;
+        updateWordCount();
+    }
+}
+function backToDashboard(){ window.location.href = 'dashboard.html'; }
+loadAttempts();
+renderText(attempts[currentIdx].text);
+if(attempts[currentIdx].score) document.getElementById('scoreInput').value = attempts[currentIdx].score;
+document.getElementById('correctionBtn').addEventListener('click', toggleCorrection);
+document.getElementById('saveCorrBtn').addEventListener('click', saveCorrections);
+document.getElementById('retryBtn').addEventListener('click', newAttempt);
+document.getElementById('saveScoreBtn').addEventListener('click', saveScore);
+document.getElementById('backBtn').addEventListener('click', backToDashboard);
+document.getElementById('answerContainer').addEventListener('input', updateWordCount);
+if(testData.timerMinutes>0){
+    let remaining = testData.timerMinutes*60;
+    const timerEl = document.createElement('span'); timerEl.className='badge'; timerEl.id='timerDisplay'; document.querySelector('.test-info').appendChild(timerEl);
+    const interval = setInterval(()=>{ let m=Math.floor(remaining/60), s=remaining%60; timerEl.innerHTML='⏱️ '+m+':'+(s<10?'0'+s:s); if(remaining<=0){ clearInterval(interval); alert(t.time_up); } remaining--; },1000);
+}
+<\/script></body></html>`;
+
+        if (isPreview) {
+            const win = window.open();
+            if (win) {
+                win.document.write(testHTML);
+                win.document.close();
+            } else {
+                alert(lang === 'ar' ? 'السماح للنوافذ المنبثقة' : 'Allow popups');
+            }
+        } else {
+            const blob = new Blob([testHTML], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${data.testName.replace(/[^a-z0-9]/gi, '_')}.html`;
+            a.click();
+            URL.revokeObjectURL(blob);
+        }
+    }
+
+    function previewTest() { generateTestPage(true); }
+    function downloadTest() { generateTestPage(false); }
+
+    document.getElementById('saveTestBtn').addEventListener('click', saveTest);
+    document.getElementById('loadTestBtn').addEventListener('click', loadTest);
+    document.getElementById('newTestBtn').addEventListener('click', newTest);
+    document.getElementById('editTestBtn').addEventListener('click', editTest);
+    document.getElementById('previewTestBtn').addEventListener('click', previewTest);
+    document.getElementById('generateTestBtn').addEventListener('click', downloadTest);
+    refreshLoadSelect();
+</script>
+</body>
+</html>

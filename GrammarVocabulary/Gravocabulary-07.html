@@ -1,266 +1,587 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar/Vocabulary 07 - Grade 07</title>
-    <link rel="stylesheet" href="Gravocabulary-00.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grammar &amp; Vocabs - Trip to Paris</title>
+  <style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+body{background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);color:#1b5e20;line-height:1.6;min-height:100vh;padding:20px}
+.container{max-width:1200px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 15px 35px rgba(76,175,80,0.2);overflow:hidden;border:2px solid #4caf50}
+header{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white;padding:30px 40px;text-align:center;position:relative;overflow:hidden}
+h1{font-size:2.2rem;margin-bottom:10px;position:relative;z-index:1;text-shadow:2px 2px 4px rgba(0,0,0,0.2)}
+.subtitle{font-size:1.2rem;opacity:0.9;position:relative;z-index:1}
+.instructions{background:#f1f8e9;padding:25px 40px;border-bottom:2px solid #c8e6c9}
+.instructions p{font-size:1.2rem;color:#2e7d32;margin-bottom:15px;font-weight:600;text-align:center}
+.instructions-tips{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:15px}
+.tip{background:white;padding:10px 20px;border-radius:25px;font-size:0.95rem;color:#555;display:flex;align-items:center;gap:8px;box-shadow:0 3px 8px rgba(0,0,0,0.1)}
+.passage-container{padding:30px 40px}
+.passage-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:3px solid #e8f5e9}
+.passage-header h2{color:#2e7d32;font-size:1.8rem;margin:0}
+.progress-indicator{background:#4caf50;color:white;padding:10px 20px;border-radius:20px;font-weight:600;font-size:1.1rem;box-shadow:0 4px 8px rgba(76,175,80,0.3)}
+.passage-content{display:grid;grid-template-columns:2fr 1fr;gap:40px;align-items:start}
+@media(max-width:992px){.passage-content{grid-template-columns:1fr}}
+.passage-text{background:#f9f9f9;padding:35px;border-radius:15px;border:2px solid #e0f2e1;line-height:1.8;font-size:1.2rem;color:#333}
+.passage-text p{margin-bottom:25px}
+.dropdown-wrapper{display:inline-block;position:relative;margin:0 5px;min-width:150px;vertical-align:middle}
+.dropdown-wrapper:hover .question-number{opacity:1;transform:translateY(-5px)}
+.question-number{position:absolute;top:-25px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:bold;opacity:0.7;transition:all 0.3s ease;z-index:10}
+.word-dropdown{width:100%;padding:12px 15px;font-size:1.1rem;border:2px solid #a5d6a7;border-radius:10px;background:white;color:#2e7d32;cursor:pointer;transition:all 0.3s ease;appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234caf50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 15px center;background-size:20px;padding-right:45px;font-weight:500}
+.word-dropdown:hover{border-color:#4caf50;box-shadow:0 4px 8px rgba(76,175,80,0.2);transform:translateY(-2px)}
+.word-dropdown:focus{outline:none;border-color:#2e7d32;box-shadow:0 0 0 3px rgba(76,175,80,0.3)}
+.word-dropdown.empty{color:#999;border-style:dashed;background-color:#f9f9f9}
+.word-dropdown.selected{background-color:#e3f2fd;border-color:#2196f3;color:#0d47a1}
+.word-dropdown.correct{background-color:#c8e6c9;border-color:#4caf50;color:#2e7d32;animation:pulse 0.5s ease}
+.word-dropdown.incorrect{background-color:#ffcdd2;border-color:#f44336;color:#c62828;animation:shake 0.5s ease}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.passage-sidebar{display:flex;flex-direction:column;gap:25px}
+.sidebar-card{background:white;padding:25px;border-radius:15px;border:2px solid #e0f2e1;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
+.sidebar-card h3{color:#2e7d32;margin-bottom:20px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.icon{font-size:1.2rem}
+.guide-steps{display:flex;flex-direction:column;gap:15px}
+.step{display:flex;align-items:center;gap:15px;padding:12px;background:#f9f9f9;border-radius:10px;transition:all 0.3s ease}
+.step:hover{background:#e8f5e9;transform:translateX(5px)}
+.step-number{background:#4caf50;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.9rem;flex-shrink:0}
+.step-text{color:#555;font-size:0.95rem}
+.progress-bar-container{margin-top:10px}
+.progress-bar{height:12px;background:#e0e0e0;border-radius:6px;overflow:hidden;margin-bottom:10px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#4caf50,#2e7d32);width:0%;transition:width 0.5s ease;border-radius:6px}
+.progress-text{display:flex;justify-content:space-between;font-size:0.9rem;color:#666}
+.legend-items{display:flex;flex-direction:column;gap:12px}
+.legend-item{display:flex;align-items:center;gap:12px}
+.color-box{width:20px;height:20px;border-radius:4px;border:2px solid transparent;flex-shrink:0}
+.color-box.empty{background:#f9f9f9;border-color:#a5d6a7;border-style:dashed}
+.color-box.selected{background:#e3f2fd;border-color:#2196f3}
+.color-box.correct{background:#c8e6c9;border-color:#4caf50}
+.color-box.incorrect{background:#ffcdd2;border-color:#f44336}
+.legend-item span{color:#555;font-size:0.9rem}
+.action-buttons{background:#f1f8e9;padding:30px 40px;border-top:2px solid #c8e6c9;display:flex;justify-content:center;gap:25px;flex-wrap:wrap}
+.btn{padding:18px 35px;border:none;border-radius:12px;font-size:1.2rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;display:flex;align-items:center;gap:12px;min-width:200px;justify-content:center;box-shadow:0 6px 12px rgba(0,0,0,0.15)}
+.btn:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.2)}
+.btn:active{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white}
+.btn-primary:hover{background:linear-gradient(135deg,#43a047,#1b5e20);box-shadow:0 10px 20px rgba(76,175,80,0.4)}
+.btn-secondary{background:linear-gradient(135deg,#757575,#616161);color:white}
+.btn-secondary:hover{background:linear-gradient(135deg,#6d6d6d,#545454);box-shadow:0 10px 20px rgba(117,117,117,0.4)}
+.btn-back{background:linear-gradient(135deg,#2196f3,#1976d2);color:white}
+.btn-back:hover{background:linear-gradient(135deg,#1e88e5,#1565c0);box-shadow:0 10px 20px rgba(33,150,243,0.4)}
+.btn-outline{background:transparent;border:2px solid #4caf50;color:#4caf50;box-shadow:none}
+.btn-outline:hover{background:#4caf50;color:white;box-shadow:0 10px 20px rgba(76,175,80,0.4)}
+.btn-icon{font-size:1.3rem}
+.results-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s ease}
+.results-modal.show{opacity:1;visibility:visible}
+.modal-content{background:white;border-radius:25px;width:100%;max-width:900px;max-height:90vh;overflow-y:auto;animation:modalSlideUp 0.5s ease;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white;padding:30px 40px;border-radius:25px 25px 0 0;display:flex;justify-content:space-between;align-items:center}
+.modal-header h2{font-size:1.8rem;margin:0;display:flex;align-items:center;gap:12px}
+.close-modal{background:rgba(255,255,255,0.2);border:none;width:45px;height:45px;border-radius:50%;font-size:1.8rem;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+.close-modal:hover{background:rgba(255,255,255,0.3);transform:rotate(90deg)}
+.modal-body{padding:40px}
+.score-section{display:grid;grid-template-columns:1fr 2fr;gap:40px;margin-bottom:40px;align-items:center}
+@media(max-width:768px){.score-section{grid-template-columns:1fr;gap:30px}}
+.score-display{display:flex;align-items:center;gap:30px}
+.score-circle{background:linear-gradient(135deg,#4caf50,#2e7d32);width:150px;height:150px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;box-shadow:0 10px 25px rgba(76,175,80,0.4)}
+.score-value{font-size:3.5rem;font-weight:bold;line-height:1}
+.score-total{font-size:1.5rem;opacity:0.9}
+.score-info{text-align:center}
+.percentage{font-size:2.5rem;font-weight:bold;color:#4caf50;margin-bottom:5px}
+.score-label{color:#666;font-size:1.1rem}
+.feedback{background:#f1f8e9;padding:25px;border-radius:15px;border-left:5px solid #4caf50}
+.feedback h3{color:#2e7d32;margin-bottom:15px;font-size:1.4rem}
+.feedback p{color:#555;line-height:1.6;margin-bottom:15px}
+.details-section h3{color:#2e7d32;margin-bottom:25px;font-size:1.4rem;display:flex;align-items:center;gap:10px}
+.answers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.answer-card{padding:20px;border-radius:12px;border:2px solid #e0f2e1;transition:all 0.3s ease;background:white}
+.answer-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+.answer-card.correct{border-color:#4caf50;background:#f1f8e9}
+.answer-card.incorrect{border-color:#f44336;background:#ffebee}
+.answer-card.unanswered{border-color:#ff9800;background:#fff3e0}
+.answer-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px;padding-bottom:10px;border-bottom:1px dashed #e0e0e0}
+.answer-number{background:#4caf50;color:white;width:35px;height:35px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1rem}
+.answer-status{font-size:0.9rem;font-weight:600;padding:5px 15px;border-radius:15px}
+.answer-status.correct{background:#4caf50;color:white}
+.answer-status.incorrect{background:#f44336;color:white}
+.answer-status.unanswered{background:#ff9800;color:white}
+.answer-details{font-size:0.95rem;color:#555}
+.answer-details div{margin-bottom:8px}
+.answer-details strong{color:#333}
+.modal-footer{padding:30px 40px;background:#f9f9f9;border-radius:0 0 25px 25px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.modal-footer .btn{min-width:180px}
+@media(max-width:768px){.container{margin:10px;padding:15px}header,.instructions,.passage-container,.action-buttons{padding:20px}h1{font-size:1.8rem}.passage-header{flex-direction:column;gap:15px;text-align:center}.passage-text{padding:25px;font-size:1.1rem}.dropdown-wrapper{min-width:130px}.word-dropdown{padding:10px 12px;font-size:1rem;padding-right:40px}.btn{min-width:100%;padding:16px 25px;font-size:1.1rem}.modal-body{padding:25px}.modal-footer{padding:25px;flex-direction:column}.modal-footer .btn{width:100%}.answers-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.score-display{flex-direction:column;text-align:center}.score-circle{width:120px;height:120px}.score-value{font-size:2.8rem}.percentage{font-size:2rem}.action-buttons{flex-direction:column}}
+.pulse{animation:pulseAnimation 1s ease}.focused .word-dropdown{border-color:#2196f3;box-shadow:0 0 0 3px rgba(33,150,243,0.3)}@keyframes pulseAnimation{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.toast-notification{position:fixed;top:20px;right:20px;background:white;padding:15px 20px;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.15);display:flex;align-items:center;gap:12px;z-index:9999;transform:translateX(100%);opacity:0;transition:all 0.3s ease;border-left:4px solid #4caf50;max-width:300px}
+.toast-notification.show{transform:translateX(0);opacity:1}
+.toast-success{border-left-color:#4caf50}
+.toast-info{border-left-color:#2196f3}
+.toast-icon{font-size:1.2rem}
+.toast-message{color:#333;font-weight:500}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>GRAMMAR/VOCABULARY 07 (Items 1 - 10)</h1>
-            <p class="subtitle">Grade 07 Semester 02 2024-2025</p>
-        </header>
-        
-        <div class="instructions">
-            <p><strong>Read the passage about Ahmed's summer holiday. For each numbered blank, select the correct option from the dropdown menu.</strong></p>
-            <div class="instructions-tips">
-                <span class="tip">💡 Click on each blank to see the options</span>
-                <span class="tip">✅ Choose the best word for each sentence</span>
-            </div>
-        </div>
-        
-        <!-- Main Passage with Dropdowns -->
-        <div class="passage-container">
-            <div class="passage-header">
-                <h2>A Summer Holiday in Nizwa</h2>
-                <div class="progress-indicator">
-                    <span id="answeredCount">0</span>/10 answered
-                </div>
-            </div>
-            
-            <div class="passage-content">
-                <div class="passage-text">
-                    <p>Last summer, Ahmed and his family 
-                        <span class="dropdown-wrapper" data-question="1">
-                            <select class="word-dropdown" id="dropdown1" data-correct="visited">
-                                <option value="">(Select)</option>
-                                <option value="visited">visited</option>
-                                <option value="played">played</option>
-                                <option value="read">read</option>
-                            </select>
-                            <span class="question-number">1</span>
-                        </span> 
-                        their uncle in Nizwa. They stayed 
-                        <span class="dropdown-wrapper" data-question="2">
-                            <select class="word-dropdown" id="dropdown2" data-correct="for">
-                                <option value="">(Select)</option>
-                                <option value="to">to</option>
-                                <option value="for">for</option>
-                                <option value="with">with</option>
-                            </select>
-                            <span class="question-number">2</span>
-                        </span> 
-                        seven days. He had a big 
-                        <span class="dropdown-wrapper" data-question="3">
-                            <select class="word-dropdown" id="dropdown3" data-correct="farm">
-                                <option value="">(Select)</option>
-                                <option value="school">school</option>
-                                <option value="farm">farm</option>
-                                <option value="shop">shop</option>
-                            </select>
-                            <span class="question-number">3</span>
-                        </span>. 
-                        He grew 
-                        <span class="dropdown-wrapper" data-question="4">
-                            <select class="word-dropdown" id="dropdown4" data-correct="many">
-                                <option value="">(Select)</option>
-                                <option value="many">many</option>
-                                <option value="a lot">a lot</option>
-                                <option value="much">much</option>
-                            </select>
-                            <span class="question-number">4</span>
-                        </span> 
-                        trees like palm trees, mangoes, bananas 
-                        <span class="dropdown-wrapper" data-question="5">
-                            <select class="word-dropdown" id="dropdown5" data-correct="and">
-                                <option value="">(Select)</option>
-                                <option value="and">and</option>
-                                <option value="in">in</option>
-                                <option value="on">on</option>
-                            </select>
-                            <span class="question-number">5</span>
-                        </span> 
-                        lemons.</p>
-                    
-                    <p>He kept 
-                        <span class="dropdown-wrapper" data-question="6">
-                            <select class="word-dropdown" id="dropdown6" data-correct="animals">
-                                <option value="">(Select)</option>
-                                <option value="fish">fish</option>
-                                <option value="birds">birds</option>
-                                <option value="animals">animals</option>
-                            </select>
-                            <span class="question-number">6</span>
-                        </span> 
-                        such as goats and cows. Ahmed helped his uncle in 
-                        <span class="dropdown-wrapper" data-question="7">
-                            <select class="word-dropdown" id="dropdown7" data-correct="milking">
-                                <option value="">(Select)</option>
-                                <option value="driving">driving</option>
-                                <option value="milking">milking</option>
-                                <option value="growing">growing</option>
-                            </select>
-                            <span class="question-number">7</span>
-                        </span> 
-                        the cows.</p>
-                    
-                    <p>Ahmed's children enjoyed playing 
-                        <span class="dropdown-wrapper" data-question="8">
-                            <select class="word-dropdown" id="dropdown8" data-correct="in">
-                                <option value="">(Select)</option>
-                                <option value="in">in</option>
-                                <option value="out">out</option>
-                                <option value="from">from</option>
-                            </select>
-                            <span class="question-number">8</span>
-                        </span> 
-                        the farm and watching the animals. Every evening, they sat together to hear some interesting 
-                        <span class="dropdown-wrapper" data-question="9">
-                            <select class="word-dropdown" id="dropdown9" data-correct="stories">
-                                <option value="">(Select)</option>
-                                <option value="films">films</option>
-                                <option value="books">books</option>
-                                <option value="stories">stories</option>
-                            </select>
-                            <span class="question-number">9</span>
-                        </span>. 
-                        They spent a nice 
-                        <span class="dropdown-wrapper" data-question="10">
-                            <select class="word-dropdown" id="dropdown10" data-correct="time">
-                                <option value="">(Select)</option>
-                                <option value="time">time</option>
-                                <option value="place">place</option>
-                                <option value="work">work</option>
-                            </select>
-                            <span class="question-number">10</span>
-                        </span>.</p>
-                </div>
-                
-                <div class="passage-sidebar">
-                    <div class="sidebar-card">
-                        <h3><span class="icon">📌</span> Quick Guide</h3>
-                        <div class="guide-steps">
-                            <div class="step">
-                                <div class="step-number">1</div>
-                                <div class="step-text">Read the entire story first</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-number">2</div>
-                                <div class="step-text">Click on any blank to see options</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-number">3</div>
-                                <div class="step-text">Choose the word that fits best</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-number">4</div>
-                                <div class="step-text">Check your answers when ready</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-card status-card">
-                        <h3><span class="icon">📊</span> Your Progress</h3>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" id="progressBar">
-                                <div class="progress-fill"></div>
-                            </div>
-                            <div class="progress-text">
-                                <span id="progressText">0% Complete</span>
-                                <span id="answeredText">0/10 answered</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-card legend-card">
-                        <h3><span class="icon">🎨</span> Color Guide</h3>
-                        <div class="legend-items">
-                            <div class="legend-item">
-                                <div class="color-box empty"></div>
-                                <span>Not answered</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-box selected"></div>
-                                <span>Answered</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-box correct"></div>
-                                <span>Correct answer</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-box incorrect"></div>
-                                <span>Incorrect answer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button class="btn btn-secondary" id="resetBtn">
-                <span class="btn-icon">🔄</span> Clear All Answers
-            </button>
-            <button class="btn btn-primary" id="checkBtn">
-                <span class="btn-icon">✓</span> Check My Answers
-            </button>
-            <button class="btn btn-back" id="backBtn">
-                <span class="btn-icon">←</span> Back to Activities
-            </button>
-        </div>
-        
-        <!-- Results Modal -->
-        <div class="results-modal" id="resultsModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2><span class="icon">📊</span> Test Results</h2>
-                    <button class="close-modal" id="closeModalBtn">×</button>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="score-section">
-                        <div class="score-display">
-                            <div class="score-circle">
-                                <div class="score-value" id="scoreValue">0</div>
-                                <div class="score-total">/10</div>
-                            </div>
-                            <div class="score-info">
-                                <div class="percentage" id="percentageValue">0%</div>
-                                <div class="score-label">Success Rate</div>
-                            </div>
-                        </div>
-                        
-                        <div class="feedback" id="feedback">
-                            <!-- Feedback will be inserted here -->
-                        </div>
-                    </div>
-                    
-                    <div class="details-section">
-                        <h3><span class="icon">📋</span> Answer Details</h3>
-                        <div class="answers-grid" id="answersGrid">
-                            <!-- Answer details will be inserted here -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-footer">
-                    <button class="btn btn-outline" id="reviewBtn">
-                        <span class="btn-icon">👁️</span> Review Answers
-                    </button>
-                    <button class="btn btn-secondary" id="tryAgainBtn">
-                        <span class="btn-icon">🔄</span> Try Again
-                    </button>
-                    <button class="btn btn-primary" id="continueBtn">
-                        <span class="btn-icon">→</span> Continue
-                    </button>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <header>
+      <h1>Grammar &amp; Vocabs</h1>
+      <p class="subtitle">Topic: Planning a Trip to Paris</p>
+    </header>
+    <div class="instructions">
+      <p>Read the passage carefully. For each numbered blank, select the correct option from the dropdown menu.</p>
+      <div class="instructions-tips">
+        <div class="tip">💡 Click on each blank to see the options</div>
+        <div class="tip">✅ Choose the best word for each sentence</div>
+      </div>
     </div>
+    <div class="passage-container">
+      <div class="passage-header">
+        <h2>📖 My Dream Vacation</h2>
+        <div class="progress-indicator"><span id="answeredCount">0/5</span> answered</div>
+      </div>
+      <div class="passage-content">
+        <div class="passage-text">
+          <p>Next summer, I finally have the chance to visit Paris. I think I <span class="dropdown-wrapper">
+           <select id="dropdown1" class="word-dropdown" data-correct="will">
+             <option value="">Select...</option>
+             <option value="might" >might</option>
+             <option value="will" data-correct="true">will</option>
+             <option value="has" >has</option>
+           </select>
+           <span class="question-number">1</span>
+         </span> save enough money for the trip. I want to become a travel <span class="dropdown-wrapper">
+           <select id="dropdown2" class="word-dropdown" data-correct="journalist">
+             <option value="">Select...</option>
+             <option value="journalist" data-correct="true">journalist</option>
+             <option value="hairdresser" >hairdresser</option>
+             <option value="dentist" >dentist</option>
+           </select>
+           <span class="question-number">2</span>
+         </span> who writes about amazing places. I’m learning French now, <span class="dropdown-wrapper">
+           <select id="dropdown3" class="word-dropdown" data-correct="becuase">
+             <option value="">Select...</option>
+             <option value="because" >because</option>
+             <option value="so" >so</option>
+             <option value="but" >but</option>
+           </select>
+           <span class="question-number">3</span>
+         </span> I want to talk with local people. I also <span class="dropdown-wrapper">
+           <select id="dropdown4" class="word-dropdown" data-correct="may">
+             <option value="">Select...</option>
+             <option value="will" >will</option>
+             <option value="may" data-correct="true">may</option>
+             <option value="mustn't" >mustn't</option>
+           </select>
+           <span class="question-number">4</span>
+         </span> visit the Eiffel Tower and the Louvre Museum, but I’m not sure about the dates. Later, I hope to find a good <span class="dropdown-wrapper">
+           <select id="dropdown5" class="word-dropdown" data-correct="job">
+             <option value="">Select...</option>
+             <option value="degree" >degree</option>
+             <option value="job" data-correct="true">job</option>
+             <option value="business" >business</option>
+           </select>
+           <span class="question-number">5</span>
+         </span> as a tour guide or writer. Paris is waiting for me!</p>
+        </div>
+        <div class="passage-sidebar">
+          <div class="sidebar-card">
+            <h3><span class="icon">📌</span> Quick Guide</h3>
+            <div class="guide-steps">
+              <div class="step"><div class="step-number">1</div><div class="step-text">Read the entire story first</div></div>
+              <div class="step"><div class="step-number">2</div><div class="step-text">Click on any blank to see options</div></div>
+              <div class="step"><div class="step-number">3</div><div class="step-text">Choose the word that fits best</div></div>
+              <div class="step"><div class="step-number">4</div><div class="step-text">Check your answers when ready</div></div>
+            </div>
+          </div>
+          <div class="sidebar-card">
+            <h3><span class="icon">📊</span> Your Progress</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar"><div class="progress-fill"></div></div>
+              <div class="progress-text">
+                <span id="progressText">0% Complete</span>
+                <span id="answeredText">0/5 answered</span>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-card">
+            <h3><span class="icon">🎨</span> Color Guide</h3>
+            <div class="legend-items">
+              <div class="legend-item"><div class="color-box empty"></div><span>Not answered</span></div>
+              <div class="legend-item"><div class="color-box selected"></div><span>Answered</span></div>
+              <div class="legend-item"><div class="color-box correct"></div><span>Correct answer</span></div>
+              <div class="legend-item"><div class="color-box incorrect"></div><span>Incorrect answer</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <button type="button" id="checkBtn" class="btn btn-primary"><span class="btn-icon">✓</span> Check My Answers</button>
+      <button type="button" id="resetBtn" class="btn btn-secondary"><span class="btn-icon">🔄</span> Clear All Answers</button>
+      <button type="button" id="backBtn" class="btn btn-back"><span class="btn-icon">←</span> Back to Activities</button>
+    </div>
+  </div>
 
-    <script src="Script.js"></script>
+  <div id="resultsModal" class="results-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📊 Test Results</h2>
+        <button id="closeModalBtn" class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="score-section">
+          <div class="score-display">
+            <div class="score-circle">
+              <div class="score-value" id="scoreValue">0</div>
+              <div class="score-total">/5</div>
+            </div>
+            <div class="score-info">
+              <div class="percentage" id="percentageValue">0%</div>
+              <div class="score-label">Success Rate</div>
+            </div>
+          </div>
+          <div class="feedback" id="feedback">
+            <h3>Ready to check your work?</h3>
+            <p>Select answers and click "Check My Answers" to see your score.</p>
+          </div>
+        </div>
+        <div class="details-section">
+          <h3>📋 Answer Details</h3>
+          <div id="answersGrid" class="answers-grid"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="reviewBtn" class="btn btn-outline">👁️ Review Answers</button>
+        <button id="tryAgainBtn" class="btn btn-secondary">🔄 Try Again</button>
+        <button id="continueBtn" class="btn btn-primary">→ Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function() {
+  const totalQuestions = 5;
+  
+  function initializeDropdowns() {
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('change', function() { handleDropdownChange(this); });
+      dropdown.addEventListener('focus', function() { highlightQuestionNumber(this, true); });
+      dropdown.addEventListener('blur', function() { highlightQuestionNumber(this, false); });
+      updateDropdownState(dropdown);
+    });
+  }
+  
+  function updateDropdownState(dropdown) {
+    dropdown.classList.remove('empty', 'selected', 'correct', 'incorrect');
+    dropdown.classList.add(dropdown.value ? 'selected' : 'empty');
+  }
+  
+  function highlightQuestionNumber(dropdown, isHighlighted) {
+    const wrapper = dropdown.parentElement;
+    const questionNumSpan = wrapper.querySelector('.question-number');
+    if (questionNumSpan) {
+      if (isHighlighted) {
+        questionNumSpan.style.backgroundColor = '#2196f3';
+        questionNumSpan.style.transform = 'translateX(-50%) scale(1.2)';
+      } else {
+        questionNumSpan.style.backgroundColor = dropdown.value ? '#2196f3' : '#4caf50';
+        questionNumSpan.style.transform = 'translateX(-50%) scale(1)';
+      }
+    }
+  }
+  
+  function handleDropdownChange(dropdown) {
+    updateDropdownState(dropdown);
+    highlightQuestionNumber(dropdown, false);
+    updateProgress();
+    autoSaveProgress();
+  }
+  
+  function updateProgress() {
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    let answeredCount = 0;
+    dropdowns.forEach(dropdown => { if (dropdown.value) answeredCount++; });
+    
+    const answeredCountElement = document.getElementById('answeredCount');
+    if (answeredCountElement) {
+      answeredCountElement.textContent = answeredCount + '/' + totalQuestions + ' answered';
+    }
+    
+    const progressFill = document.querySelector('.progress-fill');
+    const progressText = document.getElementById('progressText');
+    const answeredText = document.getElementById('answeredText');
+    
+    if (progressFill && progressText && answeredText) {
+      const percentage = Math.round((answeredCount / totalQuestions) * 100);
+      progressFill.style.width = percentage + '%';
+      progressText.textContent = percentage + '% Complete';
+      answeredText.textContent = answeredCount + '/' + totalQuestions + ' answered';
+    }
+  }
+  
+  function checkAnswers() {
+    let correctCount = 0;
+    const results = [];
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      dropdown.classList.remove('correct', 'incorrect');
+    });
+    
+    dropdowns.forEach(dropdown => {
+      const questionNumber = dropdown.id.replace('dropdown', '');
+      const correctAnswer = dropdown.getAttribute('data-correct');
+      const userAnswer = dropdown.value;
+      
+      if (userAnswer) {
+        if (userAnswer === correctAnswer) {
+          dropdown.classList.add('correct');
+          correctCount++;
+          results.push({ question: questionNumber, status: 'correct', userAnswer: userAnswer, correctAnswer: correctAnswer });
+        } else {
+          dropdown.classList.add('incorrect');
+          results.push({ question: questionNumber, status: 'incorrect', userAnswer: userAnswer, correctAnswer: correctAnswer });
+        }
+      } else {
+        results.push({ question: questionNumber, status: 'unanswered', userAnswer: null, correctAnswer: correctAnswer });
+      }
+    });
+    
+    showResults(correctCount, results);
+  }
+  
+  function showResults(correctCount, results) {
+    const modal = document.getElementById('resultsModal');
+    const scoreValue = document.getElementById('scoreValue');
+    const percentageValue = document.getElementById('percentageValue');
+    const feedback = document.getElementById('feedback');
+    const answersGrid = document.getElementById('answersGrid');
+    
+    if (!modal) return;
+    
+    scoreValue.textContent = correctCount;
+    const percentage = Math.round((correctCount / totalQuestions) * 100);
+    percentageValue.textContent = percentage + '%';
+    
+    let feedbackHTML = '';
+    if (correctCount === totalQuestions) {
+      feedbackHTML = '<h3>🎉 Perfect Score!</h3><p>Excellent work! You answered all ' + totalQuestions + ' questions correctly.</p>';
+    } else if (percentage >= 80) {
+      feedbackHTML = '<h3>🌟 Excellent Work!</h3><p>Great job! You got ' + correctCount + ' out of ' + totalQuestions + ' correct (' + percentage + '%).</p>';
+    } else if (percentage >= 60) {
+      feedbackHTML = '<h3>👍 Good Effort!</h3><p>You got ' + correctCount + ' out of ' + totalQuestions + ' correct (' + percentage + '%).</p>';
+    } else {
+      feedbackHTML = '<h3>📚 Keep Practicing!</h3><p>You got ' + correctCount + ' out of ' + totalQuestions + ' correct (' + percentage + '%).</p>';
+    }
+    feedback.innerHTML = feedbackHTML;
+    
+    let answersHTML = '';
+    results.forEach(result => {
+      const statusClass = result.status;
+      const statusText = result.status === 'correct' ? 'Correct' : (result.status === 'incorrect' ? 'Incorrect' : 'Not Answered');
+      const statusIcon = result.status === 'correct' ? '✅' : (result.status === 'incorrect' ? '❌' : '⭕');
+      answersHTML += '<div class="answer-card ' + statusClass + '" data-question="' + result.question + '">' +
+        '<div class="answer-header">' +
+        '<div class="answer-number">' + result.question + '</div>' +
+        '<div class="answer-status ' + statusClass + '">' + statusIcon + ' ' + statusText + '</div>' +
+        '</div>' +
+        '<div class="answer-details">' +
+        '<div><strong>Correct Answer:</strong> <span style="color:#4caf50;font-weight:bold;">' + escapeHtmlStatic(result.correctAnswer) + '</span></div>' +
+        (result.userAnswer ? '<div><strong>Your Answer:</strong> <span style="color:' + (result.status === 'correct' ? '#4caf50' : '#f44336') + ';font-weight:bold;">' + escapeHtmlStatic(result.userAnswer) + '</span></div>' : '<div><strong>Your Answer:</strong> <em style="color:#ff9800;">Not selected</em></div>') +
+        '</div></div>';
+    });
+    answersGrid.innerHTML = answersHTML;
+    
+    document.querySelectorAll('.answer-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const questionNum = this.getAttribute('data-question');
+        navigateToQuestion(questionNum);
+      });
+    });
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function navigateToQuestion(questionNum) {
+    closeModal();
+    setTimeout(() => {
+      const dropdown = document.getElementById('dropdown' + questionNum);
+      if (dropdown) {
+        dropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        dropdown.focus();
+        dropdown.parentElement.classList.add('focused', 'pulse');
+        setTimeout(() => {
+          dropdown.parentElement.classList.remove('focused', 'pulse');
+        }, 3000);
+      }
+    }, 300);
+  }
+  
+  function resetAllAnswers() {
+    document.querySelectorAll('.word-dropdown').forEach(d => {
+      d.value = '';
+      updateDropdownState(d);
+    });
+    document.querySelectorAll('.question-number').forEach(n => {
+      n.style.backgroundColor = '#4caf50';
+      n.style.transform = 'translateX(-50%) scale(1)';
+    });
+    closeModal();
+    updateProgress();
+    localStorage.removeItem('grammarTestProgress');
+    showToast('All answers have been reset!', 'success');
+  }
+  
+  function closeModal() {
+    const modal = document.getElementById('resultsModal');
+    if (modal) {
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+  }
+  
+  function reviewAnswers() {
+    closeModal();
+    setTimeout(() => {
+      const dropdowns = document.querySelectorAll('.word-dropdown');
+      let targetDropdown = null;
+      for (let dropdown of dropdowns) {
+        if (dropdown.classList.contains('incorrect') || !dropdown.value) {
+          targetDropdown = dropdown;
+          break;
+        }
+      }
+      if (targetDropdown) {
+        navigateToQuestion(targetDropdown.id.replace('dropdown', ''));
+      } else {
+        const firstDropdown = document.getElementById('dropdown1');
+        if (firstDropdown) navigateToQuestion('1');
+      }
+    }, 300);
+  }
+  
+  function goBack() {
+    if (hasUnsavedProgress()) {
+      if (confirm('You have unsaved progress. Are you sure you want to leave?')) {
+        window.location.href = '../Grammar & Vocabulary Activities - Grade 7.html';
+      }
+    } else {
+      window.location.href = '../Grammar & Vocabulary Activities - Grade 7.html';
+    }
+  }
+  
+  function hasUnsavedProgress() {
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    for (let dropdown of dropdowns) {
+      if (dropdown.value) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  function showToast(message, type) {
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification toast-' + (type || 'info');
+    toast.innerHTML = '<span class="toast-icon">' + (type === 'success' ? '✅' : 'ℹ️') + '</span><span class="toast-message">' + message + '</span>';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 10);
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+  
+  function escapeHtmlStatic(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+  
+  let saveTimeout;
+  function autoSaveProgress() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      const selections = {};
+      document.querySelectorAll('.word-dropdown').forEach(d => {
+        selections[d.id.replace('dropdown', '')] = d.value;
+      });
+      localStorage.setItem('grammarTestProgress', JSON.stringify(selections));
+    }, 1000);
+  }
+  
+  function loadSavedProgress() {
+    try {
+      const saved = localStorage.getItem('grammarTestProgress');
+      if (saved) {
+        const selections = JSON.parse(saved);
+        let loadedCount = 0;
+        Object.keys(selections).forEach(questionNumber => {
+          const dropdown = document.getElementById('dropdown' + questionNumber);
+          if (dropdown && selections[questionNumber]) {
+            dropdown.value = selections[questionNumber];
+            updateDropdownState(dropdown);
+            loadedCount++;
+          }
+        });
+        if (loadedCount > 0) {
+          updateProgress();
+          showToast('Loaded ' + loadedCount + ' saved answers', 'success');
+        }
+      }
+    } catch(e) {
+      console.error('Error loading progress:', e);
+    }
+  }
+  
+  function initializeButtons() {
+    const checkBtn = document.getElementById('checkBtn');
+    if (checkBtn) checkBtn.addEventListener('click', checkAnswers);
+    
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', resetAllAnswers);
+    
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) backBtn.addEventListener('click', goBack);
+    
+    const tryAgainBtn = document.getElementById('tryAgainBtn');
+    if (tryAgainBtn) tryAgainBtn.addEventListener('click', function() { resetAllAnswers(); closeModal(); });
+    
+    const reviewBtn = document.getElementById('reviewBtn');
+    if (reviewBtn) reviewBtn.addEventListener('click', reviewAnswers);
+    
+    const continueBtn = document.getElementById('continueBtn');
+    if (continueBtn) continueBtn.addEventListener('click', closeModal);
+    
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    
+    const modal = document.getElementById('resultsModal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeDropdowns();
+      initializeButtons();
+      updateProgress();
+      loadSavedProgress();
+    });
+  } else {
+    initializeDropdowns();
+    initializeButtons();
+    updateProgress();
+    loadSavedProgress();
+  }
+})();
+</script>
 </body>
 </html>

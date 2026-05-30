@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Comprehension Test 03</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #1a2632);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+
+        .instructions {
+            background: #f0f4f8;
+            padding: 20px 40px;
+            border-bottom: 2px solid #e0e8f0;
+        }
+
+        .instructions h2 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instruction-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .instruction-content p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        .test-content {
+            padding: 30px 40px;
+        }
+
+        .reading-section {
+            margin-bottom: 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .section-header {
+            background: #f7fafc;
+            padding: 18px 25px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-header h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-description {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .texts-to-match {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .match-item {
+            background: #fefef5;
+            border: 2px solid #e0e7ff;
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            transition: all 0.2s;
+        }
+
+        .match-item:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 4px 12px rgba(139,92,246,0.1);
+        }
+
+        .match-number {
+            background: #8b5cf6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .match-text {
+            flex: 1;
+            font-size: 1rem;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+
+        .match-answer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 1px solid #cbd5e0;
+        }
+
+        .answer-label {
+            font-size: 0.8rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .answer-select {
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid #cbd5e0;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .answer-select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139,92,246,0.2);
+        }
+
+        .options-box {
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .options-header {
+            background: #e6f0fa;
+            padding: 15px 20px;
+            border-bottom: 2px solid #d0e0f0;
+        }
+
+        .options-header h3 {
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .options-note {
+            font-size: 0.8rem;
+            color: #e53e3e;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+
+        .option-item:hover {
+            background: #f1f5f9;
+        }
+
+        .option-letter {
+            background: #8b5cf6;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .actions {
+            padding: 20px 40px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            background: #f8fafc;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            background: #4a5568;
+            color: white;
+        }
+        .btn-back:hover { background: #2d3748; transform: translateY(-2px); }
+
+        .btn-check {
+            background: #8b5cf6;
+            color: white;
+        }
+        .btn-check:hover { background: #7c3aed; transform: translateY(-2px); }
+
+        .btn-reset {
+            background: #e53e3e;
+            color: white;
+        }
+        .btn-reset:hover { background: #c53030; transform: translateY(-2px); }
+
+        .btn-show {
+            background: #38a169;
+            color: white;
+        }
+        .btn-show:hover { background: #2f855a; transform: translateY(-2px); }
+
+        .btn-explanation {
+            background: #3182ce;
+            color: white;
+        }
+        .btn-explanation:hover { background: #2c5282; transform: translateY(-2px); }
+
+        .results {
+            margin: 0 40px 30px 40px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+            display: none;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+        }
+
+        .results-header {
+            background: linear-gradient(135deg, #2c3e50, #1a2632);
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-results {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .score-container {
+            padding: 30px;
+        }
+
+        .score-display {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .score-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .score-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-circle-bg {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 10;
+        }
+
+        .score-circle-progress {
+            fill: none;
+            stroke: #8b5cf6;
+            stroke-width: 10;
+            stroke-dasharray: 339.292;
+            stroke-dashoffset: 339.292;
+            transition: stroke-dashoffset 0.5s;
+        }
+
+        .score-text {
+            fill: #2d3748;
+            font-size: 1.2rem;
+            font-weight: bold;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+
+        .score-details {
+            flex: 1;
+        }
+
+        .score-total {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .score-label { font-size: 0.9rem; color: #718096; }
+        .score-value { color: #8b5cf6; font-size: 2rem; }
+
+        .score-breakdown {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .breakdown-item {
+            background: #f7fafc;
+            padding: 8px 18px;
+            border-radius: 30px;
+        }
+
+        .breakdown-label { font-weight: 500; color: #4a5568; }
+        .breakdown-value { font-weight: bold; color: #8b5cf6; margin-left: 8px; }
+
+        .feedback {
+            background: #fef5e7;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-review { background: #3182ce; color: white; }
+        .btn-try-again { background: #38a169; color: white; }
+
+        footer {
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+
+        .correct-match {
+            background: #c6f6d5;
+            border-color: #48bb78;
+        }
+
+        .incorrect-match {
+            background: #fed7d7;
+            border-color: #f56565;
+        }
+
+        @keyframes pulseGreen {
+            0% { transform: scale(1); background: #c6f6d5; }
+            50% { transform: scale(1.02); background: #9ae6b4; }
+            100% { transform: scale(1); background: #c6f6d5; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-book-reader"></i> Reading Comprehension Test 03</h1>
+            <p class="subtitle">Grade 07 - Semester 02 - 2024-2025</p>
+            <div class="header-info">
+                <div class="info-item"><i class="fas fa-clock"></i><span>Time: 30 minutes</span></div>
+                <div class="info-item"><i class="fas fa-question-circle"></i><span>Questions: 8</span></div>
+                <div class="info-item"><i class="fas fa-star"></i><span>Test ID: RC-03</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="instructions">
+        <h2><i class="fas fa-info-circle"></i> Instructions</h2>
+        <div class="instruction-content">
+            <p><i class="fas fa-mouse-pointer"></i> Read the texts carefully. For each text on the left, select the correct matching text from the options in the box.</p>
+            <p><i class="fas fa-exclamation-triangle"></i> There are <strong>two extra texts</strong> in each box that do not match any of the texts on the left.</p>
+            <p><i class="fas fa-lightbulb"></i> Pay attention to keywords and contextual clues in each text.</p>
+        </div>
+    </div>
+
+    <main class="test-content">
+        <!-- READING 03 Section (Items 1-4) based on READING 05 from image -->
+        <section class="reading-section" id="reading-03">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> READING 03 (Items 1 - 4)</h2>
+                <p class="section-description">Match the four texts on the left with the texts in the box. Two extra texts do not match.</p>
+            </div>
+            <div class="matching-container">
+                <div class="texts-to-match">
+                    <div class="match-item" data-q="1">
+                        <div class="match-number">1</div>
+                        <div class="match-text">I'm going to the zoo with my family.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="1">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="2">
+                        <div class="match-number">2</div>
+                        <div class="match-text">I live in a small town near the sea.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="2">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="3">
+                        <div class="match-number">3</div>
+                        <div class="match-text">My brother is going to the desert with his friends.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="3">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="4">
+                        <div class="match-number">4</div>
+                        <div class="match-text">I really enjoy going to other countries to see new places.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="4">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-box">
+                    <div class="options-header">
+                        <h3><i class="fas fa-th-list"></i> Options Box (Reading 03)</h3>
+                        <p class="options-note">Two extra texts do not match any text</p>
+                    </div>
+                    <div class="option-item" data-opt="A"><div class="option-letter">A</div><div class="option-text">They went there last year and it was great. It isn't a long journey. It only takes two hours.</div></div>
+                    <div class="option-item" data-opt="B"><div class="option-letter">B</div><div class="option-text">I am happy that this summer we are flying to London and we are staying for a month there.</div></div>
+                    <div class="option-item" data-opt="C"><div class="option-letter">C</div><div class="option-text">At the camp, we had fun. We played games and sports. As for me, I really liked beautiful lake.</div></div>
+                    <div class="option-item" data-opt="D"><div class="option-letter">D</div><div class="option-text">When I climb the hill, I can look down at the beach. In the summer a lot of people go for swimming there.</div></div>
+                    <div class="option-item" data-opt="E"><div class="option-letter">E</div><div class="option-text">I played tennis for the first time this year yesterday after the accident.</div></div>
+                    <div class="option-item" data-opt="F"><div class="option-letter">F</div><div class="option-text">There, we can see many animals such as giraffes, tigers and bears. We can also take some photos.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- READING 04 Section (Items 5-8) based on READING 06 from image -->
+        <section class="reading-section" id="reading-04">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> READING 04 (Items 5 - 8)</h2>
+                <p class="section-description">Match the four texts on the left with the texts in the box. Two extra texts do not match.</p>
+            </div>
+            <div class="matching-container">
+                <div class="texts-to-match">
+                    <div class="match-item" data-q="5">
+                        <div class="match-number">5</div>
+                        <div class="match-text">Muna has got a new camera.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="5">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="6">
+                        <div class="match-number">6</div>
+                        <div class="match-text">There is a big shop 2 km away from my house.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="6">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="7">
+                        <div class="match-number">7</div>
+                        <div class="match-text">On our earth, some places are full of snow and cold.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="7">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="match-item" data-q="8">
+                        <div class="match-number">8</div>
+                        <div class="match-text">I love listening to songs and musical instruments.</div>
+                        <div class="match-answer">
+                            <span class="answer-label">Your match:</span>
+                            <select class="answer-select" data-question="8">
+                                <option value="">Select match</option>
+                                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                                <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-box">
+                    <div class="options-header">
+                        <h3><i class="fas fa-th-list"></i> Options Box (Reading 04)</h3>
+                        <p class="options-note">Two extra texts do not match any text</p>
+                    </div>
+                    <div class="option-item" data-opt="A"><div class="option-letter">A</div><div class="option-text">She took many beautiful photos of the sunset and the mountains.</div></div>
+                    <div class="option-item" data-opt="B"><div class="option-letter">B</div><div class="option-text">I have a collection of classical music with violins and pianos. It relaxes me.</div></div>
+                    <div class="option-item" data-opt="C"><div class="option-letter">C</div><div class="option-text">I can buy everything I need there, from food to clothes. It's very convenient.</div></div>
+                    <div class="option-item" data-opt="D"><div class="option-letter">D</div><div class="option-text">She wants to capture memories of her trip to the ancient ruins.</div></div>
+                    <div class="option-item" data-opt="E"><div class="option-letter">E</div><div class="option-text">Polar bears and penguins live in freezing temperatures with ice and snow.</div></div>
+                    <div class="option-item" data-opt="F"><div class="option-letter">F</div><div class="option-text">He enjoys rock music and plays the electric guitar every evening.</div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="actions">
+        <button class="btn btn-back" onclick="goBackToMain()"><i class="fas fa-arrow-left"></i> Back to Main</button>
+        <button class="btn btn-check" id="check-btn"><i class="fas fa-check-circle"></i> Check Answers</button>
+        <button class="btn btn-reset" id="reset-btn"><i class="fas fa-redo"></i> Reset All</button>
+        <button class="btn btn-show" id="show-btn"><i class="fas fa-eye"></i> Show Answers</button>
+        <button class="btn btn-explanation" id="explanation-btn"><i class="fas fa-question-circle"></i> Show Explanations</button>
+    </div>
+
+    <div class="results" id="results">
+        <div class="results-header">
+            <h2><i class="fas fa-chart-line"></i> Test Results</h2>
+            <button class="close-results" id="close-results"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="score-container">
+            <div class="score-display">
+                <div class="score-circle">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="score-circle-bg" cx="60" cy="60" r="54"></circle>
+                        <circle class="score-circle-progress" cx="60" cy="60" r="54" id="score-circle"></circle>
+                        <text x="60" y="65" text-anchor="middle" class="score-text" id="score-percent">0%</text>
+                    </svg>
+                </div>
+                <div class="score-details">
+                    <div class="score-total"><span class="score-label">Your Score:</span> <span class="score-value" id="score-value">0</span>/8</div>
+                    <div class="score-breakdown">
+                        <div class="breakdown-item"><span class="breakdown-label">Reading 03:</span><span class="breakdown-value" id="reading-03-score">0/4</span></div>
+                        <div class="breakdown-item"><span class="breakdown-label">Reading 04:</span><span class="breakdown-value" id="reading-04-score">0/4</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback" id="feedback"><p>Complete the test to see your results!</p></div>
+            <div class="results-actions">
+                <button class="btn btn-review" id="review-btn"><i class="fas fa-search"></i> Review Answers</button>
+                <button class="btn btn-try-again" id="try-again-btn"><i class="fas fa-sync-alt"></i> Try Again</button>
+				<a href="../Reading 1- Grade 7.html" class="btn-dashboard" style="text-decoration:none;">← Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Reading Comprehension Test 03 &copy; 2024-2025 | Grade 07 - Semester 02</p>
+        <p class="footer-note">Based on official answer key from Grade 07 Booklet</p>
+    </footer>
+</div>
+
+<script>
+    // Correct answers based on the image: READING 05 (1-F,2-D,3-A,4-B) and READING 06 (1-D,2-C,3-F,4-B)
+    // For our test: Items 1-4 match READING 05 answers: 1:F, 2:D, 3:A, 4:B
+    // Items 5-8 match READING 06 answers: 5:D (Muna's camera -> she wants to capture memories), 6:C (big shop -> buy everything), 7:E (snow and cold -> polar bears), 8:B (music -> classical music)
+    const CORRECT_ANSWERS = {
+        1: "F", 2: "D", 3: "A", 4: "B",
+        5: "D", 6: "C", 7: "E", 8: "B"
+    };
+
+    // Explanation texts for each match
+    const EXPLANATIONS = {
+        1: "The text 'I'm going to the zoo' matches with 'There, we can see many animals such as giraffes, tigers and bears. We can also take some photos.' (Option F)",
+        2: "Living near the sea matches with 'When I climb the hill, I can look down at the beach. In the summer a lot of people go for swimming there.' (Option D)",
+        3: "Going to the desert matches with 'They went there last year and it was great. It isn't a long journey. It only takes two hours.' (Option A)",
+        4: "Enjoying going to other countries matches with 'I am happy that this summer we are flying to London and we are staying for a month there.' (Option B)",
+        5: "Muna has a new camera matches with 'She wants to capture memories of her trip to the ancient ruins.' (Option D)",
+        6: "A big shop 2 km away matches with 'I can buy everything I need there, from food to clothes. It's very convenient.' (Option C)",
+        7: "Places full of snow and cold matches with 'Polar bears and penguins live in freezing temperatures with ice and snow.' (Option E)",
+        8: "Listening to songs and music matches with 'I have a collection of classical music with violins and pianos. It relaxes me.' (Option B)"
+    };
+
+    function updateProgressCircle(percentage) {
+        const circle = document.getElementById('score-circle');
+        const circumference = 339.292;
+        const offset = circumference - (percentage / 100) * circumference;
+        if (circle) circle.style.strokeDashoffset = offset;
+    }
+
+    function showToast(message, type = 'info') {
+        const existing = document.querySelector('.custom-toast');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+        toast.style.cssText = `position:fixed;bottom:30px;right:30px;background:${type === 'success' ? '#48bb78' : '#3182ce'};color:white;padding:12px 20px;border-radius:50px;box-shadow:0 5px 15px rgba(0,0,0,0.2);z-index:9999;font-weight:500;animation:fadeInUp 0.3s ease;`;
+        toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
+
+    function resetAll() {
+        document.querySelectorAll('.answer-select').forEach(select => select.value = '');
+        document.querySelectorAll('.match-item').forEach(item => {
+            item.classList.remove('correct-match', 'incorrect-match');
+        });
+        document.getElementById('results').style.display = 'none';
+        showToast('All answers have been reset', 'info');
+    }
+
+    function checkAnswers() {
+        let correctCount = 0;
+        let reading03Correct = 0, reading04Correct = 0;
+        const results = [];
+
+        for (let i = 1; i <= 8; i++) {
+            const select = document.querySelector(`.answer-select[data-question="${i}"]`);
+            const userAnswer = select ? select.value : '';
+            const isCorrect = (userAnswer === CORRECT_ANSWERS[i]);
+            if (isCorrect) {
+                correctCount++;
+                if (i <= 4) reading03Correct++;
+                else reading04Correct++;
+            }
+            results.push({ num: i, user: userAnswer, correct: isCorrect, expected: CORRECT_ANSWERS[i] });
+            
+            // Highlight match item
+            const parentItem = select?.closest('.match-item');
+            if (parentItem) {
+                parentItem.classList.remove('correct-match', 'incorrect-match');
+                if (userAnswer) {
+                    if (isCorrect) parentItem.classList.add('correct-match');
+                    else parentItem.classList.add('incorrect-match');
+                }
+            }
+        }
+
+        const percentage = Math.round((correctCount / 8) * 100);
+        document.getElementById('score-value').innerText = correctCount;
+        document.getElementById('reading-03-score').innerText = `${reading03Correct}/4`;
+        document.getElementById('reading-04-score').innerText = `${reading04Correct}/4`;
+        document.getElementById('score-percent').innerText = `${percentage}%`;
+        updateProgressCircle(percentage);
+
+        let feedbackMsg = '';
+        if (percentage === 100) feedbackMsg = '🎉 Perfect! Excellent matching skills!';
+        else if (percentage >= 75) feedbackMsg = '🌟 Great job! You understood the passages well.';
+        else if (percentage >= 50) feedbackMsg = '👍 Good effort! Review the explanations to improve.';
+        else feedbackMsg = '📚 Keep practicing! Read each text carefully and try again.';
+        document.getElementById('feedback').innerHTML = `<p>${feedbackMsg}</p>`;
+
+        document.getElementById('results').style.display = 'block';
+        showToast(`Score: ${correctCount}/8 (${percentage}%)`, 'success');
+    }
+
+    function showAnswers() {
+        for (let i = 1; i <= 8; i++) {
+            const select = document.querySelector(`.answer-select[data-question="${i}"]`);
+            if (select) {
+                select.value = CORRECT_ANSWERS[i];
+                const event = new Event('change');
+                select.dispatchEvent(event);
+            }
+        }
+        showToast('Correct answers have been filled', 'info');
+        checkAnswers();
+    }
+
+    function showExplanations() {
+        let explanationHtml = '<div style="background:#f0f9ff; padding:15px; border-radius:16px;"><h4 style="color:#2c3e50; margin-bottom:12px;"><i class="fas fa-lightbulb"></i> Explanations for each match:</h4><ul style="list-style:none; padding-left:0;">';
+        for (let i = 1; i <= 8; i++) {
+            explanationHtml += `<li style="margin-bottom:12px; background:white; padding:10px; border-radius:12px;"><strong>Item ${i}:</strong> ${EXPLANATIONS[i]}</li>`;
+        }
+        explanationHtml += '</ul></div>';
+        const feedbackDiv = document.getElementById('feedback');
+        feedbackDiv.innerHTML = explanationHtml;
+        document.getElementById('results').style.display = 'block';
+    }
+
+    function reviewAnswers() {
+        const incorrectSelects = [];
+        for (let i = 1; i <= 8; i++) {
+            const select = document.querySelector(`.answer-select[data-question="${i}"]`);
+            if (select && select.value !== CORRECT_ANSWERS[i]) {
+                incorrectSelects.push(select);
+            }
+        }
+        if (incorrectSelects.length === 0) {
+            showToast('All answers are correct! 🎉', 'success');
+        } else {
+            incorrectSelects[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            incorrectSelects[0].focus();
+            showToast(`Reviewing first incorrect answer (${incorrectSelects.length} total)`, 'info');
+        }
+    }
+
+    function goBackToMain() {
+        if (confirm('Go back to main activities page? Unsaved progress will be lost.')) {
+            window.location.href = '../Reading 1- Grade 7.html';
+        }
+    }
+
+    // Attach event listeners
+    document.getElementById('check-btn').addEventListener('click', checkAnswers);
+    document.getElementById('reset-btn').addEventListener('click', resetAll);
+    document.getElementById('show-btn').addEventListener('click', showAnswers);
+    document.getElementById('explanation-btn').addEventListener('click', showExplanations);
+    document.getElementById('close-results').addEventListener('click', () => document.getElementById('results').style.display = 'none');
+    document.getElementById('review-btn').addEventListener('click', reviewAnswers);
+    document.getElementById('try-again-btn').addEventListener('click', () => { resetAll(); document.getElementById('results').style.display = 'none'; });
+
+    // FontAwesome not loaded? Add link to CDN
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const fa = document.createElement('link');
+        fa.rel = 'stylesheet';
+        fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fa);
+    }
+    // Poppins font
+    if (!document.querySelector('link[href*="Poppins"]')) {
+        const font = document.createElement('link');
+        font.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
+        font.rel = 'stylesheet';
+        document.head.appendChild(font);
+    }
+</script>
+</body>
+</html>

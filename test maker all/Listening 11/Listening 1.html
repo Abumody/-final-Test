@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎧 Listening Test Maker – Pro (with Audio Upload)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #e2e8f0;
+      font-family: system-ui, 'Segoe UI', sans-serif;
+      padding: 30px 20px;
+    }
+    .maker {
+      max-width: 1300px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .top-bar {
+      background: #1f3e48;
+      color: white;
+      padding: 20px 28px;
+    }
+    .top-bar h1 { margin: 0 0 6px; font-size: 1.9rem; }
+    .top-bar p { margin: 0; opacity: 0.85; }
+
+    .toolbar {
+      background: #f1f5f9;
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid #cbd5e1;
+      align-items: center;
+    }
+    .toolbar button {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 6px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .toolbar button:hover {
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+    .toolbar .primary {
+      background: #1e6f5c;
+      border-color: #1e6f5c;
+      color: white;
+    }
+    .toolbar .primary:hover {
+      background: #0f5a4a;
+    }
+    .flex-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 28px;
+      background: #f8fafc;
+    }
+    .settings {
+      flex: 1.2;
+      min-width: 260px;
+      background: white;
+      border-radius: 28px;
+      padding: 22px;
+      border: 1px solid #e2edf2;
+    }
+    .questions-area {
+      flex: 2.5;
+      min-width: 360px;
+      background: white;
+      border-radius: 28px;
+      padding: 22px;
+      border: 1px solid #e2edf2;
+    }
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+      color: #1f4a5c;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 40px;
+      border: 1px solid #cbdde6;
+      font-size: 0.9rem;
+    }
+    .audio-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .audio-row input {
+      flex: 1;
+    }
+    .audio-row button {
+      white-space: nowrap;
+      background: #eef2f7;
+      border: 1px solid #bccbd3;
+      padding: 8px 18px;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+    .file-name {
+      font-size: 0.75rem;
+      background: #eef3fa;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-note {
+      background: #eef3fa;
+      padding: 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 25px;
+    }
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .q-control {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .q-control input {
+      width: 80px;
+      padding: 6px;
+    }
+    button {
+      background: #eef2f7;
+      border: 1px solid #bccbd3;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: #1e6f5c;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      margin-top: 28px;
+      font-weight: bold;
+    }
+    .question-card {
+      border: 1px solid #e2edf2;
+      border-radius: 24px;
+      padding: 18px;
+      margin-bottom: 22px;
+      background: #ffffff;
+    }
+    .question-card textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #c6dae5;
+      font-family: inherit;
+      margin-bottom: 12px;
+    }
+    .option-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .option-row input {
+      flex: 1;
+      min-width: 140px;
+    }
+    .correct-choice {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      background: #fafcfd;
+      padding: 10px 14px;
+      border-radius: 40px;
+      margin-top: 12px;
+    }
+    #statusMsg {
+      margin-top: 16px;
+      text-align: center;
+      color: #2c7a6e;
+    }
+    .preview-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .preview-modal.active {
+      display: flex;
+    }
+    .preview-container {
+      background: white;
+      width: 90%;
+      height: 90%;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .preview-header {
+      padding: 12px 20px;
+      background: #1f3e48;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .preview-header button {
+      background: #cbd5e1;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 40px;
+    }
+    .preview-iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="maker">
+  <div class="top-bar">
+    <h1>🎧 Listening Test Maker</h1>
+    <p>Design a custom exam · Timer + Audio (embed or path) · Auto‑scoring</p>
+  </div>
+
+  <div class="toolbar">
+    <button id="newBtn" class="primary">🆕 New</button>
+    <button id="saveBtn">💾 Save</button>
+    <button id="editBtn">✏️ Edit</button>
+    <button id="loadBtn">📂 Load</button>
+    <button id="previewBtn">👁️ Preview</button>
+    <button id="langToggleBtn">🇸🇦 العربية</button>
+  </div>
+
+  <div class="flex-panel">
+    <div class="settings">
+      <h3>⚙️ Settings</h3>
+      <div class="form-group">
+        <label data-i18n="testName">Test name</label>
+        <input type="text" id="testName" value="LISTENING – Allergies Interview">
+      </div>
+      <div class="form-group">
+        <label data-i18n="bgColor">Background color</label>
+        <div class="color-row">
+          <input type="color" id="pageColor" value="#eef2f5">
+          <span>light gray / any color</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-i18n="audioPath">Audio file (click button to choose)</label>
+        <div class="audio-row">
+          <input type="text" id="audioPath" placeholder="e.g., audio/sample.mp3 or embedded" readonly>
+          <button type="button" id="chooseAudioBtn">🎵 Choose Audio File</button>
+        </div>
+        <div id="audioFileName" class="file-name">No file selected</div>
+        <small style="color:#2c7a6e;">* Uploaded audio will be embedded directly into the test (self-contained).</small>
+      </div>
+      <div class="form-group">
+        <label data-i18n="timerDuration">⏱️ Timer (minutes)</label>
+        <input type="number" id="timerMinutes" min="1" max="90" value="10">
+      </div>
+      <div class="info-note">
+        ⏱️ Timer, audio player, auto‑scoring.<br>
+        💾 Save your work, load later, preview before download.
+      </div>
+    </div>
+
+    <div class="questions-area">
+      <div class="q-header">
+        <h3 data-i18n="buildQuestions">📋 Build your questions</h3>
+        <div class="q-control">
+          <span data-i18n="number">Number:</span>
+          <input type="number" id="qty" min="1" max="20" value="3">
+          <button id="applyQtyBtn" data-i18n="apply">Apply</button>
+        </div>
+      </div>
+      <div id="questionsContainer"></div>
+      <button id="generateBtn" class="btn-primary" data-i18n="generate">✨ GENERATE & DOWNLOAD TEST</button>
+      <div id="statusMsg"></div>
+    </div>
+  </div>
+</div>
+
+<div id="previewModal" class="preview-modal">
+  <div class="preview-container">
+    <div class="preview-header">
+      <span>📄 Test Preview</span>
+      <button id="closePreviewBtn">✖ Close</button>
+    </div>
+    <iframe id="previewIframe" class="preview-iframe" srcdoc=""></iframe>
+  </div>
+</div>
+
+<script>
+  // ---------- i18n translations ----------
+  const translations = {
+    en: {
+      testName: "Test name",
+      bgColor: "Background color",
+      audioPath: "Audio file (click button to choose)",
+      timerDuration: "⏱️ Timer (minutes)",
+      buildQuestions: "📋 Build your questions",
+      number: "Number:",
+      apply: "Apply",
+      generate: "✨ GENERATE & DOWNLOAD TEST",
+      newConfirm: "Create a new test? All current data will be lost.",
+      saved: "✅ Test saved to browser storage!",
+      loaded: "✅ Test loaded from storage.",
+      noSave: "No saved test found.",
+      previewError: "Cannot preview: please complete all questions.",
+      downloadError: "Please complete all questions correctly."
+    },
+    ar: {
+      testName: "اسم الاختبار",
+      bgColor: "لون الخلفية",
+      audioPath: "ملف الصوت (اضغط للاختيار)",
+      timerDuration: "⏱️ المدة (دقائق)",
+      buildQuestions: "📋 أنشئ أسئلتك",
+      number: "العدد:",
+      apply: "تطبيق",
+      generate: "✨ إنشاء وتحميل الاختبار",
+      newConfirm: "إنشاء اختبار جديد؟ سيتم فقدان البيانات الحالية.",
+      saved: "✅ تم حفظ الاختبار في المتصفح!",
+      loaded: "✅ تم تحميل الاختبار من المخزن.",
+      noSave: "لا يوجد اختبار محفوظ.",
+      previewError: "لا يمكن المعاينة: أكمل جميع الأسئلة.",
+      downloadError: "أكمل جميع الأسئلة بشكل صحيح."
+    }
+  };
+
+  let currentLang = 'en';
+  let embeddedAudioBase64 = null;     // stores base64 data for embedded audio
+  let currentAudioFileName = "";
+
+  function t(key) {
+    return translations[currentLang][key] || key;
+  }
+
+  function updateUILanguage() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (key) el.innerText = t(key);
+    });
+    document.getElementById('langToggleBtn').innerText = currentLang === 'en' ? '🇸🇦 العربية' : '🇬🇧 English';
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
+  }
+
+  // rebuild question cards from current data
+  function rebuildCards() {
+    let count = parseInt(document.getElementById('qty').value, 10);
+    if (isNaN(count) || count < 1) count = 1;
+    if (count > 20) count = 20;
+    document.getElementById('qty').value = count;
+
+    const oldCards = document.querySelectorAll('.question-card');
+    let oldData = [];
+    oldCards.forEach(card => {
+      const q = card.querySelector('.qtext')?.value || '';
+      const a = card.querySelector('.opt-a')?.value || '';
+      const b = card.querySelector('.opt-b')?.value || '';
+      const c = card.querySelector('.opt-c')?.value || '';
+      let correct = '';
+      const checked = card.querySelector('input[type="radio"]:checked');
+      if (checked) correct = checked.value;
+      oldData.push({ q, a, b, c, correct });
+    });
+
+    const container = document.getElementById('questionsContainer');
+    container.innerHTML = '';
+    for (let i = 1; i <= count; i++) {
+      const prev = oldData[i-1] || { q: '', a: '', b: '', c: '', correct: '' };
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'question-card';
+      cardDiv.innerHTML = `
+        <div style="font-weight:bold; margin-bottom:8px;">Question ${i}</div>
+        <textarea rows="2" class="qtext" placeholder="Question text ...">${escapeHtml(prev.q)}</textarea>
+        <div class="option-row">
+          <input type="text" class="opt-a" placeholder="Option A" value="${escapeHtml(prev.a)}">
+          <input type="text" class="opt-b" placeholder="Option B" value="${escapeHtml(prev.b)}">
+          <input type="text" class="opt-c" placeholder="Option C" value="${escapeHtml(prev.c)}">
+        </div>
+        <div class="correct-choice">
+          <span>✔ Correct answer:</span>
+          <label><input type="radio" name="correct_${i}" value="A" ${prev.correct === 'A' ? 'checked' : ''}> A</label>
+          <label><input type="radio" name="correct_${i}" value="B" ${prev.correct === 'B' ? 'checked' : ''}> B</label>
+          <label><input type="radio" name="correct_${i}" value="C" ${prev.correct === 'C' ? 'checked' : ''}> C</label>
+        </div>
+      `;
+      container.appendChild(cardDiv);
+    }
+  }
+
+  // capture full state (including embedded audio base64)
+  function captureFullState() {
+    const testName = document.getElementById('testName').value;
+    const pageColor = document.getElementById('pageColor').value;
+    const timerMinutes = document.getElementById('timerMinutes').value;
+    const qty = document.getElementById('qty').value;
+    const cards = document.querySelectorAll('.question-card');
+    const questions = [];
+    cards.forEach(card => {
+      const q = card.querySelector('.qtext')?.value || '';
+      const a = card.querySelector('.opt-a')?.value || '';
+      const b = card.querySelector('.opt-b')?.value || '';
+      const c = card.querySelector('.opt-c')?.value || '';
+      let correct = '';
+      const checked = card.querySelector('input[type="radio"]:checked');
+      if (checked) correct = checked.value;
+      questions.push({ q, a, b, c, correct });
+    });
+    // store audio base64 and file name
+    return { testName, pageColor, timerMinutes, qty, questions, embeddedAudioBase64, currentAudioFileName };
+  }
+
+  function restoreFullState(state) {
+    if (!state) return;
+    document.getElementById('testName').value = state.testName || "LISTENING – Allergies Interview";
+    document.getElementById('pageColor').value = state.pageColor || "#eef2f5";
+    document.getElementById('timerMinutes').value = state.timerMinutes || "10";
+    document.getElementById('qty').value = state.qty || "3";
+    embeddedAudioBase64 = state.embeddedAudioBase64 || null;
+    currentAudioFileName = state.currentAudioFileName || "";
+    if (embeddedAudioBase64) {
+      document.getElementById('audioPath').value = "[Embedded Audio]";
+      document.getElementById('audioFileName').innerHTML = `🎵 ${currentAudioFileName}`;
+    } else {
+      document.getElementById('audioPath').value = "";
+      document.getElementById('audioFileName').innerHTML = "No file selected";
+    }
+    rebuildCards();
+    const cards = document.querySelectorAll('.question-card');
+    for (let i = 0; i < state.questions.length && i < cards.length; i++) {
+      const card = cards[i];
+      const qData = state.questions[i];
+      if (qData) {
+        card.querySelector('.qtext').value = qData.q || '';
+        card.querySelector('.opt-a').value = qData.a || '';
+        card.querySelector('.opt-b').value = qData.b || '';
+        card.querySelector('.opt-c').value = qData.c || '';
+        const radio = card.querySelector(`input[type="radio"][value="${qData.correct}"]`);
+        if (radio) radio.checked = true;
+      }
+    }
+  }
+
+  // Validate questions
+  function collectQuestionsForGen() {
+    const cards = document.querySelectorAll('.question-card');
+    const questions = [];
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i];
+      const qText = card.querySelector('.qtext')?.value.trim();
+      const optA = card.querySelector('.opt-a')?.value.trim();
+      const optB = card.querySelector('.opt-b')?.value.trim();
+      const optC = card.querySelector('.opt-c')?.value.trim();
+      let correctLetter = null;
+      const radioSelected = card.querySelector('input[type="radio"]:checked');
+      if (radioSelected) correctLetter = radioSelected.value;
+
+      if (!qText || !optA || !optB || !optC) {
+        alert(`Question ${i+1}: please fill the question text and all three options.`);
+        return null;
+      }
+      if (!correctLetter) {
+        alert(`Question ${i+1}: please select the correct answer (A, B or C).`);
+        return null;
+      }
+      const optMap = { A: optA, B: optB, C: optC };
+      questions.push({
+        text: qText,
+        optA, optB, optC,
+        correctLetter: correctLetter,
+        correctText: optMap[correctLetter]
+      });
+    }
+    if (questions.length === 0) { alert("No questions defined."); return null; }
+    return questions;
+  }
+
+  // Generate full test HTML, using embedded audio base64 if available
+  function generateFullTest() {
+    const title = document.getElementById('testName').value.trim() || "Listening Exam";
+    const bgColor = document.getElementById('pageColor').value;
+    let minutes = parseInt(document.getElementById('timerMinutes').value, 10);
+    if (isNaN(minutes) || minutes < 1) minutes = 10;
+    const totalSeconds = minutes * 60;
+    const questions = collectQuestionsForGen();
+    if (!questions) return null;
+
+    // Determine audio source: if embedded base64, use that; otherwise use the path text (if any)
+    let audioSrc = "";
+    if (embeddedAudioBase64) {
+      audioSrc = embeddedAudioBase64;
+    } else {
+      audioSrc = document.getElementById('audioPath').value.trim() || "";
+      if (!audioSrc) {
+        alert("Please choose an audio file (or enter a path).");
+        return null;
+      }
+    }
+
+    let questionsHtml = '';
+    for (let i = 0; i < questions.length; i++) {
+      const q = questions[i];
+      questionsHtml += `
+      <div class="question" data-qid="${i+1}">
+        <div class="question-text">${i+1}. ${escapeHtml(q.text)}</div>
+        <div class="options">
+          <div class="option" data-value="${escapeHtml(q.optA)}"><div class="bubble"></div>${escapeHtml(q.optA)}</div>
+          <div class="option" data-value="${escapeHtml(q.optB)}"><div class="bubble"></div>${escapeHtml(q.optB)}</div>
+          <div class="option" data-value="${escapeHtml(q.optC)}"><div class="bubble"></div>${escapeHtml(q.optC)}</div>
+        </div>
+      </div>
+      `;
+    }
+    const answersObj = {};
+    questions.forEach((q, idx) => { answersObj[idx+1] = q.correctText; });
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(title)}</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:${bgColor};font-family:'Segoe UI',Roboto,sans-serif;padding:30px 20px;}
+  .test-card{max-width:1000px;margin:0 auto;background:white;border-radius:32px;padding:28px 32px;box-shadow:0 12px 25px rgba(0,0,0,0.1);}
+  .test-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;border-bottom:2px solid #1e6f5c;padding-bottom:12px;margin-bottom:22px;}
+  .test-header h2{color:#1e3c3c;}
+  .timer-area{background:#f9f3e3;display:inline-block;padding:8px 20px;border-radius:60px;font-weight:bold;font-size:1.2rem;margin-bottom:22px;}
+  .audio-box{background:#f4f7fb;border-radius:28px;padding:16px 20px;margin-bottom:32px;border:1px solid #dce5ec;}
+  .audio-box audio{width:100%;}
+  .question{border:1px solid #e2edf2;border-radius:24px;padding:18px;margin-bottom:20px;}
+  .question-text{font-weight:700;font-size:1.05rem;border-left:4px solid #1e6f5c;padding-left:14px;margin-bottom:16px;}
+  .options{display:flex;flex-wrap:wrap;gap:18px;}
+  .option{background:#fafcfe;border:1px solid #c9dde8;border-radius:60px;padding:8px 20px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
+  .bubble{width:20px;height:20px;border-radius:50%;border:2px solid #5c8f9c;background:white;}
+  .option.selected .bubble{background:#1e88e5;border-color:#1e88e5;box-shadow:inset 0 0 0 2px white;}
+  .option.selected{background:#e3f0fc;font-weight:500;}
+  button.submit{background:#1e6f5c;color:white;border:none;width:100%;padding:14px;border-radius:60px;font-size:1.1rem;font-weight:bold;margin-top:28px;cursor:pointer;}
+  #result{margin-top:22px;background:#f0f6f2;padding:16px;border-radius:28px;text-align:center;}
+  .warning{color:#c44536;}
+  @media (max-width:650px){.options{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="test-card">
+  <div class="test-header"><h2>🎧 ${escapeHtml(title)}</h2><span>Total: ${questions.length} marks</span></div>
+  <div class="timer-area">⏱️ Time left: <span id="timer">--:--</span></div>
+  <div class="audio-box"><audio controls><source src="${audioSrc}" type="audio/mpeg"></audio></div>
+  <div id="questionsDiv">${questionsHtml}</div>
+  <button class="submit" id="submitBtn">✅ SUBMIT TEST</button>
+  <div id="result"></div>
+</div>
+<script>
+  const ANSWERS = ${JSON.stringify(answersObj)};
+  let selected = {};
+  let secondsLeft = ${totalSeconds};
+  let timerInterval = null;
+  const timerSpan = document.getElementById('timer');
+  const submitBtn = document.getElementById('submitBtn');
+  const resultDiv = document.getElementById('result');
+  function formatTime(sec){let m=Math.floor(sec/60);let s=sec%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;}
+  function updateTimer(){timerSpan.textContent=formatTime(secondsLeft);if(secondsLeft<=60)timerSpan.classList.add('warning');}
+  function startTimer(){timerInterval=setInterval(()=>{if(secondsLeft<=1){clearInterval(timerInterval);timerSpan.textContent="00:00";submitBtn.disabled=true;resultDiv.innerHTML="⏰ Time is up! Test closed.";evaluate(true);}else{secondsLeft--;updateTimer();}},1000);}
+  function attachEvents(){document.querySelectorAll('.option').forEach(opt=>{opt.removeEventListener('click',clickHandler);opt.addEventListener('click',clickHandler);});}
+  function clickHandler(e){const opt=e.currentTarget;const qDiv=opt.closest('.question');if(!qDiv)return;const qid=parseInt(qDiv.getAttribute('data-qid'));qDiv.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));opt.classList.add('selected');selected[qid]=opt.getAttribute('data-value');}
+  function evaluate(isTimeout){if(submitBtn.disabled&&!isTimeout)return;let total=Object.keys(ANSWERS).length;let score=0;for(let i=1;i<=total;i++){if(selected[i]===ANSWERS[i])score++;}resultDiv.innerHTML=\`🎯 Score: \${score} / \${total} (\${Math.round(score/total*100)}%)\${score===total?" 🏆 Perfect!":""}\`;submitBtn.disabled=true;submitBtn.style.opacity="0.6";document.querySelectorAll('.option').forEach(o=>o.style.pointerEvents="none");if(timerInterval)clearInterval(timerInterval);}
+  window.addEventListener('DOMContentLoaded',()=>{attachEvents();startTimer();updateTimer();submitBtn.onclick=()=>evaluate(false);});
+<\/script>
+</body></html>`;
+  }
+
+  // ----- Audio File Upload & Base64 Encoding -----
+  function setupAudioUpload() {
+    const chooseBtn = document.getElementById('chooseAudioBtn');
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'audio/*';
+    chooseBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (!file.type.startsWith('audio/')) {
+        alert('Please select a valid audio file (MP3, WAV, etc.)');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const base64 = ev.target.result;
+        embeddedAudioBase64 = base64;
+        currentAudioFileName = file.name;
+        document.getElementById('audioPath').value = "[Embedded Audio]";
+        document.getElementById('audioFileName').innerHTML = `🎵 ${currentAudioFileName}`;
+        document.getElementById('statusMsg').innerHTML = "✅ Audio loaded and ready to embed.";
+        setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 2000);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ----- Toolbar actions -----
+  function newTest() {
+    if (confirm(t('newConfirm'))) {
+      document.getElementById('testName').value = "LISTENING – New Test";
+      document.getElementById('pageColor').value = "#eef2f5";
+      document.getElementById('timerMinutes').value = "10";
+      document.getElementById('qty').value = "3";
+      embeddedAudioBase64 = null;
+      currentAudioFileName = "";
+      document.getElementById('audioPath').value = "";
+      document.getElementById('audioFileName').innerHTML = "No file selected";
+      rebuildCards();
+      document.getElementById('statusMsg').innerHTML = "";
+    }
+  }
+
+  function saveTest() {
+    const state = captureFullState();
+    localStorage.setItem('listeningTestMaker', JSON.stringify(state));
+    document.getElementById('statusMsg').innerHTML = t('saved');
+    setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 2000);
+  }
+
+  function loadTest() {
+    const saved = localStorage.getItem('listeningTestMaker');
+    if (!saved) {
+      alert(t('noSave'));
+      return;
+    }
+    try {
+      const state = JSON.parse(saved);
+      restoreFullState(state);
+      document.getElementById('statusMsg').innerHTML = t('loaded');
+      setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 2000);
+    } catch(e) { alert("Error loading"); }
+  }
+
+  function editTest() {
+    document.querySelector('.questions-area').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function previewTest() {
+    const html = generateFullTest();
+    if (!html) {
+      alert(t('previewError'));
+      return;
+    }
+    const iframe = document.getElementById('previewIframe');
+    iframe.srcdoc = html;
+    document.getElementById('previewModal').classList.add('active');
+  }
+
+  function downloadTest() {
+    const html = generateFullTest();
+    if (!html) {
+      alert(t('downloadError'));
+      return;
+    }
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `listening_${Date.now()}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    document.getElementById('statusMsg').innerHTML = "✅ Test downloaded!";
+    setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 3000);
+  }
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    updateUILanguage();
+  }
+
+  // ----- Event Listeners -----
+  document.getElementById('applyQtyBtn').addEventListener('click', rebuildCards);
+  document.getElementById('generateBtn').addEventListener('click', downloadTest);
+  document.getElementById('newBtn').addEventListener('click', newTest);
+  document.getElementById('saveBtn').addEventListener('click', saveTest);
+  document.getElementById('loadBtn').addEventListener('click', loadTest);
+  document.getElementById('editBtn').addEventListener('click', editTest);
+  document.getElementById('previewBtn').addEventListener('click', previewTest);
+  document.getElementById('langToggleBtn').addEventListener('click', toggleLanguage);
+  document.getElementById('closePreviewBtn').addEventListener('click', () => {
+    document.getElementById('previewModal').classList.remove('active');
+  });
+
+  setupAudioUpload();
+  rebuildCards();
+  updateUILanguage();
+</script>
+</body>
+</html>

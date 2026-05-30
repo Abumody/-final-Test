@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎧 Listening Test Maker – Empty Start</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #e2e8f0;
+      font-family: system-ui, 'Segoe UI', sans-serif;
+      padding: 30px 20px;
+    }
+    .builder {
+      max-width: 1300px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .header {
+      background: #1f3e48;
+      color: white;
+      padding: 20px 28px;
+    }
+    .header h1 { font-size: 1.9rem; margin-bottom: 6px; }
+    .toolbar {
+      background: #f1f5f9;
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid #cbd5e1;
+    }
+    .toolbar button {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 6px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .toolbar button.primary {
+      background: #1e6f5c;
+      border-color: #1e6f5c;
+      color: white;
+    }
+    .flex-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 28px;
+      background: #f8fafc;
+    }
+    .settings {
+      flex: 1.2;
+      min-width: 260px;
+      background: white;
+      border-radius: 28px;
+      padding: 22px;
+      border: 1px solid #e2edf2;
+    }
+    .questions-area {
+      flex: 2.5;
+      min-width: 380px;
+      background: white;
+      border-radius: 28px;
+      padding: 22px;
+      border: 1px solid #e2edf2;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      color: #1f4a5c;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid #cbdde6;
+      font-family: inherit;
+    }
+    .audio-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .audio-row input { flex: 1; }
+    .section-card {
+      background: #fef9e6;
+      border-radius: 28px;
+      padding: 18px;
+      margin-bottom: 24px;
+      border: 1px solid #fde68a;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title-input {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 6px 12px;
+      width: 200px;
+    }
+    .question-item {
+      background: white;
+      border-radius: 24px;
+      padding: 14px;
+      margin-bottom: 16px;
+      border: 1px solid #e2edf2;
+    }
+    .question-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+    .question-text {
+      flex: 3;
+      min-width: 200px;
+    }
+    .question-type {
+      width: 140px;
+    }
+    .short-answer-answers {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    .mc-options {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    .mc-option-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .correct-badge {
+      font-size: 0.7rem;
+      background: #e0f2e9;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .add-btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 40px;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+    .remove-btn {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+    .generate-btn {
+      background: #1e6f5c;
+      color: white;
+      width: 100%;
+      padding: 14px;
+      border-radius: 60px;
+      font-weight: bold;
+      margin-top: 24px;
+      border: none;
+      cursor: pointer;
+    }
+    .status {
+      text-align: center;
+      margin-top: 12px;
+      color: #2b7a62;
+    }
+    .preview-modal {
+      display: none;
+      position: fixed;
+      top:0;left:0;width:100%;height:100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .preview-modal.active { display: flex; }
+    .preview-container {
+      background: white;
+      width: 90%;
+      height: 90%;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .preview-header {
+      padding: 12px 20px;
+      background: #1f3e48;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+    .preview-iframe { flex:1; border:none; }
+  </style>
+</head>
+<body>
+<div class="builder">
+  <div class="header">
+    <h1>🎧 Listening Test Builder</h1>
+    <p>Short answer + Multiple choice · Parts · Audio embed · Start empty</p>
+  </div>
+  <div class="toolbar">
+    <button id="newBtn" class="primary">🆕 New</button>
+    <button id="saveBtn">💾 Save</button>
+    <button id="loadBtn">📂 Load</button>
+    <button id="previewBtn">👁️ Preview</button>
+  </div>
+  <div class="flex-panel">
+    <div class="settings">
+      <h3>⚙️ Test Settings</h3>
+      <div class="form-group">
+        <label>Test Title</label>
+        <input type="text" id="testTitle" value="Listening Test">
+      </div>
+      <div class="form-group">
+        <label>Subtitle / Description</label>
+        <input type="text" id="testSubtitle" value="">
+      </div>
+      <div class="form-group">
+        <label>Audio File</label>
+        <div class="audio-row">
+          <input type="text" id="audioPath" placeholder="audio/listening.mp3">
+          <button id="chooseAudioBtn">📁 Choose File</button>
+        </div>
+        <div id="audioFileName" style="font-size:0.75rem; margin-top:4px;"></div>
+        <small>Uploaded audio will be embedded (base64).</small>
+      </div>
+      <div class="form-group">
+        <label>Background Color</label>
+        <input type="color" id="bgColor" value="#ffffff">
+      </div>
+    </div>
+
+    <div class="questions-area">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3>📋 Test Sections (Parts)</h3>
+        <button id="addSectionBtn" class="add-btn">+ Add Part</button>
+      </div>
+      <div id="sectionsContainer"></div>
+      <button id="generateBtn" class="generate-btn">⬇️ DOWNLOAD TEST HTML</button>
+      <div id="statusMsg" class="status"></div>
+    </div>
+  </div>
+</div>
+
+<div id="previewModal" class="preview-modal">
+  <div class="preview-container">
+    <div class="preview-header">
+      <span>📄 Test Preview</span>
+      <button id="closePreviewBtn">✖ Close</button>
+    </div>
+    <iframe id="previewIframe" class="preview-iframe"></iframe>
+  </div>
+</div>
+
+<script>
+  // ---------- DATA MODEL ----------
+  let sections = []; // each: { title, questions: [{ text, type, correctAnswers, options, correctOption }] }
+  let embeddedAudioBase64 = null;
+  let currentAudioFileName = "";
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
+  }
+
+  // Create an empty part (no questions)
+  function createEmptyPart(title = null) {
+    const partNumber = sections.length + 1;
+    return {
+      title: title || `Part ${partNumber}`,
+      questions: []
+    };
+  }
+
+  // ---------- RENDER BUILDER ----------
+  function renderBuilder() {
+    const container = document.getElementById('sectionsContainer');
+    if (!container) return;
+    if (sections.length === 0) {
+      container.innerHTML = `<div style="text-align:center; padding:40px; color:#6c7a8a;">No parts yet. Click "+ Add Part" to start building your test.</div>`;
+      return;
+    }
+    let html = '';
+    sections.forEach((sec, secIdx) => {
+      html += `<div class="section-card" data-sec="${secIdx}">
+        <div class="section-header">
+          <input type="text" class="section-title-input" value="${escapeHtml(sec.title)}" placeholder="Part title">
+          <div>
+            <button class="add-question-btn" data-sec="${secIdx}">+ Add Question</button>
+            <button class="remove-section-btn" data-sec="${secIdx}" style="background:#fee2e2;">Remove Part</button>
+          </div>
+        </div>`;
+      sec.questions.forEach((q, qIdx) => {
+        html += `<div class="question-item" data-qidx="${qIdx}">
+          <div class="question-row">
+            <input type="text" class="question-text-input" value="${escapeHtml(q.text)}" placeholder="Question text" style="flex:2;">
+            <select class="question-type-select">
+              <option value="short" ${q.type === 'short' ? 'selected' : ''}>📝 Short Answer</option>
+              <option value="mc" ${q.type === 'mc' ? 'selected' : ''}>🔘 Multiple Choice</option>
+            </select>
+            <button class="remove-question-btn" data-sec="${secIdx}" data-q="${qIdx}">✖ Remove</button>
+          </div>`;
+        if (q.type === 'short') {
+          html += `<div class="short-answer-answers">
+            <label>Correct answer(s) (comma separated):</label><br>
+            <input type="text" class="short-answers-input" value="${escapeHtml((q.correctAnswers || []).join(', '))}" placeholder="e.g., 1987, nineteen eighty seven">
+            <div class="correct-badge">Multiple acceptable answers allowed</div>
+          </div>`;
+        } else if (q.type === 'mc') {
+          const options = q.options || ['', '', ''];
+          const correctOpt = q.correctOption || '';
+          html += `<div class="mc-options">
+            <label>Options (A, B, C...):</label><br>`;
+          options.forEach((opt, optIdx) => {
+            const letter = String.fromCharCode(65+optIdx);
+            html += `<div class="mc-option-row">
+              <span style="font-weight:bold;">${letter}.</span>
+              <input type="text" class="mc-option-text" data-optidx="${optIdx}" value="${escapeHtml(opt)}" placeholder="Option text" style="flex:1;">
+              <label><input type="radio" name="correct_mc_${secIdx}_${qIdx}" value="${letter}" ${correctOpt === letter ? 'checked' : ''}> Correct</label>
+            </div>`;
+          });
+          html += `<button class="add-mc-option-btn" data-sec="${secIdx}" data-q="${qIdx}">+ Add Option</button>`;
+          html += `</div>`;
+        }
+        html += `</div>`;
+      });
+      html += `</div>`;
+    });
+    container.innerHTML = html;
+    attachBuilderEvents();
+  }
+
+  function attachBuilderEvents() {
+    // Section title
+    document.querySelectorAll('.section-title-input').forEach((input, idx) => {
+      input.addEventListener('input', (e) => { sections[idx].title = e.target.value; });
+    });
+    // Remove section
+    document.querySelectorAll('.remove-section-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.dataset.sec);
+        sections.splice(secIdx, 1);
+        renderBuilder();
+      });
+    });
+    // Add question
+    document.querySelectorAll('.add-question-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.dataset.sec);
+        sections[secIdx].questions.push({ text: "", type: "short", correctAnswers: [] });
+        renderBuilder();
+      });
+    });
+    // Remove question
+    document.querySelectorAll('.remove-question-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.dataset.sec);
+        const qIdx = parseInt(btn.dataset.q);
+        sections[secIdx].questions.splice(qIdx, 1);
+        renderBuilder();
+      });
+    });
+    // Question text
+    document.querySelectorAll('.question-text-input').forEach((input) => {
+      const card = input.closest('.section-card');
+      if (!card) return;
+      const secIdx = parseInt(card.dataset.sec);
+      const qItem = input.closest('.question-item');
+      const qIdx = parseInt(qItem.dataset.qidx);
+      input.addEventListener('input', (e) => { sections[secIdx].questions[qIdx].text = e.target.value; });
+    });
+    // Type change
+    document.querySelectorAll('.question-type-select').forEach((sel) => {
+      const card = sel.closest('.section-card');
+      const secIdx = parseInt(card.dataset.sec);
+      const qItem = sel.closest('.question-item');
+      const qIdx = parseInt(qItem.dataset.qidx);
+      sel.addEventListener('change', (e) => {
+        const newType = e.target.value;
+        const q = sections[secIdx].questions[qIdx];
+        q.type = newType;
+        if (newType === 'short') {
+          q.correctAnswers = q.correctAnswers || [];
+          delete q.options;
+          delete q.correctOption;
+        } else {
+          q.options = q.options || ['', '', ''];
+          q.correctOption = q.correctOption || 'A';
+        }
+        renderBuilder();
+      });
+    });
+    // Short answer inputs
+    document.querySelectorAll('.short-answers-input').forEach((input) => {
+      const card = input.closest('.section-card');
+      const secIdx = parseInt(card.dataset.sec);
+      const qItem = input.closest('.question-item');
+      const qIdx = parseInt(qItem.dataset.qidx);
+      input.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const answers = val.split(',').map(s => s.trim()).filter(s => s);
+        sections[secIdx].questions[qIdx].correctAnswers = answers;
+      });
+    });
+    // MC option text
+    document.querySelectorAll('.mc-option-text').forEach(input => {
+      const card = input.closest('.section-card');
+      const secIdx = parseInt(card.dataset.sec);
+      const qItem = input.closest('.question-item');
+      const qIdx = parseInt(qItem.dataset.qidx);
+      const optIdx = parseInt(input.dataset.optidx);
+      input.addEventListener('input', (e) => {
+        if (!sections[secIdx].questions[qIdx].options) sections[secIdx].questions[qIdx].options = [];
+        sections[secIdx].questions[qIdx].options[optIdx] = e.target.value;
+      });
+    });
+    // MC correct radio
+    document.querySelectorAll('input[type="radio"][name^="correct_mc_"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (!radio.checked) return;
+        const name = radio.name;
+        const parts = name.split('_');
+        const secIdx = parseInt(parts[3]);
+        const qIdx = parseInt(parts[4]);
+        const correctLetter = radio.value;
+        sections[secIdx].questions[qIdx].correctOption = correctLetter;
+      });
+    });
+    // Add MC option
+    document.querySelectorAll('.add-mc-option-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const secIdx = parseInt(btn.dataset.sec);
+        const qIdx = parseInt(btn.dataset.q);
+        const q = sections[secIdx].questions[qIdx];
+        if (!q.options) q.options = [];
+        q.options.push("");
+        renderBuilder();
+      });
+    });
+  }
+
+  // ---------- SAVE/LOAD ----------
+  function captureState() {
+    return {
+      testTitle: document.getElementById('testTitle').value,
+      testSubtitle: document.getElementById('testSubtitle').value,
+      bgColor: document.getElementById('bgColor').value,
+      audioPath: document.getElementById('audioPath').value,
+      sections: sections,
+      embeddedAudioBase64: embeddedAudioBase64,
+      currentAudioFileName: currentAudioFileName
+    };
+  }
+  function restoreState(state) {
+    if (!state) return;
+    document.getElementById('testTitle').value = state.testTitle || "Listening Test";
+    document.getElementById('testSubtitle').value = state.testSubtitle || "";
+    document.getElementById('bgColor').value = state.bgColor || "#ffffff";
+    document.getElementById('audioPath').value = state.audioPath || "";
+    embeddedAudioBase64 = state.embeddedAudioBase64 || null;
+    currentAudioFileName = state.currentAudioFileName || "";
+    if (embeddedAudioBase64) document.getElementById('audioFileName').innerHTML = `🎵 ${currentAudioFileName}`;
+    else document.getElementById('audioFileName').innerHTML = "";
+    sections = state.sections || [];
+    renderBuilder();
+  }
+
+  // ---------- GENERATE TEST HTML ----------
+  function generateTestHTML() {
+    const title = document.getElementById('testTitle').value.trim() || "Listening Test";
+    const subtitle = document.getElementById('testSubtitle').value.trim();
+    const bgColor = document.getElementById('bgColor').value;
+    let audioSrc = document.getElementById('audioPath').value.trim();
+    if (embeddedAudioBase64) audioSrc = embeddedAudioBase64;
+    else if (!audioSrc) { alert("Please provide an audio file or path."); return null; }
+
+    let sectionsHTML = '';
+    let totalQuestions = 0;
+    let shortAnswerData = {};
+    let mcData = {};
+
+    for (let secIdx = 0; secIdx < sections.length; secIdx++) {
+      const sec = sections[secIdx];
+      if (!sec.questions.length) continue;
+      sectionsHTML += `<div class="part-title">${escapeHtml(sec.title)}</div>\n`;
+      for (let qIdx = 0; qIdx < sec.questions.length; qIdx++) {
+        const q = sec.questions[qIdx];
+        totalQuestions++;
+        const qNum = totalQuestions;
+        if (q.type === 'short') {
+          sectionsHTML += `<div class="question">\n${qNum}. ${escapeHtml(q.text)}\n<input type="text" class="short-answer" data-q="${qNum}">\n</div>\n`;
+          shortAnswerData[qNum] = (q.correctAnswers || []).map(a => a.toLowerCase());
+        } else if (q.type === 'mc') {
+          const options = q.options || [];
+          const correctLetter = q.correctOption || 'A';
+          sectionsHTML += `<div class="question">\n${qNum}. ${escapeHtml(q.text)}\n<div class="options">\n`;
+          options.forEach((opt, optIdx) => {
+            const letter = String.fromCharCode(65+optIdx);
+            sectionsHTML += `<label><input type="radio" name="q${qNum}" value="${letter}"> ${escapeHtml(opt)}</label>\n`;
+          });
+          sectionsHTML += `</div>\n</div>\n`;
+          mcData[qNum] = correctLetter;
+        }
+      }
+    }
+
+    if (totalQuestions === 0) {
+      alert("Please add at least one question before generating the test.");
+      return null;
+    }
+
+    const scriptData = `
+      const SHORT_ANSWERS = ${JSON.stringify(shortAnswerData)};
+      const MC_ANSWERS = ${JSON.stringify(mcData)};
+      function normalize(s) { return s.trim().toLowerCase().replace(/[.,!?;:]/g, ''); }
+      function checkShortAnswer(userAns, correctList) {
+        const norm = normalize(userAns);
+        return correctList.some(correct => normalize(correct) === norm);
+      }
+      function computeScore() {
+        let score = 0;
+        let total = ${totalQuestions};
+        for (let q in SHORT_ANSWERS) {
+          const input = document.querySelector(\`input.short-answer[data-q="\${q}"]\`);
+          if (input && input.value.trim() !== "") {
+            if (checkShortAnswer(input.value, SHORT_ANSWERS[q])) score++;
+            else input.style.borderColor = "#e53e3e";
+          }
+        }
+        for (let q in MC_ANSWERS) {
+          const selected = document.querySelector(\`input[name="q\${q}"]:checked\`);
+          if (selected && selected.value === MC_ANSWERS[q]) score++;
+        }
+        document.getElementById('result').innerHTML = \`✅ Your score: \${score} out of \${total}\`;
+      }
+      document.getElementById('submitBtn').addEventListener('click', computeScore);
+    `;
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>${escapeHtml(title)}</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:${bgColor};font-family:'Segoe UI',system-ui,sans-serif;padding:30px 20px;}
+  .exam{max-width:900px;margin:0 auto;background:white;border-radius:32px;padding:32px;box-shadow:0 12px 25px rgba(0,0,0,0.1);}
+  .header{text-align:center;margin-bottom:24px;}
+  .header h1{color:#1f3e48;font-size:1.8rem;}
+  .header p{color:#4a6a7a;}
+  .audio-box{background:#f4f7fb;border-radius:28px;padding:16px;margin-bottom:28px;text-align:center;}
+  audio{width:100%;max-width:400px;}
+  .part-title{font-size:1.3rem;font-weight:bold;background:#eef2ff;padding:8px 16px;border-radius:60px;margin:24px 0 16px 0;color:#1f4e8c;}
+  .question{background:#fafcfe;border:1px solid #e2edf2;border-radius:24px;padding:16px;margin-bottom:16px;}
+  .question input[type="text"]{width:100%;padding:10px;margin-top:10px;border-radius:40px;border:1px solid #cbd5e1;}
+  .options{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;}
+  .options label{background:#f1f5f9;padding:6px 16px;border-radius:40px;cursor:pointer;}
+  .actions{display:flex;justify-content:space-between;align-items:center;margin-top:32px;}
+  .back-link{color:#2c7da0;text-decoration:none;font-weight:500;}
+  button#submitBtn{background:#1e6f5c;color:white;border:none;padding:10px 28px;border-radius:60px;font-size:1rem;cursor:pointer;}
+  #result{margin-top:24px;text-align:center;font-weight:bold;font-size:1.1rem;padding:16px;background:#eef3fa;border-radius:60px;}
+</style>
+</head>
+<body>
+<div class="exam">
+  <div class="header">
+    <h1>${escapeHtml(title)}</h1>
+    ${subtitle ? `<p>${escapeHtml(subtitle)}</p>` : ''}
+  </div>
+  <div class="audio-box">
+    <audio controls>
+      <source src="${audioSrc}" type="audio/mpeg">
+    </audio>
+  </div>
+  ${sectionsHTML}
+  <div class="actions">
+    <a href="#" class="back-link" onclick="window.history.back();return false;">⬅ Back to Dashboard</a>
+    <button id="submitBtn">Submit</button>
+  </div>
+  <div id="result"></div>
+</div>
+<script>
+  ${scriptData}
+<\/script>
+</body>
+</html>`;
+  }
+
+  // ---------- BUTTON ACTIONS ----------
+  function newTest() {
+    if (confirm("Create a new empty test? All current data will be lost.")) {
+      sections = [];
+      embeddedAudioBase64 = null;
+      currentAudioFileName = "";
+      document.getElementById('testTitle').value = "Listening Test";
+      document.getElementById('testSubtitle').value = "";
+      document.getElementById('bgColor').value = "#ffffff";
+      document.getElementById('audioPath').value = "";
+      document.getElementById('audioFileName').innerHTML = "";
+      renderBuilder();
+    }
+  }
+  function saveTest() {
+    const state = captureState();
+    localStorage.setItem('listeningTestMakerV2', JSON.stringify(state));
+    document.getElementById('statusMsg').innerHTML = "✅ Saved!";
+    setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 2000);
+  }
+  function loadTest() {
+    const saved = localStorage.getItem('listeningTestMakerV2');
+    if (!saved) { alert("No saved test found."); return; }
+    try {
+      const state = JSON.parse(saved);
+      restoreState(state);
+      document.getElementById('statusMsg').innerHTML = "✅ Loaded!";
+      setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 2000);
+    } catch(e) { alert("Error loading"); }
+  }
+  function previewTest() {
+    const html = generateTestHTML();
+    if (!html) return;
+    const frame = document.getElementById('previewIframe');
+    frame.srcdoc = html;
+    document.getElementById('previewModal').classList.add('active');
+  }
+  function downloadTest() {
+    const html = generateTestHTML();
+    if (!html) return;
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `listening_test_${Date.now()}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+    document.getElementById('statusMsg').innerHTML = "✅ Test downloaded!";
+    setTimeout(() => document.getElementById('statusMsg').innerHTML = "", 3000);
+  }
+
+  // Audio upload
+  function setupAudioUpload() {
+    const chooseBtn = document.getElementById('chooseAudioBtn');
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'audio/*';
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        embeddedAudioBase64 = ev.target.result;
+        currentAudioFileName = file.name;
+        document.getElementById('audioPath').value = "[Embedded Audio]";
+        document.getElementById('audioFileName').innerHTML = `🎵 ${currentAudioFileName}`;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Event listeners
+  document.getElementById('addSectionBtn').addEventListener('click', () => {
+    sections.push(createEmptyPart());
+    renderBuilder();
+  });
+  document.getElementById('generateBtn').addEventListener('click', downloadTest);
+  document.getElementById('newBtn').addEventListener('click', newTest);
+  document.getElementById('saveBtn').addEventListener('click', saveTest);
+  document.getElementById('loadBtn').addEventListener('click', loadTest);
+  document.getElementById('previewBtn').addEventListener('click', previewTest);
+  document.getElementById('closePreviewBtn').addEventListener('click', () => {
+    document.getElementById('previewModal').classList.remove('active');
+  });
+  setupAudioUpload();
+
+  // Start completely empty (no sections)
+  sections = [];
+  renderBuilder();
+</script>
+</body>
+</html>

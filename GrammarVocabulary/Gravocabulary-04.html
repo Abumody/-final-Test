@@ -1,267 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar/Vocabulary 04 - Grade 07</title>
-    <link rel="stylesheet" href="Gravocabulary-00.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grammar &amp; Vocabs - Final Exam Practice (Bakheeta)</title>
+  <style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+body{background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);color:#1b5e20;line-height:1.6;min-height:100vh;padding:20px}
+.container{max-width:1200px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 15px 35px rgba(76,175,80,0.2);overflow:hidden;border:2px solid #4caf50}
+header{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white;padding:30px 40px;text-align:center;position:relative;overflow:hidden}
+h1{font-size:2.2rem;margin-bottom:10px;position:relative;z-index:1;text-shadow:2px 2px 4px rgba(0,0,0,0.2)}
+.subtitle{font-size:1.2rem;opacity:0.9;position:relative;z-index:1}
+.instructions{background:#f1f8e9;padding:25px 40px;border-bottom:2px solid #c8e6c9}
+.instructions p{font-size:1.2rem;color:#2e7d32;margin-bottom:15px;font-weight:600;text-align:center}
+.instructions-tips{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:15px}
+.tip{background:white;padding:10px 20px;border-radius:25px;font-size:0.95rem;color:#555;display:flex;align-items:center;gap:8px;box-shadow:0 3px 8px rgba(0,0,0,0.1)}
+.passage-container{padding:30px 40px}
+.passage-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:3px solid #e8f5e9}
+.passage-header h2{color:#2e7d32;font-size:1.8rem;margin:0}
+.progress-indicator{background:#4caf50;color:white;padding:10px 20px;border-radius:20px;font-weight:600;font-size:1.1rem;box-shadow:0 4px 8px rgba(76,175,80,0.3)}
+.passage-content{display:grid;grid-template-columns:2fr 1fr;gap:40px;align-items:start}
+@media(max-width:992px){.passage-content{grid-template-columns:1fr}}
+.passage-text{background:#f9f9f9;padding:35px;border-radius:15px;border:2px solid #e0f2e1;line-height:1.8;font-size:1.1rem;color:#333}
+.passage-text p{margin-bottom:25px}
+.dropdown-wrapper{display:inline-block;position:relative;margin:0 5px;min-width:150px;vertical-align:middle}
+.dropdown-wrapper:hover .question-number{opacity:1;transform:translateY(-5px)}
+.question-number{position:absolute;top:-25px;left:50%;transform:translateX(-50%);background:#4caf50;color:white;width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:bold;opacity:0.7;transition:all 0.3s ease;z-index:10}
+.word-dropdown{width:100%;padding:10px 12px;font-size:1rem;border:2px solid #a5d6a7;border-radius:10px;background:white;color:#2e7d32;cursor:pointer;transition:all 0.3s ease;appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234caf50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:40px;font-weight:500}
+.word-dropdown:hover{border-color:#4caf50;box-shadow:0 4px 8px rgba(76,175,80,0.2);transform:translateY(-2px)}
+.word-dropdown:focus{outline:none;border-color:#2e7d32;box-shadow:0 0 0 3px rgba(76,175,80,0.3)}
+.word-dropdown.empty{color:#999;border-style:dashed;background-color:#f9f9f9}
+.word-dropdown.selected{background-color:#e3f2fd;border-color:#2196f3;color:#0d47a1}
+.word-dropdown.correct{background-color:#c8e6c9;border-color:#4caf50;color:#2e7d32;animation:pulse 0.5s ease}
+.word-dropdown.incorrect{background-color:#ffcdd2;border-color:#f44336;color:#c62828;animation:shake 0.5s ease}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.passage-sidebar{display:flex;flex-direction:column;gap:25px}
+.sidebar-card{background:white;padding:25px;border-radius:15px;border:2px solid #e0f2e1;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
+.sidebar-card h3{color:#2e7d32;margin-bottom:20px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.icon{font-size:1.2rem}
+.guide-steps{display:flex;flex-direction:column;gap:15px}
+.step{display:flex;align-items:center;gap:15px;padding:12px;background:#f9f9f9;border-radius:10px;transition:all 0.3s ease}
+.step:hover{background:#e8f5e9;transform:translateX(5px)}
+.step-number{background:#4caf50;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.9rem;flex-shrink:0}
+.step-text{color:#555;font-size:0.95rem}
+.progress-bar-container{margin-top:10px}
+.progress-bar{height:12px;background:#e0e0e0;border-radius:6px;overflow:hidden;margin-bottom:10px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#4caf50,#2e7d32);width:0%;transition:width 0.5s ease;border-radius:6px}
+.progress-text{display:flex;justify-content:space-between;font-size:0.9rem;color:#666}
+.legend-items{display:flex;flex-direction:column;gap:12px}
+.legend-item{display:flex;align-items:center;gap:12px}
+.color-box{width:20px;height:20px;border-radius:4px;border:2px solid transparent;flex-shrink:0}
+.color-box.empty{background:#f9f9f9;border-color:#a5d6a7;border-style:dashed}
+.color-box.selected{background:#e3f2fd;border-color:#2196f3}
+.color-box.correct{background:#c8e6c9;border-color:#4caf50}
+.color-box.incorrect{background:#ffcdd2;border-color:#f44336}
+.legend-item span{color:#555;font-size:0.9rem}
+.action-buttons{background:#f1f8e9;padding:30px 40px;border-top:2px solid #c8e6c9;display:flex;justify-content:center;gap:25px;flex-wrap:wrap}
+.btn{padding:15px 30px;border:none;border-radius:12px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;display:flex;align-items:center;gap:12px;min-width:180px;justify-content:center;box-shadow:0 6px 12px rgba(0,0,0,0.15)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,0.2)}
+.btn-primary{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white}
+.btn-primary:hover{background:linear-gradient(135deg,#43a047,#1b5e20);box-shadow:0 10px 20px rgba(76,175,80,0.4)}
+.btn-secondary{background:linear-gradient(135deg,#757575,#616161);color:white}
+.btn-secondary:hover{background:linear-gradient(135deg,#6d6d6d,#545454)}
+.btn-back{background:linear-gradient(135deg,#2196f3,#1976d2);color:white}
+.btn-back:hover{background:linear-gradient(135deg,#1e88e5,#1565c0)}
+.btn-outline{background:transparent;border:2px solid #4caf50;color:#4caf50;box-shadow:none}
+.btn-outline:hover{background:#4caf50;color:white}
+.btn-icon{font-size:1.2rem}
+.results-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s ease}
+.results-modal.show{opacity:1;visibility:visible}
+.modal-content{background:white;border-radius:25px;width:100%;max-width:900px;max-height:90vh;overflow-y:auto;animation:modalSlideUp 0.5s ease;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white;padding:25px 35px;border-radius:25px 25px 0 0;display:flex;justify-content:space-between;align-items:center}
+.modal-header h2{font-size:1.6rem;margin:0;display:flex;align-items:center;gap:12px}
+.close-modal{background:rgba(255,255,255,0.2);border:none;width:40px;height:40px;border-radius:50%;font-size:1.6rem;color:white;cursor:pointer;transition:all 0.3s ease;display:flex;align-items:center;justify-content:center}
+.close-modal:hover{background:rgba(255,255,255,0.3);transform:rotate(90deg)}
+.modal-body{padding:35px}
+.score-section{display:grid;grid-template-columns:1fr 2fr;gap:30px;margin-bottom:30px;align-items:center}
+@media(max-width:768px){.score-section{grid-template-columns:1fr;gap:20px}}
+.score-display{display:flex;align-items:center;gap:25px}
+.score-circle{background:linear-gradient(135deg,#4caf50,#2e7d32);width:130px;height:130px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;box-shadow:0 10px 25px rgba(76,175,80,0.4)}
+.score-value{font-size:3rem;font-weight:bold;line-height:1}
+.score-total{font-size:1.3rem;opacity:0.9}
+.score-info{text-align:center}
+.percentage{font-size:2rem;font-weight:bold;color:#4caf50;margin-bottom:5px}
+.score-label{color:#666;font-size:1rem}
+.feedback{background:#f1f8e9;padding:20px;border-radius:15px;border-left:5px solid #4caf50}
+.feedback h3{color:#2e7d32;margin-bottom:12px;font-size:1.3rem}
+.feedback p{color:#555;line-height:1.5}
+.details-section h3{color:#2e7d32;margin-bottom:20px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.answers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:15px}
+.answer-card{padding:15px;border-radius:12px;border:2px solid #e0f2e1;transition:all 0.2s;background:white}
+.answer-card:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(0,0,0,0.08)}
+.answer-card.correct{border-color:#4caf50;background:#f1f8e9}
+.answer-card.incorrect{border-color:#f44336;background:#ffebee}
+.answer-card.unanswered{border-color:#ff9800;background:#fff3e0}
+.answer-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed #e0e0e0}
+.answer-number{background:#4caf50;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.9rem}
+.answer-status{font-size:0.8rem;font-weight:600;padding:4px 12px;border-radius:20px}
+.answer-status.correct{background:#4caf50;color:white}
+.answer-status.incorrect{background:#f44336;color:white}
+.answer-status.unanswered{background:#ff9800;color:white}
+.answer-details{font-size:0.9rem;color:#555}
+.answer-details div{margin-bottom:6px}
+.answer-details strong{color:#333}
+.modal-footer{padding:25px 35px;background:#f9f9f9;border-radius:0 0 25px 25px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.modal-footer .btn{min-width:150px}
+@media(max-width:768px){.container{margin:10px;padding:15px}header,.instructions,.passage-container,.action-buttons{padding:20px}h1{font-size:1.6rem}.passage-header{flex-direction:column;gap:12px;text-align:center}.passage-text{padding:20px;font-size:1rem}.dropdown-wrapper{min-width:120px}.word-dropdown{padding:8px 10px;font-size:0.9rem}.btn{min-width:100%;padding:12px 20px;font-size:1rem}.modal-body{padding:20px}.modal-footer{padding:20px;flex-direction:column}.modal-footer .btn{width:100%}.answers-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.score-display{flex-direction:column;text-align:center}.score-circle{width:100px;height:100px}.score-value{font-size:2.2rem}}
+.pulse{animation:pulseAnimation 1s ease}.focused .word-dropdown{border-color:#2196f3;box-shadow:0 0 0 3px rgba(33,150,243,0.3)}@keyframes pulseAnimation{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.toast-notification{position:fixed;top:20px;right:20px;background:white;padding:12px 18px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);display:flex;align-items:center;gap:12px;z-index:9999;transform:translateX(100%);opacity:0;transition:all 0.3s ease;border-left:4px solid #4caf50;max-width:300px}
+.toast-notification.show{transform:translateX(0);opacity:1}
+.toast-success{border-left-color:#4caf50}
+.toast-info{border-left-color:#2196f3}
+.toast-icon{font-size:1.1rem}
+.toast-message{color:#333;font-weight:500}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>GRAMMAR/VOCABULARY 04 (Items 1 - 10)</h1>
-            <p class="subtitle">Grade 07 Semester 02 2024-2025</p>
-        </header>
-        
-        <div class="instructions">
-            <p><strong>Read the passage about Television. For each numbered blank, select the correct option from the dropdown menu.</strong></p>
-            <div class="instructions-tips">
-                <span class="tip">💡 Click on each blank to see the options</span>
-                <span class="tip">✅ Choose the best word for each sentence</span>
-            </div>
-        </div>
-        
-        <!-- Main Passage with Dropdowns -->
-        <div class="passage-container">
-            <div class="passage-header">
-                <h2>The Story of Television</h2>
-                <div class="progress-indicator">
-                    <span id="answeredCount">0</span>/10 answered
-                </div>
-            </div>
-            
-            <div class="passage-content">
-                <div class="passage-text">
-                    <p>Television is one of the 
-                        <span class="dropdown-wrapper" data-question="1">
-                            <select class="word-dropdown" id="dropdown1" data-correct="greatest">
-                                <option value="">(Select)</option>
-                                <option value="great">great</option>
-                                <option value="greatest">greatest</option>
-                                <option value="greater">greater</option>
-                            </select>
-                            <span class="question-number">1</span>
-                        </span> 
-                        inventions of the twentieth 
-                        <span class="dropdown-wrapper" data-question="2">
-                            <select class="word-dropdown" id="dropdown2" data-correct="century">
-                                <option value="">(Select)</option>
-                                <option value="year">year</option>
-                                <option value="month">month</option>
-                                <option value="century">century</option>
-                            </select>
-                            <span class="question-number">2</span>
-                        </span>. 
-                        It has become 
-                        <span class="dropdown-wrapper" data-question="3">
-                            <select class="word-dropdown" id="dropdown3" data-correct="an">
-                                <option value="">(Select)</option>
-                                <option value="the">the</option>
-                                <option value="a">a</option>
-                                <option value="an">an</option>
-                            </select>
-                            <span class="question-number">3</span>
-                        </span> 
-                        important part of every home. It also has become a great resource of 
-                        <span class="dropdown-wrapper" data-question="4">
-                            <select class="word-dropdown" id="dropdown4" data-correct="information">
-                                <option value="">(Select)</option>
-                                <option value="destination">destination</option>
-                                <option value="information">information</option>
-                                <option value="population">population</option>
-                            </select>
-                            <span class="question-number">4</span>
-                        </span> 
-                        and entertainment for people of all ages.</p>
-                    
-                    <p>Television was not 
-                        <span class="dropdown-wrapper" data-question="5">
-                            <select class="word-dropdown" id="dropdown5" data-correct="invented">
-                                <option value="">(Select)</option>
-                                <option value="invented">invented</option>
-                                <option value="inventing">inventing</option>
-                                <option value="invents">invents</option>
-                            </select>
-                            <span class="question-number">5</span>
-                        </span> 
-                        by one inventor. However, different inventors 
-                        <span class="dropdown-wrapper" data-question="6">
-                            <select class="word-dropdown" id="dropdown6" data-correct="from">
-                                <option value="">(Select)</option>
-                                <option value="for">for</option>
-                                <option value="from">from</option>
-                                <option value="by">by</option>
-                            </select>
-                            <span class="question-number">6</span>
-                        </span> 
-                        many countries helped to develop the TV. People started to see coloured pictures on the TV 
-                        <span class="dropdown-wrapper" data-question="7">
-                            <select class="word-dropdown" id="dropdown7" data-correct="in">
-                                <option value="">(Select)</option>
-                                <option value="in">in</option>
-                                <option value="to">to</option>
-                                <option value="on">on</option>
-                            </select>
-                            <span class="question-number">7</span>
-                        </span> 
-                        the 1950s.</p>
-                    
-                    <p>Later on, the development of TV industry 
-                        <span class="dropdown-wrapper" data-question="8">
-                            <select class="word-dropdown" id="dropdown8" data-correct="has">
-                                <option value="">(Select)</option>
-                                <option value="his">his</option>
-                                <option value="have">have</option>
-                                <option value="has">has</option>
-                            </select>
-                            <span class="question-number">8</span>
-                        </span> 
-                        grown very 
-                        <span class="dropdown-wrapper" data-question="9">
-                            <select class="word-dropdown" id="dropdown9" data-correct="fast">
-                                <option value="">(Select)</option>
-                                <option value="famous">famous</option>
-                                <option value="fast">fast</option>
-                                <option value="first">first</option>
-                            </select>
-                            <span class="question-number">9</span>
-                        </span> 
-                        so that TVs come with different shapes, colours 
-                        <span class="dropdown-wrapper" data-question="10">
-                            <select class="word-dropdown" id="dropdown10" data-correct="and">
-                                <option value="">(Select)</option>
-                                <option value="too">too</option>
-                                <option value="and">and</option>
-                                <option value="but">but</option>
-                            </select>
-                            <span class="question-number">10</span>
-                        </span> 
-                        sizes.</p>
-                </div>
-                
-                <div class="passage-sidebar">
-                    <div class="sidebar-card">
-                        <h3><span class="icon">📌</span> Quick Guide</h3>
-                        <div class="guide-steps">
-                            <div class="step">
-                                <div class="step-number">1</div>
-                                <div class="step-text">Read the entire story first</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-number">2</div>
-                                <div class="step-text">Click on any blank to see options</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-number">3</div>
-                                <div class="step-text">Choose the word that fits best</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-number">4</div>
-                                <div class="step-text">Check your answers when ready</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-card status-card">
-                        <h3><span class="icon">📊</span> Your Progress</h3>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" id="progressBar">
-                                <div class="progress-fill"></div>
-                            </div>
-                            <div class="progress-text">
-                                <span id="progressText">0% Complete</span>
-                                <span id="answeredText">0/10 answered</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-card legend-card">
-                        <h3><span class="icon">🎨</span> Color Guide</h3>
-                        <div class="legend-items">
-                            <div class="legend-item">
-                                <div class="color-box empty"></div>
-                                <span>Not answered</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-box selected"></div>
-                                <span>Answered</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-box correct"></div>
-                                <span>Correct answer</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="color-box incorrect"></div>
-                                <span>Incorrect answer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button class="btn btn-secondary" id="resetBtn">
-                <span class="btn-icon">🔄</span> Clear All Answers
-            </button>
-            <button class="btn btn-primary" id="checkBtn">
-                <span class="btn-icon">✓</span> Check My Answers
-            </button>
-            <button class="btn btn-back" id="backBtn">
-                <span class="btn-icon">←</span> Back to Activities
-            </button>
-        </div>
-        
-        <!-- Results Modal -->
-        <div class="results-modal" id="resultsModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2><span class="icon">📊</span> Test Results</h2>
-                    <button class="close-modal" id="closeModalBtn">×</button>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="score-section">
-                        <div class="score-display">
-                            <div class="score-circle">
-                                <div class="score-value" id="scoreValue">0</div>
-                                <div class="score-total">/10</div>
-                            </div>
-                            <div class="score-info">
-                                <div class="percentage" id="percentageValue">0%</div>
-                                <div class="score-label">Success Rate</div>
-                            </div>
-                        </div>
-                        
-                        <div class="feedback" id="feedback">
-                            <!-- Feedback will be inserted here -->
-                        </div>
-                    </div>
-                    
-                    <div class="details-section">
-                        <h3><span class="icon">📋</span> Answer Details</h3>
-                        <div class="answers-grid" id="answersGrid">
-                            <!-- Answer details will be inserted here -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-footer">
-                    <button class="btn btn-outline" id="reviewBtn">
-                        <span class="btn-icon">👁️</span> Review Answers
-                    </button>
-                    <button class="btn btn-secondary" id="tryAgainBtn">
-                        <span class="btn-icon">🔄</span> Try Again
-                    </button>
-                    <button class="btn btn-primary" id="continueBtn">
-                        <span class="btn-icon">→</span> Continue
-                    </button>
-                </div>
-            </div>
-        </div>
+<div class="container">
+  <header>
+    <h1>Grammar &amp; Vocabs</h1>
+    <p class="subtitle">Final Exam Practice (Bakheeta Mohammed)</p>
+  </header>
+  <div class="instructions">
+    <p>Read the passage carefully. For each numbered blank, select the correct option from the dropdown menu.</p>
+    <div class="instructions-tips">
+      <div class="tip">💡 Click on each blank to see the options</div>
+      <div class="tip">✅ Choose the best word for each sentence</div>
     </div>
+  </div>
+  <div class="passage-container">
+    <div class="passage-header">
+      <h2>📖 My Friend's City Adventure</h2>
+      <div class="progress-indicator"><span id="answeredCount">0/10</span> answered</div>
+    </div>
+    <div class="passage-content">
+      <div class="passage-text">
+        <p>My friend 
+        <span class="dropdown-wrapper"><select id="dropdown1" class="word-dropdown" data-correct="told">
+          <option value="">Select...</option><option value="told">told</option><option value="watched">watched</option><option value="says">says</option>
+        </select><span class="question-number">1</span></span> me that he was very happy today. He lives in a big 
+        <span class="dropdown-wrapper"><select id="dropdown2" class="word-dropdown" data-correct="capital">
+          <option value="">Select...</option><option value="recipe">recipe</option><option value="capital">capital</option><option value="luggage">luggage</option>
+        </select><span class="question-number">2</span></span> city with many people. In the past, he 
+        <span class="dropdown-wrapper"><select id="dropdown3" class="word-dropdown" data-correct="used to">
+          <option value="">Select...</option><option value="uses to">uses to</option><option value="used to">used to</option><option value="using to">using to</option>
+        </select><span class="question-number">3</span></span> live in a 
+        <span class="dropdown-wrapper"><select id="dropdown4" class="word-dropdown" data-correct="tiny">
+          <option value="">Select...</option><option value="newspaper">newspaper</option><option value="empty">empty</option><option value="tiny">tiny</option>
+        </select><span class="question-number">4</span></span> house in the mountains, but now he lives in a modern flat. Now, he is standing on the 
+        <span class="dropdown-wrapper"><select id="dropdown5" class="word-dropdown" data-correct="pavement">
+          <option value="">Select...</option><option value="pavement">pavement</option><option value="crossroad">crossroad</option><option value="roundabout">roundabout</option>
+        </select><span class="question-number">5</span></span> right to be safe and waiting for a 
+        <span class="dropdown-wrapper"><select id="dropdown6" class="word-dropdown" data-correct="taxi">
+          <option value="">Select...</option><option value="fire engine">fire engine</option><option value="lorry">lorry</option><option value="taxi">taxi</option>
+        </select><span class="question-number">6</span></span>. He told me that he 
+        <span class="dropdown-wrapper"><select id="dropdown7" class="word-dropdown" data-correct="loves">
+          <option value="">Select...</option><option value="loves">loves</option><option value="loved">loved</option><option value="is loving">is loving</option>
+        </select><span class="question-number">7</span></span> seeing the city lights at night. Tomorrow, he is 
+        <span class="dropdown-wrapper"><select id="dropdown8" class="word-dropdown" data-correct="going">
+          <option value="">Select...</option><option value="going">going</option><option value="goes">goes</option><option value="went">went</option>
+        </select><span class="question-number">8</span></span> to a famous museum. I think he 
+        <span class="dropdown-wrapper"><select id="dropdown9" class="word-dropdown" data-correct="will">
+          <option value="">Select...</option><option value="would">would</option><option value="had">had</option><option value="will">will</option>
+        </select><span class="question-number">9</span></span> have a fun day there. He loves reading a 
+        <span class="dropdown-wrapper"><select id="dropdown10" class="word-dropdown" data-correct="fantasy">
+          <option value="">Select...</option><option value="fantasy">fantasy</option><option value="sign">sign</option><option value="biography">biography</option>
+        </select><span class="question-number">10</span></span> story about magic and adventure!</p>
+      </div>
+      <div class="passage-sidebar">
+        <div class="sidebar-card">
+          <h3><span class="icon">📌</span> Quick Guide</h3>
+          <div class="guide-steps">
+            <div class="step"><div class="step-number">1</div><div class="step-text">Read the entire passage first</div></div>
+            <div class="step"><div class="step-number">2</div><div class="step-text">Click on any blank to see options</div></div>
+            <div class="step"><div class="step-number">3</div><div class="step-text">Choose the word that fits best</div></div>
+            <div class="step"><div class="step-number">4</div><div class="step-text">Check your answers when ready</div></div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h3><span class="icon">📊</span> Your Progress</h3>
+          <div class="progress-bar-container">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <div class="progress-text">
+              <span id="progressText">0% Complete</span>
+              <span id="answeredText">0/10 answered</span>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h3><span class="icon">🎨</span> Color Guide</h3>
+          <div class="legend-items">
+            <div class="legend-item"><div class="color-box empty"></div><span>Not answered</span></div>
+            <div class="legend-item"><div class="color-box selected"></div><span>Answered</span></div>
+            <div class="legend-item"><div class="color-box correct"></div><span>Correct answer</span></div>
+            <div class="legend-item"><div class="color-box incorrect"></div><span>Incorrect answer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="action-buttons">
+    <button type="button" id="checkBtn" class="btn btn-primary"><span class="btn-icon">✓</span> Check My Answers</button>
+    <button type="button" id="resetBtn" class="btn btn-secondary"><span class="btn-icon">🔄</span> Clear All Answers</button>
+    <button type="button" id="backBtn" class="btn btn-back"><span class="btn-icon">←</span> Back to Activities</button>
+  </div>
+</div>
 
-    <script src="Script.js"></script>
+<div id="resultsModal" class="results-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>📊 Test Results</h2>
+      <button id="closeModalBtn" class="close-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="score-section">
+        <div class="score-display">
+          <div class="score-circle">
+            <div class="score-value" id="scoreValue">0</div>
+            <div class="score-total">/10</div>
+          </div>
+          <div class="score-info">
+            <div class="percentage" id="percentageValue">0%</div>
+            <div class="score-label">Success Rate</div>
+          </div>
+        </div>
+        <div class="feedback" id="feedback">
+          <h3>Ready to check your work?</h3>
+          <p>Select answers and click "Check My Answers" to see your score.</p>
+        </div>
+      </div>
+      <div class="details-section">
+        <h3>📋 Answer Details</h3>
+        <div id="answersGrid" class="answers-grid"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button id="reviewBtn" class="btn btn-outline">👁️ Review Answers</button>
+      <button id="tryAgainBtn" class="btn btn-secondary">🔄 Try Again</button>
+      <button id="continueBtn" class="btn btn-primary">→ Continue</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const totalQuestions = 10;
+  const correctMap = {
+    1: "told",
+    2: "capital",
+    3: "used to",
+    4: "tiny",
+    5: "pavement",
+    6: "taxi",
+    7: "loved",
+    8: "going",
+    9: "will",
+    10: "fantasy"
+  };
+
+  function init() {
+    attachDropdownEvents();
+    attachButtons();
+    updateProgress();
+    loadSavedProgress();
+  }
+
+  function attachDropdownEvents() {
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    dropdowns.forEach(dd => {
+      dd.addEventListener('change', () => handleChange(dd));
+      dd.addEventListener('focus', () => highlightNumber(dd, true));
+      dd.addEventListener('blur', () => highlightNumber(dd, false));
+      updateDropdownStyle(dd);
+    });
+  }
+
+  function updateDropdownStyle(dd) {
+    dd.classList.remove('empty', 'selected', 'correct', 'incorrect');
+    dd.classList.add(dd.value ? 'selected' : 'empty');
+  }
+
+  function highlightNumber(dd, active) {
+    const numSpan = dd.parentElement.querySelector('.question-number');
+    if (!numSpan) return;
+    if (active) {
+      numSpan.style.backgroundColor = '#2196f3';
+      numSpan.style.transform = 'translateX(-50%) scale(1.2)';
+    } else {
+      numSpan.style.backgroundColor = dd.value ? '#2196f3' : '#4caf50';
+      numSpan.style.transform = 'translateX(-50%) scale(1)';
+    }
+  }
+
+  function handleChange(dd) {
+    updateDropdownStyle(dd);
+    highlightNumber(dd, false);
+    updateProgress();
+    autoSave();
+  }
+
+  function updateProgress() {
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    let answered = 0;
+    dropdowns.forEach(dd => { if (dd.value) answered++; });
+    const percent = Math.round((answered / totalQuestions) * 100);
+    document.getElementById('answeredCount').innerText = answered + '/' + totalQuestions;
+    document.querySelector('.progress-fill').style.width = percent + '%';
+    document.getElementById('progressText').innerText = percent + '% Complete';
+    document.getElementById('answeredText').innerText = answered + '/' + totalQuestions + ' answered';
+  }
+
+  function checkAnswers() {
+    let correctCount = 0;
+    const results = [];
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    dropdowns.forEach(dd => dd.classList.remove('correct', 'incorrect'));
+    dropdowns.forEach(dd => {
+      const qNum = parseInt(dd.id.replace('dropdown', ''));
+      const user = dd.value;
+      const correct = correctMap[qNum];
+      let status = 'unanswered';
+      if (user) {
+        if (user === correct) {
+          status = 'correct';
+          correctCount++;
+          dd.classList.add('correct');
+        } else {
+          status = 'incorrect';
+          dd.classList.add('incorrect');
+        }
+      } else {
+        dd.classList.remove('correct', 'incorrect');
+      }
+      results.push({ num: qNum, status, user: user || null, correct });
+    });
+    showResultsModal(correctCount, results);
+  }
+
+  function showResultsModal(score, results) {
+    const percent = Math.round((score / totalQuestions) * 100);
+    document.getElementById('scoreValue').innerText = score;
+    document.getElementById('percentageValue').innerText = percent + '%';
+    let feedbackHtml = '';
+    if (score === totalQuestions) feedbackHtml = '<h3>🎉 Perfect Score!</h3><p>Excellent work! You mastered the grammar and vocabulary of this passage.</p>';
+    else if (percent >= 80) feedbackHtml = '<h3>🌟 Excellent Work!</h3><p>Great job! You got ' + score + ' out of ' + totalQuestions + ' correct (' + percent + '%).</p>';
+    else if (percent >= 60) feedbackHtml = '<h3>👍 Good Effort!</h3><p>You got ' + score + ' out of ' + totalQuestions + ' correct (' + percent + '%). Review the answers below to improve.</p>';
+    else feedbackHtml = '<h3>📚 Keep Practicing!</h3><p>You got ' + score + ' out of ' + totalQuestions + ' correct (' + percent + '%). Study the passage and try again.</p>';
+    document.getElementById('feedback').innerHTML = feedbackHtml;
+
+    let gridHtml = '';
+    results.forEach(r => {
+      const statusClass = r.status;
+      const statusText = r.status === 'correct' ? 'Correct' : (r.status === 'incorrect' ? 'Incorrect' : 'Not Answered');
+      const icon = r.status === 'correct' ? '✅' : (r.status === 'incorrect' ? '❌' : '⭕');
+      gridHtml += `<div class="answer-card ${statusClass}" data-q="${r.num}">
+        <div class="answer-header">
+          <div class="answer-number">${r.num}</div>
+          <div class="answer-status ${statusClass}">${icon} ${statusText}</div>
+        </div>
+        <div class="answer-details">
+          <div><strong>Correct Answer:</strong> <span style="color:#2e7d32;">${escapeHtml(r.correct)}</span></div>
+          ${r.user ? `<div><strong>Your Answer:</strong> <span style="color:${r.status === 'correct' ? '#2e7d32' : '#c62828'};">${escapeHtml(r.user)}</span></div>` : '<div><strong>Your Answer:</strong> <em style="color:#ff9800;">Not selected</em></div>'}
+        </div>
+      </div>`;
+    });
+    document.getElementById('answersGrid').innerHTML = gridHtml;
+
+    document.querySelectorAll('.answer-card').forEach(card => {
+      card.addEventListener('click', () => navigateToQuestion(card.dataset.q));
+    });
+
+    document.getElementById('resultsModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function navigateToQuestion(q) {
+    closeModal();
+    setTimeout(() => {
+      const dd = document.getElementById('dropdown' + q);
+      if (dd) {
+        dd.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        dd.focus();
+        const wrapper = dd.parentElement;
+        wrapper.classList.add('focused', 'pulse');
+        setTimeout(() => wrapper.classList.remove('focused', 'pulse'), 2000);
+      }
+    }, 200);
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.word-dropdown').forEach(dd => {
+      dd.value = '';
+      updateDropdownStyle(dd);
+    });
+    document.querySelectorAll('.question-number').forEach(n => {
+      n.style.backgroundColor = '#4caf50';
+      n.style.transform = 'translateX(-50%) scale(1)';
+    });
+    closeModal();
+    updateProgress();
+    localStorage.removeItem('finalBakheetaProgress');
+    showToast('All answers have been reset!', 'success');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('resultsModal');
+    if (modal) {
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  function reviewAnswers() {
+    closeModal();
+    setTimeout(() => {
+      const dropdowns = document.querySelectorAll('.word-dropdown');
+      let target = null;
+      for (let dd of dropdowns) {
+        if (dd.classList.contains('incorrect') || !dd.value) {
+          target = dd;
+          break;
+        }
+      }
+      if (target) {
+        const qNum = target.id.replace('dropdown', '');
+        navigateToQuestion(qNum);
+        showToast('Reviewing first incorrect/unanswered question', 'info');
+      } else {
+        showToast('All answers are correct! 🎉', 'success');
+      }
+    }, 200);
+  }
+
+  function goBack() {
+    if (hasUnsaved()) {
+      if (confirm('You have unsaved progress. Are you sure you want to leave?')) {
+        window.location.href = '../Grammar & Vocabulary Activities - Grade 7.html';
+      }
+    } else {
+      window.location.href = '../Grammar & Vocabulary Activities - Grade 7.html';
+    }
+  }
+
+  function hasUnsaved() {
+    const dropdowns = document.querySelectorAll('.word-dropdown');
+    for (let dd of dropdowns) if (dd.value) return true;
+    return false;
+  }
+
+  function showToast(msg, type) {
+    const existing = document.querySelector('.toast-notification');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type === 'success' ? 'toast-success' : 'toast-info'}`;
+    toast.innerHTML = `<span class="toast-icon">${type === 'success' ? '✅' : 'ℹ️'}</span><span class="toast-message">${escapeHtml(msg)}</span>`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 10);
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 2500);
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  let saveTimer;
+  function autoSave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      const selections = {};
+      for (let i = 1; i <= totalQuestions; i++) {
+        const dd = document.getElementById('dropdown' + i);
+        if (dd && dd.value) selections[i] = dd.value;
+      }
+      localStorage.setItem('finalBakheetaProgress', JSON.stringify(selections));
+    }, 800);
+  }
+
+  function loadSavedProgress() {
+    const saved = localStorage.getItem('finalBakheetaProgress');
+    if (saved) {
+      const data = JSON.parse(saved);
+      let loaded = 0;
+      for (let i = 1; i <= totalQuestions; i++) {
+        const val = data[i];
+        if (val) {
+          const dd = document.getElementById('dropdown' + i);
+          if (dd) {
+            dd.value = val;
+            updateDropdownStyle(dd);
+            loaded++;
+          }
+        }
+      }
+      if (loaded) {
+        updateProgress();
+        showToast(`Loaded ${loaded} saved answers`, 'success');
+      }
+    }
+  }
+
+  function attachButtons() {
+    document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+    document.getElementById('backBtn').addEventListener('click', goBack);
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('reviewBtn').addEventListener('click', reviewAnswers);
+    document.getElementById('tryAgainBtn').addEventListener('click', () => { resetAll(); closeModal(); });
+    document.getElementById('continueBtn').addEventListener('click', closeModal);
+    document.getElementById('resultsModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(); });
+  }
+
+  init();
+})();
+</script>
 </body>
 </html>

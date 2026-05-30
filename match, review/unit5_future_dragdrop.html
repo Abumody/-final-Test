@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Unit 5 – Our Future</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="dragdrop.js" defer></script>
+
+</head>
+
+<body>
+
+<h1 class="title">Unit 5: Our Future</h1>
+
+<button class="toggle-btn" onclick="toggleArabic()">Show / Hide Arabic</button>
+
+
+<!-- WORD BANK -->
+
+<div class="phrase-bank">
+
+<div class="phrase" draggable="true" data-answer="1">journalist <span class="ar">صحفية</span></div>
+<div class="phrase" draggable="true" data-answer="2">manager <span class="ar">مدير</span></div>
+<div class="phrase" draggable="true" data-answer="3">professional footballer <span class="ar">لاعب كرة قدم محترف</span></div>
+<div class="phrase" draggable="true" data-answer="4">dentist <span class="ar">طبيب أسنان</span></div>
+<div class="phrase" draggable="true" data-answer="5">architect <span class="ar">مهندس معماري</span></div>
+<div class="phrase" draggable="true" data-answer="6">hairdresser <span class="ar">حلاق</span></div>
+<div class="phrase" draggable="true" data-answer="7">graphic designer <span class="ar">مصممة جرافيك</span></div>
+<div class="phrase" draggable="true" data-answer="8">electric vehicle technician <span class="ar">فني مركبة كهربائية</span></div>
+<div class="phrase" draggable="true" data-answer="9">novelist <span class="ar">روائي</span></div>
+<div class="phrase" draggable="true" data-answer="10">diver <span class="ar">غواص</span></div>
+<div class="phrase" draggable="true" data-answer="11">game designer <span class="ar">مصمم ألعاب</span></div>
+<div class="phrase" draggable="true" data-answer="12">inventor <span class="ar">مخترع</span></div>
+
+</div>
+
+
+
+<!-- IMAGES -->
+
+<div class="image-grid">
+
+<div class="item">
+<img src="images/journalist.jpg">
+<div class="drop-box" data-id="1">1</div>
+</div>
+
+<div class="item">
+<img src="images/manager.jpg">
+<div class="drop-box" data-id="2">2</div>
+</div>
+
+<div class="item">
+<img src="images/footballer.jpg">
+<div class="drop-box" data-id="3">3</div>
+</div>
+
+<div class="item">
+<img src="images/dentist.jpg">
+<div class="drop-box" data-id="4">4</div>
+</div>
+
+<div class="item">
+<img src="images/architect.jpg">
+<div class="drop-box" data-id="5">5</div>
+</div>
+
+<div class="item">
+<img src="images/hairdresser.jpg">
+<div class="drop-box" data-id="6">6</div>
+</div>
+
+<div class="item">
+<img src="images/graphic_designer.jpg">
+<div class="drop-box" data-id="7">7</div>
+</div>
+
+<div class="item">
+<img src="images/ev_technician.jpg">
+<div class="drop-box" data-id="8">8</div>
+</div>
+
+<div class="item">
+<img src="images/novelist.jpg">
+<div class="drop-box" data-id="9">9</div>
+</div>
+
+<div class="item">
+<img src="images/diver.jpg">
+<div class="drop-box" data-id="10">10</div>
+</div>
+
+<div class="item">
+<img src="images/game_designer.jpg">
+<div class="drop-box" data-id="11">11</div>
+</div>
+
+<div class="item">
+<img src="images/inventor.jpg">
+<div class="drop-box" data-id="12">12</div>
+</div>
+
+</div>
+
+
+
+<div class="bottom-area">
+
+<button onclick="checkAnswers()">Submit</button>
+<button onclick="history.back()">Back</button>
+
+<p id="resultText"></p>
+
+</div>
+
+</body>
+</html>
